@@ -16,8 +16,7 @@ const userSchema = new Schema({
  },
 
  chatId: {
-  type: Number,
-  required: true
+  type: Number
  },
 
  profileURL: {

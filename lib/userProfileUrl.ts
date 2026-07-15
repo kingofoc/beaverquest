@@ -1,6 +1,6 @@
 // lib/userProfileURL.ts
 const TELEGRAM_API = 'https://api.telegram.org';
-const BOT_TOKEN = process.env.BOT_TOKEN;
+const BOT_TOKEN = process.env.BOT_TOKEN as string;
 
 export async function fetchTelegramProfilePic(userId: number): Promise<string | null> {
  try {

@@ -7,7 +7,7 @@ import { fetchTelegramProfilePic } from '@/lib/userProfileUrl';
 import { generateUniqueRefId, rewardReferrer } from '@/lib/rewardReferrer';
 
 const TELEGRAM_API = 'https://api.telegram.org';
-const BOT_TOKEN = process.env.BOT_TOKEN;
+const BOT_TOKEN = process.env.BOT_TOKEN as string;
 const BOT_LINK = 'https://t.me/beaverquestbot';
 
 export async function POST(req: NextRequest) {
