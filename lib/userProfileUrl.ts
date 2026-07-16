@@ -5,7 +5,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN as string;
 export async function fetchTelegramProfilePic(userId: number): Promise<string | null> {
  try {
   // get user telegram profile pics
-   const res = await fetch(`${TELEGRAM_API}/bots${BOT_TOKEN}/getUserProfilePhotos?user_id=${userId}`);
+   const res = await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/getUserProfilePhotos?user_id=${userId}`);
    const data = await res.json();
 
    if (data.ok && data.result.total_count > 0) {

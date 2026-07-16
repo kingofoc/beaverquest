@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     referralLink,
     country: "",
     language,
-    pQuestToken: 1000,
+    balance: 1000,
     telegramStars: 0,
     ton: 0,
     tonWallet: "",

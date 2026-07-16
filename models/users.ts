@@ -1,6 +1,56 @@
-import { model, Schema, models } from 'mongoose';
+import { model, Schema, models, Document } from 'mongoose';
 
-const userSchema = new Schema({
+export interface IUser extends Document {
+  userId: number;
+  username?: string;
+  firstName?: string;
+  chatId?: number;
+  profileURL?: string;
+  referralId?: string;
+  referralLink: string;
+  country?: string;
+  language?: string;
+  balance?: number;
+  telegramStars?: number;
+  ton?: number;
+  airdrop?: number;
+  tonWallet?: string;
+  level?: number;
+  community?: string;
+  referredBy?: number;
+  referrals?: number;
+  referredUsers: number[];
+  taskCompleted?: number;
+  taskCompletedList?: string[];
+  taskVerified?: number[];
+  taskClaimed?: string[];
+  taskStarted?: {
+    taskId: string;
+    startedAt: Date;
+  }[];
+  taskPublished?: number[];
+  totalTaskPublished?: number;
+  taskSettled?: string[];
+  totalTaskSettled?: number;
+  checkInAds?: number;
+  lastCheckInAdsAt?: Date;
+  adsCheckInClaimedAt?: Date;
+  rewardAds?: number;
+  lastRewardAdsAt?: Date;
+  totalAdsWatched?: number;
+  checkInStarsPaid?: number;
+  checkInStarsPaidAt?: Date;
+  totalStarsPaid?: number;
+  checkInTonPaid?: number;
+  checkInTonPaidAt?: Date;
+  totalTonPaid?: number;
+  taskBooster?: number;
+  checkInBooster?: number;
+  airdropBooster?: number;
+}
+
+
+const userSchema = new Schema<IUser>({
  userId: {
   type: Number,
   required: true,
@@ -25,7 +75,6 @@ const userSchema = new Schema({
 
  referralId: {
   type: String,
-  required: true,
   unique: true
  },
 
@@ -42,7 +91,7 @@ const userSchema = new Schema({
   type: String
  },
 
- pQuestToken: {
+ balance: {
   type: Number,
  },
 
@@ -98,10 +147,10 @@ const userSchema = new Schema({
   type: [String]
  },
 
- taskStarted: {
-  taskId: [String],
+ taskStarted: [{
+  taskId: String,
   startedAt: Date
- },
+ }],
 
  taskPublished: {
   type: [Number]
@@ -180,4 +229,4 @@ const userSchema = new Schema({
  }
 });
 
-export const User = models.User || model("User", userSchema);
+export const User = models.User || model<IUser>("User", userSchema);

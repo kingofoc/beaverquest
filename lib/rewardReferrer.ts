@@ -1,4 +1,4 @@
-import { User } from '@/models/users';
+import { IUser, User } from '@/models/users';
 import connectDb from '@/lib/mongodb';
 
 const REFERRER_REWARD = 1000;
@@ -17,32 +17,32 @@ function generateRefId(length: number = 8): string {
 
 export async function generateUniqueRefId(): Promise<string> {
  let userRefId = "";
-  let isUnique = false;
+ let isUnique = false;
 
-  while (isUnique) {
-   userRefId = generateRefId();
-   const existingUser = await User.findOne({ userRefId });
-   if (!existingUser) isUnique = true
+  while (!isUnique) {
+    userRefId = generateRefId();
+    const existingUser = await User.findOne({ referralId: userRefId });
+    if (!existingUser) isUnique = true
   }
 
   return userRefId;
 }
 
-export async function rewardReferrer(userId: number, referralId: string) {
- await connectDb();
+export async function rewardReferrer(user: IUser, referralId: string) {
+  if (!referralId) return;
 
- const user = await User.findOne({ userId });
- const referrer = await User.findOne({ userRefId: referralId});
+  await connectDb();
+  const referrer = await User.findOne({ referralId});
 
- // rewards referrals
- if (referrer && !referrer.referredUsers.includes(userId)) {
-  referrer.referredUsers.push(userId);
-  referrer.referrals += 1;
-  referrer. balance += REFERRER_REWARD;
+  // rewards referrals
+  if (referrer && !referrer.referredUsers.includes(user.userId)) {
+    referrer.referredUsers.push(user.userId);
+    referrer.referrals = (referrer.referrals ?? 0) + 1;
+    referrer.balance = (referrer.balance ?? 0) + REFERRER_REWARD;
 
-  await referrer.save
+    await referrer.save();
 
-  user.referredBy = referrer.userId;
-  await user.save()
- }
+    user.referredBy = referrer.userId;
+    await user.save();
+  }
 }
