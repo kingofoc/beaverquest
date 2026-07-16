@@ -11,6 +11,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN as string;
 const BOT_LINK = 'https://t.me/beaverquestbot';
 
 export async function POST(req: NextRequest) {
+ try {
  const body = await req.json();
  // stars preCheckOutQuery goes here first
 
@@ -19,7 +20,6 @@ export async function POST(req: NextRequest) {
  const username = body?.message?.from?.username ?? firstName;
  const messageText = body?.message?.text;
  const chatId = body?.message?.chat?.id;
- const profileURL = await fetchTelegramProfilePic(userId);
  const language = body?.message?.from?.language_code;
  const isBot = body?.message?.from?.is_bot;
 
@@ -69,8 +69,9 @@ export async function POST(req: NextRequest) {
 
   await connectDb();
 
-  let user = await User.findOne({userId});
+  let user = await User.findOne({ userId });
   if (!user) {
+   const profileURL = await fetchTelegramProfilePic(userId);
    const referralId = await generateUniqueRefId();
    const referralLink = `${BOT_LINK}?start=${referralId}`;
 
@@ -118,9 +119,15 @@ export async function POST(req: NextRequest) {
     checkInStreak: 0,
    });
 
+   console.log("User created:", user.userId);
+
    await rewardReferrer(user, referralCode);
   }
  }
 
- return NextResponse.json("Ok", { status: 200 });
+ return NextResponse.json({ ok: true }, { status: 200 });
+} catch (err) {
+ console.error("Webhook error:", err);
+ return NextResponse.json({ ok: true }, { status: 200 });
+}
 }
