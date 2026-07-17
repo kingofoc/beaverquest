@@ -21,9 +21,7 @@ export async function POST(req: NextRequest) {
  await User.updateOne(
   {userId},
   {
-   $set: {
-    country
-   }
+   $set: { country }
   }
  );
 
