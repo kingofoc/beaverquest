@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Righteous } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 
 // import { TonProvider } from "./components/TonProvider";
 // import TelegramInit from "./components/TelegramInit";
-const righteous = Righteous({
+const inter = Inter({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-righteous",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +30,7 @@ export default function RootLayout({
         <Script src="https://sad.adsgram.ai/js/sad.min.js"></Script>
       </head>
       <body
-        className={`${righteous.className} antialiased`}
+        className={`${inter.className} antialiased`}
       >
         {children}
         {/* <TonProvider>
