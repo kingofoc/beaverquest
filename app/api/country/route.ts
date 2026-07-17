@@ -8,10 +8,14 @@ export async function POST(req: NextRequest) {
  const { userId } = await req.json();
  const country = req.headers.get('x-vercel-ip-country');
 
+ if (!userId) {
+  return NextResponse.json({ error: "userId is required" }, { status: 400 });
+ }
+
  const user = await User.findOne({ userId });
 
  if(!user) {
-  return NextResponse.json({ error: "userId is required" }, { status: 400 });
+  return NextResponse.json({ error: "userId is required" }, { status: 404 });
  }
 
  await User.updateOne(
@@ -21,5 +25,7 @@ export async function POST(req: NextRequest) {
     country
    }
   }
- )
+ );
+
+ return NextResponse.json({ success: true, country }, { status: 200 });
 }
