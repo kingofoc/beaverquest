@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import UserCountry from "./components/UserCountry";
 
 export default function Home() {
@@ -8,6 +9,8 @@ export default function Home() {
       <div>
         <h1>Welcome to BeaverQuest</h1>
       </div>
+
+      <Footer />
     </div>
   );
 }
