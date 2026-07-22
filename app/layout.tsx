@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 
-// import { TonProvider } from "./components/TonProvider";
-// import TelegramInit from "./components/TelegramInit";
+import { TonProvider } from "./components/TonProvider";
+import TelegramInit from "./components/TelegramInit";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -32,12 +32,11 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
-        {children}
-        {/* <TonProvider>
+        <TonProvider>
           <TelegramInit />
           {children}
           
-        </TonProvider> */}
+        </TonProvider>
       </body>
     </html>
   );
