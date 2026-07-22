@@ -109,6 +109,8 @@ const userSchema = new Schema<IUser>({
 
  tonWallet: {
   type: String,
+  unique: true,
+  sparse: true
  },
 
  level: {

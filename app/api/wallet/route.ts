@@ -18,6 +18,13 @@ export async function POST(req: NextRequest) {
    return NextResponse.json({ error: "user not found" }, { status: 404 });
   }
 
+  // check if wallet address is linked to another user
+  const existingWalletOwner = await User.findOne({ tonWallet: walletAddress });
+
+  if (existingWalletOwner && existingWalletOwner.userId !== userId) {
+   return NextResponse.json({ error: "This wallet is linked to another account" }, { status: 409 });
+  }
+
   await User.updateOne(
    { userId },
    { $set:
