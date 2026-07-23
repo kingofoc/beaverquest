@@ -16,21 +16,28 @@ export default function TelegramThemeSync() {
 
   const applyTheme = () => {
    const theme = tg.themeParams;
-   const bgColor = theme.bg_color ?? '#ffffff';
 
-   document.documentElement.style.setProperty('--tg-bg-color', theme.bg_color ?? '#ffffff');
-   document.documentElement.style.setProperty('--tg-text-color', theme.text_color ?? '#000000');
-   document.documentElement.style.setProperty('--tg-button-color', theme.button_color ?? '#2481cc');
-   document.documentElement.style.setProperty('--tg-button-text-color', theme.button_text_color ?? '#ffffff');
-   document.documentElement.style.setProperty('--tg-hint-color', theme.hint_color ?? '#999999');
-   document.documentElement.style.setProperty('--tg-link-color', theme.link_color ?? '#2481cc');
-   document.documentElement.style.setProperty('--tg-secondary-bg-color', theme.secondary_bg_color ?? '#f0f0f0');
+   document.documentElement.style.setProperty('--tg-bg-color', theme.bg_color);
+   document.documentElement.style.setProperty('--tg-text-color', theme.text_color);
+   document.documentElement.style.setProperty('--tg-button-color', theme.button_color);
+   document.documentElement.style.setProperty('--tg-button-text-color', theme.button_text_color);
+   document.documentElement.style.setProperty('--tg-hint-color', theme.hint_color);
+   document.documentElement.style.setProperty('--tg-link-color', theme.link_color);
+   document.documentElement.style.setProperty('--tg-secondary-bg-color', theme.secondary_bg_color);
+   document.documentElement.style.setProperty('--tg-header-bg-color', theme.header_bg_color);
+   document.documentElement.style.setProperty('--tg-accent_text_color', theme.accent_text_color);
+   document.documentElement.style.setProperty('--tg-section_bg_color', theme.section_bg_color);
+   document.documentElement.style.setProperty('--tg-section_header_text_color', theme.section_header_text_color);
+   document.documentElement.style.setProperty('--tg-subtitle_text_color', theme.subtitle_text_color);
+   document.documentElement.style.setProperty('--tg-destructive_text_color', theme.destructive_text_color);
+   document.documentElement.style.setProperty('--tg-section_separator_color', theme.section_separator_color);
+   document.documentElement.style.setProperty('--tg-bottom_bar_bg_color', theme.bottom_bar_bg_color);
 
    setColorScheme(tg.colorScheme ?? 'light');
 
    // Match Telegram's native chrome (header bar, background) to the current theme
-   tg.setHeaderColor(bgColor);
-   tg.setBackgroundColor(bgColor);
+   tg.setHeaderColor(theme.header_bg_color);
+   tg.setBackgroundColor(theme.bg_color);
   }
 
   // apply theme immediately on load

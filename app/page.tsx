@@ -12,6 +12,8 @@ export default function Home() {
         <ConnectWallet />
       </div>
 
+      <button>Start task</button>
+
       <Footer />
     </div>
   );

@@ -10,3 +10,8 @@ body {
   color: var(--tg-text-color);
   font-family: 'Inter', sans-serif;
 }
+
+button {
+  background-color: var(--tg-button-color);
+  color: var(--tg-button-text-color)
+}
