@@ -25,13 +25,13 @@ export default function TelegramThemeSync() {
    document.documentElement.style.setProperty('--tg-link-color', theme.link_color);
    document.documentElement.style.setProperty('--tg-secondary-bg-color', theme.secondary_bg_color);
    document.documentElement.style.setProperty('--tg-header-bg-color', theme.header_bg_color);
-   document.documentElement.style.setProperty('--tg-accent_text_color', theme.accent_text_color);
-   document.documentElement.style.setProperty('--tg-section_bg_color', theme.section_bg_color);
-   document.documentElement.style.setProperty('--tg-section_header_text_color', theme.section_header_text_color);
-   document.documentElement.style.setProperty('--tg-subtitle_text_color', theme.subtitle_text_color);
-   document.documentElement.style.setProperty('--tg-destructive_text_color', theme.destructive_text_color);
-   document.documentElement.style.setProperty('--tg-section_separator_color', theme.section_separator_color);
-   document.documentElement.style.setProperty('--tg-bottom_bar_bg_color', theme.bottom_bar_bg_color);
+   document.documentElement.style.setProperty('--tg-accent-text-color', theme.accent_text_color);
+   document.documentElement.style.setProperty('--tg-section-bg-color', theme.section_bg_color);
+   document.documentElement.style.setProperty('--tg-section-header-text-color', theme.section_header_text_color);
+   document.documentElement.style.setProperty('--tg-subtitle-text-color', theme.subtitle_text_color);
+   document.documentElement.style.setProperty('--tg-destructive-text-color', theme.destructive_text_color);
+   document.documentElement.style.setProperty('--tg-section-separator-color', theme.section_separator_color);
+   document.documentElement.style.setProperty('--tg-bottom-bar-bg-color', theme.bottom_bar_bg_color);
 
    setColorScheme(tg.colorScheme ?? 'light');
 
