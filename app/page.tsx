@@ -14,6 +14,19 @@ export default function Home() {
 
       <button>Start task</button>
 
+      <h2>Telegram theme colors</h2>
+      <p className="tg-link">Hello</p>
+      <p className="tg-hint">Hello</p>
+      <p className="tg-secondary-bg">Hello</p>
+      <p className="tg-header-bg-color">Hello</p>
+      <p className="tg-accent-text-color">Hello</p>
+      <p className="tg-section-bg-color">Hello</p>
+      <p className="tg-section-header-tect-color">Hello</p>
+      <p className="tg-subtitle-text-color">Hello</p>
+      <p className="tg-destruction-text-color">Hello</p>
+      <p className="tg-section-seperator-color">Hello</p>
+      <p className="tg-bottom-bar-bg-color">Hello</p>
+
       <Footer />
     </div>
   );
