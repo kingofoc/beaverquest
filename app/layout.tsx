@@ -5,6 +5,7 @@ import Script from "next/script";
 
 import { TonProvider } from "./components/TonProvider";
 import TelegramInit from "./components/TelegramInit";
+import TelegramThemeSync from "./components/TelegramThemeSync";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -33,6 +34,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <TonProvider>
+          <TelegramThemeSync />
           <TelegramInit />
           {children}
           

@@ -12,6 +12,7 @@ interface TelegramWebAppThemeParams {
   link_color?: string;
   button_color?: string;
   button_text_color?: string;
+  secondary_bg_color?: string;
 };
 
 interface TelegramWebAppBackButton {
@@ -40,24 +41,30 @@ interface TelegramWebAppMainButton {
 interface TelegramWebApp {
   initDataUnsafe: {
     user: {
-      id: number;
-      username: string;
-      first_name: string;
-      photo_url: string;
-      is_bot: boolean;
-      language: string;
-      country: string;
+      id?: number;
+      username?: string;
+      first_name?: string;
+      photo_url?: string;
+      is_bot?: boolean;
+      language?: string;
+      country?: string;
     };
+    start_param?: string;
   };
   ready(): void;
   expand(): void;
   close(): void;
   themeParams: TelegramWebAppThemeParams;
+  colorScheme: 'light' | 'dark';
+  headerColor: (color: string) => void;
+  backgroundColor: (color: string) => void;
   BackButton: TelegramWebAppBackButton;
   // CloseButton: TelegramWebAppCloseButton;
   MainButton: TelegramWebAppMainButton;
   openInvoice(invoiceLink: string): void;
-  onEvent(event: 'invoiceClosed', listener: (event: InvoiceClosedEvent) => Promise<void>): void;
+  onEvent(eventType: string, callback: () => void): void;
+  onEvent(eventType: 'invoiceClosed', listener: (event: InvoiceClosedEvent) => Promise<void>): void;
+  offEvent(eventType: string, callback: () => void): void;
   offEvent(event: 'invoiceClosed', listener: (event: InvoiceClosedEvent) => Promise<void>): void;
 }
 
