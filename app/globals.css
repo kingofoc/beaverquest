@@ -6,7 +6,7 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--tg-bg-color);
+  color: var(--tg-text-color);
   font-family: 'Inter', sans-serif;
 }
