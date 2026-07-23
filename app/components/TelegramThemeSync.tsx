@@ -11,6 +11,18 @@ export default function TelegramThemeSync() {
   const tg = window?.Telegram?.WebApp;
   if (!tg) return;
 
+  tg.ready();
+  tg.expand();
+
+  if (pathname === '/' || pathname === '/home') {
+   // Show Close button on home page
+   tg.BackButton.hide();
+  } else {
+   // Show Back button on other pages
+   tg.BackButton.show();
+   tg.BackButton.onClick(() => router.back());
+  }
+
   const applyTheme = () => {
    const theme = tg.themeParams;
    const bgColor = theme.bg_color ?? '#ffffff';
@@ -37,36 +49,16 @@ export default function TelegramThemeSync() {
   tg.onEvent('themeChanged', applyTheme);
 
   return () => {
+   tg.BackButton.offClick();
+   tg.BackButton.hide();
    tg.offEvent('themeChanged', applyTheme)
   };
- }, []);
+ }, [pathname, router]);
 
  useEffect(() => {
   // Optional: toggle a class on <html> for Tailwind dark mode support
   document.documentElement.classList.toggle('dark', colorScheme === 'dark');
  }, [colorScheme]);
-
- useEffect(() => {
-  const tg = window.Telegram?.WebApp;
-  if (!tg) return;
-
-  tg.ready();
-  tg.expand();
-
-  if (pathname === '/' || pathname === '/home') {
-   // Show Close button on home page
-   tg.BackButton.hide();
-  } else {
-   // Show Back button on other pages
-   tg.BackButton.show();
-   tg.BackButton.onClick(() => router.back());
-  }
-
-  return () => {
-   tg.BackButton.offClick();
-   tg.BackButton.hide();
-  };
- }, [pathname, router])
 
  return null;
 }
