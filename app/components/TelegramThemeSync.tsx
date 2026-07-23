@@ -14,15 +14,6 @@ export default function TelegramThemeSync() {
   tg.ready();
   tg.expand();
 
-  if (pathname === '/' || pathname === '/home') {
-   // Show Close button on home page
-   tg.BackButton.hide();
-  } else {
-   // Show Back button on other pages
-   tg.BackButton.show();
-   tg.BackButton.onClick(() => router.back());
-  }
-
   const applyTheme = () => {
    const theme = tg.themeParams;
    const bgColor = theme.bg_color ?? '#ffffff';
@@ -38,8 +29,8 @@ export default function TelegramThemeSync() {
    setColorScheme(tg.colorScheme ?? 'light');
 
    // Match Telegram's native chrome (header bar, background) to the current theme
-   tg.headerColor(bgColor);
-   tg.backgroundColor(bgColor);
+   tg.setHeaderColor(bgColor);
+   tg.setBackgroundColor(bgColor);
   }
 
   // apply theme immediately on load
@@ -49,11 +40,30 @@ export default function TelegramThemeSync() {
   tg.onEvent('themeChanged', applyTheme);
 
   return () => {
-   tg.BackButton.offClick();
-   tg.BackButton.hide();
    tg.offEvent('themeChanged', applyTheme)
   };
- }, [pathname, router]);
+ }, []);
+
+ useEffect(() => {
+  const tg = window?.Telegram?.WebApp;
+  if (!tg) return;
+
+  const handleBack = () => router.back();
+
+  if (pathname === '/' || pathname === '/home') {
+   // Show Close button on home page
+   tg.BackButton.hide();
+  } else {
+   // Show Back button on other pages
+   tg.BackButton.show();
+   tg.BackButton.onClick(handleBack);
+  }
+
+  return () => {
+   tg.BackButton.offClick(handleBack);
+   tg.BackButton.hide();
+  }
+ }, [pathname, router])
 
  useEffect(() => {
   // Optional: toggle a class on <html> for Tailwind dark mode support

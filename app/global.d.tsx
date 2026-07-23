@@ -56,8 +56,8 @@ interface TelegramWebApp {
   close(): void;
   themeParams: TelegramWebAppThemeParams;
   colorScheme: 'light' | 'dark';
-  headerColor: (color: string) => void;
-  backgroundColor: (color: string) => void;
+  setHeaderColor: (color: string) => void;
+  setBackgroundColor: (color: string) => void;
   BackButton: TelegramWebAppBackButton;
   // CloseButton: TelegramWebAppCloseButton;
   MainButton: TelegramWebAppMainButton;
