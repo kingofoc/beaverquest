@@ -15,3 +15,36 @@ button {
   background-color: var(--tg-button-color);
   color: var(--tg-button-text-color)
 }
+.color1 {
+  color: var(--tg-link-color);
+}
+.color2 {
+  color: var(--tg-hint-color)
+}
+.color3 {
+  color: var(--tg-secondary-bg-color)
+}
+.color4 {
+  color: var(--tg-header-bg-color);
+}
+.color5 {
+  color: var(--tg-accent-text-color);
+}
+.color6 {
+  color: var(--tg-section-bg-color);
+}
+.color7 {
+  color: var(--tg-section-header-text-color);
+}
+.color8 {
+  color: var(--tg-subtitle-text-color);
+}
+.color9 {
+  color: var(--tg-destructive-text-color);
+}
+.color10 {
+  color: var(--tg-section-separator-color)
+}
+.color11 {
+  color: var(--tg-bottom-bar-bg-color);
+}
