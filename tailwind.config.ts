@@ -5,7 +5,6 @@ const config: Config = {
  theme: {
   extend: {
    colors: {
-   'tg-pattern-bg': 'var(--tg-pattern-bg)',
    'tg-bg': 'var(--tg-bg-color)',
    'tg-text': 'var(--tg-text-color)',
    'tg-button': 'var(--tg-button-color)',

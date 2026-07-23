@@ -2,16 +2,19 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from 'next/navigation';
 
-function buildPatternBackground(color: string) {
- const encodedColor = encodeURIComponent(color);
+async function loadRecoloredPattern(url: string, color: string): Promise<string> {
+ const res = await fetch(url);
+ let svgText = await res.text();
 
- const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 80 80'><g fill='${encodedColor}' fill-opacity='0.3'><path fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM0 72h40v4H0v-4zm0-8h31v4H0v-4zm20-16h20v4H20v-4zM0 56h40v4H0v-4zm63-25a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM53 41a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-30 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-28-8a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zM56 5a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zm-3 46a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM21 0l5 20H16l5-20zm43 64v-4h-4v4h-4v4h4v4h4v-4h4v-4h-4zM36 13h4v4h-4v-4zm4 4h4v4h-4v-4zm-4 4h4v4h-4v-4zm8-8h4v4h-4v-4z'/></g></svg>`;
+ // The source SVG uses #000000 for every stroke/fill - swap it for the theme color
+ svgText = svgText.replace(/#000000/g, color);
 
- return `url("data:image/svg+xml,${svg.replace(/#/g, '%23')}")`
+ return svgText;
 }
 
 export default function TelegramThemeSync() {
  const [ colorScheme, setColorScheme ] = useState<"light" | "dark">('light');
+ const [patternSvg, setPatternSvg] = useState<string | null>(null);
  const router = useRouter();
  const pathname = usePathname();
 
@@ -22,10 +25,9 @@ export default function TelegramThemeSync() {
   tg.ready();
   tg.expand();
 
-  const applyTheme = () => {
+  const applyTheme = async () => {
    const theme = tg.themeParams;
 
-   document.documentElement.style.setProperty('--tg-pattern-bg', buildPatternBackground(theme.button_color));
    document.documentElement.style.setProperty('--tg-bg-color', theme.bg_color);
    document.documentElement.style.setProperty('--tg-text-color', theme.text_color);
    document.documentElement.style.setProperty('--tg-button-color', theme.button_color);
@@ -42,11 +44,23 @@ export default function TelegramThemeSync() {
    document.documentElement.style.setProperty('--tg-section-separator-color', theme.section_separator_color);
    document.documentElement.style.setProperty('--tg-bottom-bar-bg-color', theme.bottom_bar_bg_color);
 
-   setColorScheme(tg.colorScheme ?? 'light');
+   setColorScheme(tg.colorScheme);
 
    // Match Telegram's native chrome (header bar, background) to the current theme
    tg.setHeaderColor(theme.header_bg_color);
    tg.setBackgroundColor(theme.bg_color);
+
+   // Load and recolor the chat pattern background using the hint color
+   // (a muted tone works best for a subtle background texture)
+   try {
+    const recolored = await loadRecoloredPattern(
+     '/pattern-27.svg',
+     theme.hint_color
+    );
+    setPatternSvg(recolored);
+   } catch (err) {
+    console.error('Failed to load chat pattern:', err);
+   }
   }
 
   // apply theme immediately on load
@@ -86,5 +100,13 @@ export default function TelegramThemeSync() {
   document.documentElement.classList.toggle('dark', colorScheme === 'dark');
  }, [colorScheme]);
 
- return null;
+ if (!patternSvg) return null;
+
+ return (
+  <div
+   className="fixed inset-0 -z-10 pointer-events-none overflow-hidden"
+   style={{ opacity: 0.08 }}
+   dangerouslySetInnerHTML={{ __html: patternSvg }}
+  />
+ )
 }
