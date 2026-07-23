@@ -54,8 +54,8 @@ export default function TelegramThemeSync() {
    // (a muted tone works best for a subtle background texture)
    try {
     const recolored = await loadRecoloredPattern(
-     '/pattern-27.svg',
-     theme.hint_color
+     '/tg-bg-pattern.svg',
+     theme.accent_text_color
     );
     setPatternSvg(recolored);
    } catch (err) {
