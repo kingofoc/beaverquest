@@ -11,11 +11,11 @@
   --hint-color: rgb(var(--tg-hint-color));
   --destruction: rgb(var(--tg-destructive-text-color));
 
-  --tertiary-bg-faded: rgba(var(--tg-button-color), 0.3);
+  --tertiary-bg-faded: rgba(var(--tg-button-color), 0.2);
 }
 
 body {
-  background-color: var(--secondary-bg);
+  background-color: var(--primary-bg);
   color: var(--text-color);
   font-family: 'Inter', sans-serif;
   padding: 2rem;
