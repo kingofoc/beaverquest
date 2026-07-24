@@ -1,40 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary-bg: rgb(var(--tg-bg-color));
+  --secondary-bg: rgb(var(--tg-secondary-bg-color));
+  --tertiary-bg: rgb(var(--tg-button-color));
+  --text-color: rgb(var(--tg-text-color));
+  --link-color: rgb(var(--tg-link-color));
+  --button-color: rgb(var(--tg-button-color));
+  --button-text-color: rgb(var(--tg-button-text-color));
+  --hint-color: rgb(var(--tg-hint-color));
+  --destruction: rgb(var(--tg-destructive-text-color));
+
+  --tertiary-bg-faded: rgba(var(--tg-button-color), 0.3);
 }
 
 body {
-  background-color: var(--tg-bg-color);
-  color: var(--tg-text-color);
+  background-color: var(--primary-bg);
+  color: var(--text-color);
   font-family: 'Inter', sans-serif;
   padding: 2rem;
 }
 
-.text {
-  color: var(--tg-text-color);
-}
-
 .tertiary-bg {
-  background-color: var(--tg-button-color);
+  background-color: var(--tertiary-bg);
 }
 
 .tertiary-bg-faded {
-  background-color: var(--tg-button-color), 0.4;
+  background-color: var(--tertiary-bg-faded);
 }
 
 .secondary-bg {
-  background-color: var(--tg-secondary-bg-color);
+  background-color: var(--secondary-bg);
 }
 
 .primary-bg {
-  background-color: var(--tg-bg-color);
+  background-color: var(--primary-bg);
 }
 
-button {
-  background-color: var(--tg-button-color);
-  color: var(--tg-button-text-color)
+.shadow {
+  box-shadow: 0 4px 12px var(--tertiary-bg-faded);
 }
 
 /* project color palatte */

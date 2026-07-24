@@ -12,8 +12,8 @@ export default function Footer() {
   { href: "/profile", label: "Me", icon: "/profile.svg" }
  ]
  return (
-  <div className="grid grid-cols-5 gap-1 fixed bottom-0 left-0 w-full">
-   <div className="grid grid-cols-3 col-span-3 col-start-2 gap-1 secondary-bg rounded-full p-1 mb-8">
+  <div className="grid grid-cols-6 gap-1 fixed bottom-0 left-0 w-full">
+   <div className="grid grid-cols-3 col-span-3 col-start-2 col-end-5 gap-1 primary-bg rounded-full p-1 mb-8">
     {footerItems.map(({ href, label, icon }) => {
      const isActive = pathname === href
 
@@ -21,7 +21,7 @@ export default function Footer() {
       <Link 
        key={label} 
        href={href} 
-       className={`flex flex-col justify-center items-center text-center text-xs p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full font-bold' : 'bg-transparent text font-medium'} transition-all duration-200 ease-in-out`}>
+       className={`flex flex-col justify-center items-center text-center text-sm p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full font-bold' : 'bg-transparent font-medium'} transition-all duration-200 ease-in-out`}>
 
         <Image src={icon} width={32} height={32} alt={label} />
         <span className="">{label}</span>
