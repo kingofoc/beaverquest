@@ -13,7 +13,7 @@ export default function Footer() {
  ]
  return (
   <div className="grid grid-cols-5 gap-4 fixed bottom-1 left-0 w-full">
-   <div className="grid col-span-3 col-start-2 gap-4 secondary-bg rounded-full p-1.5">
+   <div className="grid grid-cols-3 col-span-3 col-start-2 gap-4 secondary-bg rounded-full p-1.5">
     {footerItems.map(({ href, label, icon }) => {
      const isActive = pathname === href
 
