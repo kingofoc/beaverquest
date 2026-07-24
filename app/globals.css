@@ -15,7 +15,7 @@
 }
 
 body {
-  background-color: var(--primary-bg);
+  background-color: var(--secondary-bg);
   color: var(--text-color);
   font-family: 'Inter', sans-serif;
   padding: 2rem;

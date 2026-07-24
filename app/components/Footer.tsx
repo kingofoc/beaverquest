@@ -12,8 +12,8 @@ export default function Footer() {
   { href: "/profile", label: "Me", icon: "/profile.svg" }
  ]
  return (
-  <div className="grid grid-cols-6 fixed bottom-0 left-0 w-full">
-   <div className="grid grid-cols-3 col-span-4 col-start-2 col-end-5 gap-2 primary-bg rounded-full p-1 mb-8">
+  <div className="grid grid-cols-5 fixed bottom-0 left-0 w-full">
+   <div className="grid grid-cols-3 col-span-3 col-start-2 gap-2 primary-bg rounded-full p-1 mb-8">
     {footerItems.map(({ href, label, icon }) => {
      const isActive = pathname === href
 
