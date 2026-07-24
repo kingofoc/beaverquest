@@ -38,7 +38,7 @@ body {
 }
 
 .shadow {
-  box-shadow: 0 4px 12px var(--tertiary-bg-faded);
+  box-shadow: 0 4px 12px var(--tertiary-bg);
 }
 
 /* project color palatte */
