@@ -12,6 +12,14 @@ async function loadRecoloredPattern(url: string, color: string): Promise<string>
  return svgText;
 }
 
+function hexToRgb(hex: string): string {
+ const clean = hex.replace('#', '');
+ const r = parseInt(clean.substring(0, 2), 16);
+ const g = parseInt(clean.substring(2, 4), 16);
+ const b = parseInt(clean.substring(4, 6), 16);
+ return `${r}, ${g}, ${b}`;
+}
+
 export default function TelegramThemeSync() {
  const [ colorScheme, setColorScheme ] = useState<"light" | "dark">('light');
  const [patternSvg, setPatternSvg] = useState<string | null>(null);
@@ -28,21 +36,21 @@ export default function TelegramThemeSync() {
   const applyTheme = async () => {
    const theme = tg.themeParams;
 
-   document.documentElement.style.setProperty('--tg-bg-color', theme.bg_color);
-   document.documentElement.style.setProperty('--tg-text-color', theme.text_color);
-   document.documentElement.style.setProperty('--tg-button-color', theme.button_color);
-   document.documentElement.style.setProperty('--tg-button-text-color', theme.button_text_color);
-   document.documentElement.style.setProperty('--tg-hint-color', theme.hint_color);
-   document.documentElement.style.setProperty('--tg-link-color', theme.link_color);
-   document.documentElement.style.setProperty('--tg-secondary-bg-color', theme.secondary_bg_color);
-   document.documentElement.style.setProperty('--tg-header-bg-color', theme.header_bg_color);
-   document.documentElement.style.setProperty('--tg-accent-text-color', theme.accent_text_color);
-   document.documentElement.style.setProperty('--tg-section-bg-color', theme.section_bg_color);
-   document.documentElement.style.setProperty('--tg-section-header-text-color', theme.section_header_text_color);
-   document.documentElement.style.setProperty('--tg-subtitle-text-color', theme.subtitle_text_color);
-   document.documentElement.style.setProperty('--tg-destructive-text-color', theme.destructive_text_color);
-   document.documentElement.style.setProperty('--tg-section-separator-color', theme.section_separator_color);
-   document.documentElement.style.setProperty('--tg-bottom-bar-bg-color', theme.bottom_bar_bg_color);
+   document.documentElement.style.setProperty('--tg-bg-color', hexToRgb(theme.bg_color));
+   document.documentElement.style.setProperty('--tg-text-color', hexToRgb(theme.text_color));
+   document.documentElement.style.setProperty('--tg-button-color', hexToRgb(theme.button_color));
+   document.documentElement.style.setProperty('--tg-button-text-color', hexToRgb(theme.button_text_color));
+   document.documentElement.style.setProperty('--tg-hint-color', hexToRgb(theme.hint_color));
+   document.documentElement.style.setProperty('--tg-link-color', hexToRgb(theme.link_color));
+   document.documentElement.style.setProperty('--tg-secondary-bg-color', hexToRgb(theme.secondary_bg_color));
+   document.documentElement.style.setProperty('--tg-header-bg-color', hexToRgb(theme.header_bg_color));
+   document.documentElement.style.setProperty('--tg-accent-text-color', hexToRgb(theme.accent_text_color));
+   document.documentElement.style.setProperty('--tg-section-bg-color', hexToRgb(theme.section_bg_color));
+   document.documentElement.style.setProperty('--tg-section-header-text-color', hexToRgb(theme.section_header_text_color));
+   document.documentElement.style.setProperty('--tg-subtitle-text-color', hexToRgb(theme.subtitle_text_color));
+   document.documentElement.style.setProperty('--tg-destructive-text-color', hexToRgb(theme.destructive_text_color));
+   document.documentElement.style.setProperty('--tg-section-separator-color', hexToRgb(theme.section_separator_color));
+   document.documentElement.style.setProperty('--tg-bottom-bar-bg-color', hexToRgb(theme.bottom_bar_bg_color));
 
    setColorScheme(tg.colorScheme);
 
