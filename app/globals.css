@@ -21,7 +21,7 @@ body {
 }
 
 .tertiary-bg-faded {
-  background-color: rgba(var(--tg-button-color), 0.4);
+  background-color: var(--tg-button-color), 0.4;
 }
 
 .secondary-bg {
