@@ -19,6 +19,10 @@ body {
   background-color: var(--tg-button-color);
 }
 
+.tertiary-bg-faded {
+  background-color: rgba(var(--tg-button-color), 0.4);
+}
+
 .secondary-bg {
   background-color: var(--tg-secondary-bg-color);
 }
@@ -26,42 +30,6 @@ body {
 button {
   background-color: var(--tg-button-color);
   color: var(--tg-button-text-color)
-}
-
-.opacity1 {
-  opacity: 0.1;
-}
-
-.opacity2 {
-  opacity: 0.2;
-}
-
-.opacity3 {
-  opacity: 0.3;
-}
-
-.opacity4 {
-  opacity: 0.4;
-}
-
-.opacity5 {
-  opacity: 0.5;
-}
-
-.opacity6 {
-  opacity: 0.6;
-}
-
-.opacity7 {
-  opacity: 0.7;
-}
-
-.opacity8 {
-  opacity: 0.8;
-}
-
-.opacity9 {
-  opacity: 0.9;
 }
 
 /* project color palatte */
