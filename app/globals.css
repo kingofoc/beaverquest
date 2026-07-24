@@ -15,11 +15,14 @@ button {
   background-color: var(--tg-button-color);
   color: var(--tg-button-text-color)
 }
-.color1 {
-  color: var(--tg-link-color);
+
+/* project color palatte */
+/* telegram user likes green light mode */
+/* .color1 {
+  color: var(--tg-link-color); green
 }
 .color2 {
-  color: var(--tg-hint-color)
+  color: var(--tg-hint-color) 
 }
 .color3 {
   color: var(--tg-secondary-bg-color)
@@ -28,23 +31,23 @@ button {
   color: var(--tg-header-bg-color);
 }
 .color5 {
-  color: var(--tg-accent-text-color);
+  color: var(--tg-accent-text-color); green
 }
 .color6 {
-  color: var(--tg-section-bg-color);
+  color: var(--tg-section-bg-color); 
 }
 .color7 {
-  color: var(--tg-section-header-text-color);
+  color: var(--tg-section-header-text-color); green
 }
 .color8 {
   color: var(--tg-subtitle-text-color);
 }
 .color9 {
-  color: var(--tg-destructive-text-color);
+  color: var(--tg-destructive-text-color); red
 }
 .color10 {
   color: var(--tg-section-separator-color)
 }
 .color11 {
   color: var(--tg-bottom-bar-bg-color);
-}
+} */
