@@ -22,35 +22,35 @@ body {
 }
 
 .tertiary-bg {
-  background-color: var(--tertiary-bg);
+  background-color: var(--tg-link-color);
 }
 
 .tertiary-bg-faded {
-  background-color: rgba(var(--tg-button-color), 0.2);
+  background-color: rgba(var(--tg-rgbLink-color), 0.1);
 }
 
 .secondary-bg {
-  background-color: var(--secondary-bg);
+  background-color: var(--tg-secondary-bg-color);
 }
 
 .primary-bg {
-  background-color: var(--primary-bg);
+  background-color: var(--tg-bg-color);
 }
 
-.shadow {
+/* .shadow {
   box-shadow: 0 4px 12px var(--tertiary-bg);
-}
+} */
 
 .link-color {
   color: var(--tg-link-color);
 }
 
 .icon-color {
-  background-color: var(--text-color);
+  background-color: var(--tg-text-color);
 }
 
 .icon-color-active {
-  background-color: var(--button-color);
+  background-color: var(--tg-button-color);
 }
 
 .icon {

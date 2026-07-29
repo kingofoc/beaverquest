@@ -12,13 +12,13 @@ async function loadRecoloredPattern(url: string, color: string): Promise<string>
  return svgText;
 }
 
-// function hexToRgb(hex: string): string {
-//  const clean = hex.replace('#', '');
-//  const r = parseInt(clean.substring(0, 2), 16);
-//  const g = parseInt(clean.substring(2, 4), 16);
-//  const b = parseInt(clean.substring(4, 6), 16);
-//  return `${r}, ${g}, ${b}` ;
-// }
+function hexToRgb(hex: string): string {
+ const clean = hex.replace('#', '');
+ const r = parseInt(clean.substring(0, 2), 16);
+ const g = parseInt(clean.substring(2, 4), 16);
+ const b = parseInt(clean.substring(4, 6), 16);
+ return `${r}, ${g}, ${b}` ;
+}
 
 export default function TelegramThemeSync() {
  const [ colorScheme, setColorScheme ] = useState<"light" | "dark">('light');
@@ -51,6 +51,8 @@ export default function TelegramThemeSync() {
    // document.documentElement.style.setProperty('--tg-subtitle-text-color', theme.subtitle_text_color);
    // document.documentElement.style.setProperty('--tg-section-separator-color', theme.section_separator_color);
    // document.documentElement.style.setProperty('--tg-bottom-bar-bg-color', theme.bottom_bar_bg_color);
+
+   document.documentElement.style.setProperty('--tg-rgbLink-color', hexToRgb(theme.link_color));
 
    setColorScheme(tg.colorScheme);
 
