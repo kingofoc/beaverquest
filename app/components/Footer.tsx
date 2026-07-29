@@ -23,7 +23,7 @@ export default function Footer() {
        href={href} 
        className={`flex flex-col justify-center items-center text-center p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full' : 'bg-transparent'} transition-all duration-200 ease-in-out`}>
 
-        <TgIcon src={isActive ? activeIcon : icon} size={28} colorVar={isActive ? "icon-color-active" : "icon-color"} />
+        <TgIcon src={isActive ? activeIcon : icon} size={28} className={isActive ? "icon-color-active" : "icon-color"} />
         <span className={`text-xs ${isActive ? 'font-bold icon-text-color-active' : 'icon-text-color font-medium'}`}>{label}</span>
       </Link>
      )
