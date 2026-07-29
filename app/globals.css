@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+/* :root {
   --primary-bg: var(--tg-bg-color);
   --secondary-bg: var(--tg-secondary-bg-color);
   --tertiary-bg: var(--tg-button-color);
@@ -12,12 +12,11 @@
   --destruction: var(--tg-destructive-text-color);
 
   --tertiary-bg-faded: rgba(var(--tg-button-color), 0.1);
-  --icon-url: var(url = "")
-}
+} */
 
 body {
-  background-color: var(--secondary-bg);
-  color: var(--text-color);
+  background-color: var(--tg-secondary-bg-color);
+  color: var(--tg-text-color);
   font-family: 'Inter', sans-serif;
   padding: 2rem;
 }
@@ -27,7 +26,7 @@ body {
 }
 
 .tertiary-bg-faded {
-  background-color: var(--tertiary-bg-faded);
+  background-color: rgba(var(--tg-button-color), 0.2);
 }
 
 .secondary-bg {
@@ -43,7 +42,7 @@ body {
 }
 
 .link-color {
-  color: var(--link-color);
+  color: var(--tg-link-color);
 }
 
 .icon-color {
