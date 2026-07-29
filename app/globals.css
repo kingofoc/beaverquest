@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --primary-bg: rgb(var(--tg-bg-color));
-  --secondary-bg: rgb(var(--tg-secondary-bg-color));
-  --tertiary-bg: rgb(var(--tg-button-color));
-  --text-color: rgb(var(--tg-text-color));
-  --link-color: rgb(var(--tg-link-color));
-  --button-color: rgb(var(--tg-button-color));
-  --button-text-color: rgb(var(--tg-button-text-color));
-  --hint-color: rgb(var(--tg-hint-color));
-  --destruction: rgb(var(--tg-destructive-text-color));
+  --primary-bg: var(--tg-bg-color);
+  --secondary-bg: var(--tg-secondary-bg-color);
+  --tertiary-bg: var(--tg-button-color);
+  --text-color: var(--tg-text-color);
+  --link-color: var(--tg-link-color);
+  --button-color: var(--tg-button-color);
+  --button-text-color: var(--tg-button-text-color);
+  --hint-color: var(--tg-hint-color);
+  --destruction: var(--tg-destructive-text-color);
 
   --tertiary-bg-faded: rgba(var(--tg-button-color), 0.1);
   --icon-url: var(url = "")
