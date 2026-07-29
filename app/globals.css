@@ -53,6 +53,14 @@ body {
   background-color: var(--tg-button-color);
 }
 
+.icon-text-color {
+  color: var(--tg-text-color);
+}
+
+.icon-text-color-active {
+  color: var(--tg-button-color);
+}
+
 .icon {
   background-color: var(--text-color);
   mask-size: contain;
