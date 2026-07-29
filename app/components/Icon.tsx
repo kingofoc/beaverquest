@@ -20,7 +20,6 @@ export default function TgIcon({ src, size = 28, className = "" }: TgIconProps) 
     maskSize: 'contain',
     maskRepeat: 'no-repeat',
     maskPosition: 'center',
-    transition: 'background-color 0.2 ease-in-out',
    }}
   />
  )
