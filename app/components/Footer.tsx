@@ -22,11 +22,11 @@ export default function Footer() {
       <Link 
        key={label} 
        href={href} 
-       className={`flex flex-col justify-center items-center text-center text-xs p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full font-bold link-color' : 'bg-transparent font-medium'} transition-all duration-200 ease-in-out`}>
+       className={`flex flex-col justify-center items-center text-center text-xs p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full font-bold icon-color-active' : 'bg-transparent font-medium'} transition-all duration-200 ease-in-out`}>
 
         <Image src={icon} width={28} height={28} alt={label} />
         <TgIcon 
-          src={icon} size={28} className={isActive ? "link-color" : "text-color"}
+          src={icon} className={isActive ? "icon-color-active" : "icon-color"}
         />
         <span className="">{label}</span>
        

@@ -46,8 +46,12 @@ body {
   color: var(--link-color);
 }
 
-.text-icon {
-  color: var(--text-color);
+.icon-color {
+  background-color: var(--text-color);
+}
+
+.icon-color-active {
+  background-color: var(--button-color);
 }
 
 .icon {
