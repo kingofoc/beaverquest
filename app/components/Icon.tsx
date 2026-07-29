@@ -7,7 +7,7 @@ type TgIconProps = {
   colorVar?: string;
 };
 
-export default function TgIcon({ src, size = 28, colorVar = "--tg-text-color", className = "" }: TgIconProps) {
+export default function TgIcon({ src, size = 28, colorVar = "icon-color", className = "" }: TgIconProps) {
  return (
   <div
    className={className}
