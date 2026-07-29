@@ -11,7 +11,8 @@
   --hint-color: rgb(var(--tg-hint-color));
   --destruction: rgb(var(--tg-destructive-text-color));
 
-  --tertiary-bg-faded: rgba(var(--tg-button-color), 0.2);
+  --tertiary-bg-faded: rgba(var(--tg-button-color), 0.1);
+  --icon-url: var(url = "")
 }
 
 body {
@@ -39,6 +40,24 @@ body {
 
 .shadow {
   box-shadow: 0 4px 12px var(--tertiary-bg);
+}
+
+.link-color {
+  color: var(--link-color);
+}
+
+.text-icon {
+  color: var(--text-color);
+}
+
+.icon {
+  background-color: var(--text-color);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
 }
 
 /* project color palatte */

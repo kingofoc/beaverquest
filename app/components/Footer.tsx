@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import TgIcon from "./Icon";
 
 export default function Footer() {
  const pathname = usePathname();
@@ -21,9 +22,12 @@ export default function Footer() {
       <Link 
        key={label} 
        href={href} 
-       className={`flex flex-col justify-center items-center text-center text-xs p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full font-bold' : 'bg-transparent font-medium'} transition-all duration-200 ease-in-out`}>
+       className={`flex flex-col justify-center items-center text-center text-xs p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full font-bold link-color' : 'bg-transparent font-medium'} transition-all duration-200 ease-in-out`}>
 
-        <Image src={icon} width={32} height={32} alt={label} />
+        <Image src={icon} width={28} height={28} alt={label} />
+        <TgIcon 
+          src={icon} size={28} className={isActive ? "link-color" : "text-color"}
+        />
         <span className="">{label}</span>
        
       </Link>

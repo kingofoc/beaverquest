@@ -5,12 +5,12 @@ const config: Config = {
  theme: {
   extend: {
    colors: {
-   'tg-bg': 'var(--tg-bg-color)',
-   'tg-text': 'var(--tg-text-color)',
-   'tg-button': 'var(--tg-button-color)',
-   'tg-button-text': 'var(--tg-button-text-color)',
-   'tg-link': 'var(--tg-link-color)',
-   'tg-hint': 'var(--tg-hint-color)',
+   'tg-bg-color': 'var(--tg-bg-color)',
+   'tg-text-color': 'var(--tg-text-color)',
+   'tg-button-color': 'var(--tg-button-color)',
+   'tg-button-text-color': 'var(--tg-button-text-color)',
+   'tg-link-color': 'var(--tg-link-color)',
+   'tg-hint-color': 'var(--tg-hint-color)',
    'tg-secondary-bg': 'var(--tg-secondary-bg-color)',
    'tg-header-bg-color': 'var(--tg-header-bg-color)',
    'tg-accent-text-color': 'var(--tg-accent-text-color)',
