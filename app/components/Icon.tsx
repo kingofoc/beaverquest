@@ -3,11 +3,10 @@
 type TgIconProps = {
   src: string;
   size?: number;
-  colorVar?: string;
   className?: string;
 };
 
-export default function TgIcon({ src, size = 28, colorVar = "--tg-text-color", className = "" }: TgIconProps) {
+export default function TgIcon({ src, size = 28, className = "" }: TgIconProps) {
  return (
   <div
    className={className}
@@ -16,7 +15,7 @@ export default function TgIcon({ src, size = 28, colorVar = "--tg-text-color", c
     height: size,
     display: "inline-block",
     flexShrink: 0,
-    backgroundColor: `var(${colorVar})`,
+    backgroundColor: "green",
     maskImage: `url(${src})`,
     maskSize: 'contain',
     maskRepeat: 'no-repeat',
