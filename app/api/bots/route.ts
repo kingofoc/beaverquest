@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
  const userId = Number(body?.message?.from?.id);
  const firstName = body?.message?.from?.first_name;
- const username = body?.message?.from?.username ?? firstName;
+ const userName = body?.message?.from?.username ?? firstName;
  const messageText = body?.message?.text;
  const chatId = body?.message?.chat?.id;
  const language = body?.message?.from?.language_code;
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
 
    user = await User.create ({
     userId,
-    username,
+    userName,
     firstName,
     chatId,
     profileURL,

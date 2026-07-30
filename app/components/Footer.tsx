@@ -9,10 +9,11 @@ export default function Footer() {
  const footerItems = [
   { href: "/publish", label: "Create", icon: "/create.svg", activeIcon: "/create-active.svg" },
   { href: "/", label: "Tasks", icon: "/task.svg", activeIcon: "/task-active.svg" },
+  { href: "/ads", label: "Ads", icon: "/ads.svg", activeIcon: "/ads-active.svg" },
   { href: "/profile", label: "Me", icon: "/profile.svg", activeIcon: "/profile-active.svg" }
  ]
  return (
-  <div className="grid grid-cols-5 fixed bottom-0 left-0 w-full --tg-button-color">
+  <div className="grid grid-cols-5 fixed bottom-0 left-0 w-full">
    <div className="grid grid-cols-3 col-span-3 col-start-2 primary-bg rounded-full p-1.5 mb-8">
     {footerItems.map(({ href, label, activeIcon, icon }) => {
      const isActive = pathname === href

@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-
+import { UserProvider } from "@/context/UserContext";
 import { TonProvider } from "./components/TonProvider";
 import TelegramThemeSync from "./components/TelegramThemeSync";
+import GetUser from "./components/GetUser";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -33,8 +35,11 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <TonProvider>
-          <TelegramThemeSync />
-          {children}
+          <UserProvider>
+            <GetUser />
+            <TelegramThemeSync />
+            {children}
+          </UserProvider>
           
         </TonProvider>
       </body>
