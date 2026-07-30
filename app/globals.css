@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* :root {
+:root {
   --primary-bg: var(--tg-bg-color);
   --secondary-bg: var(--tg-secondary-bg-color);
   --tertiary-bg: var(--tg-button-color);
@@ -12,7 +12,7 @@
   --destruction: var(--tg-destructive-text-color);
 
   --tertiary-bg-faded: rgba(var(--tg-button-color), 0.1);
-} */
+}
 
 body {
   background-color: var(--tg-secondary-bg-color);
