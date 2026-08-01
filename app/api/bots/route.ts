@@ -3,7 +3,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/models/users';
 import connectDb from '@/lib/mongodb';
-import { fetchTelegramProfilePic } from '@/lib/userProfileUrl';
 import { generateUniqueRefId, rewardReferrer } from '@/lib/rewardReferrer';
 
 const TELEGRAM_API = 'https://api.telegram.org';
@@ -71,7 +70,6 @@ export async function POST(req: NextRequest) {
 
   let user = await User.findOne({ userId });
   if (!user) {
-   const profileURL = await fetchTelegramProfilePic(userId);
    const referralId = await generateUniqueRefId();
    const referralLink = `${BOT_LINK}?start=${referralId}`;
 
@@ -80,7 +78,7 @@ export async function POST(req: NextRequest) {
     userName,
     firstName,
     chatId,
-    profileURL,
+    profileURL: "",
     isBot,
     referralId,
     referralLink,
