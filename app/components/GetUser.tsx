@@ -17,7 +17,7 @@ export default function GetUser() {
 
     const userId = tgUser.id;
 
-    const res = await fetch(`/api/user-data/${userId}`);
+    const res = await fetch(`/api/user-data?userId=${userId}`);
 
     if (!res.ok) {
      throw new Error("Failed to get user")

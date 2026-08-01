@@ -16,7 +16,7 @@ export default function Footer() {
   { href: "/ads", label: "Ads", icon: "/ads.svg", activeIcon: "/ads-active.svg" },
  ]
 
- const profileItems = { href: "/profile", label: "Me", icon: "/profile.svg", activeIcon: "/profile-active.svg" }
+ const profileItems = { href: "/profile", icon: "/profile.svg", activeIcon: "/profile-active.svg" }
 
  const isProfileActive = pathname === profileItems.href;
 
@@ -39,10 +39,10 @@ export default function Footer() {
 
    </div>
 
-   <div className="col-span-1 flex justify-center items-center rounded-full">
+   <div className="col-span-1 flex justify-center items-center rounded-full w-full">
     <Link 
       href={profileItems.href}
-      className={`flex flex-col justify-center items-center rounded-full transition-all duration-500 ${isProfileActive ? "border-2 border-amber-400" : ""}`}>
+      className={`rounded-full transition-all duration-500 ${isProfileActive ? "border-2 border-amber-400" : ""}`}>
         {profileUrl ? (
           <Image
             src={profileUrl}
@@ -53,10 +53,6 @@ export default function Footer() {
         ) : (
           <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={28} className={isProfileActive ? "icon-color-active" : "icon-color"} />
         )}
-
-        <span className={`text-xs ${isProfileActive ? "font-bold icon-text-color-active" : "font-medium icon-text-color"}`}>
-          {profileItems.label}
-        </span>
     </Link>
    </div>
   </div>
