@@ -71,6 +71,10 @@ body {
   height: 28px;
 }
 
+.border-active {
+  border: 2px solid var(--tg-button-color);
+}
+
 /* project color palatte */
 /* telegram user likes green light mode */
 /* .color1 {
