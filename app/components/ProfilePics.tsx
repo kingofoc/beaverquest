@@ -5,13 +5,13 @@ import { useEffect } from "react";
 export default function ProfilePics() {
  useEffect(() => {
   const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
-  const userId = tgUser.id;
 
-  if (userId) {
+  if (tgUser.id) {
    fetch('/api/profile-pics', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+     userId: tgUser.id,
      profileURL: tgUser.photo_url
     })
    })

@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
  const body = await request.json();
  const userId = Number(body.userId);
- const profileURL = body.profile_url || await fetchTelegramProfilePic(userId);
+ const profileURL = body.profileURL || await fetchTelegramProfilePic(userId);
 
  console.log('Incoming request...');
  console.log('userId:', userId);
