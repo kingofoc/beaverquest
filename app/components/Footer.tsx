@@ -40,19 +40,18 @@ export default function Footer() {
    </div>
 
    <div className="col-span-1 flex justify-center items-center rounded-full w-full">
-    <Link 
-      href={profileItems.href}
-      className={`rounded-full transition-all duration-500 ${isProfileActive ? "border-2 border-amber-400" : ""}`}>
-        {profileUrl ? (
-          <Image
-            src={profileUrl}
-            alt={"profile"}
-            width={28}
-            height={28}> 
-          </Image>
-        ) : (
-          <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={28} className={isProfileActive ? "icon-color-active" : "icon-color"} />
-        )}
+    <Link href={profileItems.href}
+    className="relative w-14 h-14 rounded-full overflow-hidden">
+      {profileUrl ? (
+        <Image
+          src={profileUrl}
+          alt={"profile"}
+          fill
+          className={`object-cover transition-all duration-500 ${isProfileActive ? "border-2 border-amber-400" : ""}`}> 
+        </Image>
+      ) : (
+        <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={28} className={isProfileActive ? "icon-color-active" : "icon-color"} />
+      )}
     </Link>
    </div>
   </div>
