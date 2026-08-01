@@ -1,14 +1,14 @@
 'use client';
+import TgIcon from "./Icon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import TgIcon from "./Icon";
 import { useUser } from "@/context/UserContext";
 import Image from "next/image";
 
 export default function Footer() {
  const pathname = usePathname();
  const { user } = useUser();
- const profileUrl = user?.profileURL
+ const profileUrl = user?.profileURL;
 
  const footerItems = [
   { href: "/publish", label: "Create", icon: "/create.svg", activeIcon: "/create-active.svg" },
@@ -31,7 +31,7 @@ export default function Footer() {
        href={href} 
        className={`flex flex-col justify-center items-center text-center p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full' : 'bg-transparent'} transition duration-500 ease-in-out`}>
 
-        <Image src={isActive ? activeIcon : icon} width={28} height={28} className={isActive ? "icon-text-color-active" : "icon-color"} alt=""></Image>
+        <TgIcon src={isActive ? activeIcon : icon} size={28} className={isActive ? "icon-color-active" : "icon-color"} />
         <span className={`text-xs ${isActive ? 'font-bold icon-text-color-active' : 'icon-text-color font-medium'}`}>{label}</span>
       </Link>
      )
