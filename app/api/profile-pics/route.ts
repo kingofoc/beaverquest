@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
  const user = await User.findOne({ userId });
 
  if (user) {
-  await User.findOne({ userId }, 
+  await User.updateOne({ userId }, 
    { $set: {profileURL} }
   )
  }
