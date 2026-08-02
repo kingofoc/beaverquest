@@ -19,7 +19,7 @@ export default function HeroCard() {
     </div>
    </div>
 
-   <div className="grid grid-cols-4 gap-4 mt-5">
+   <div className="grid grid-cols-4 gap-4 mt-8">
     <Link href="/airdrop" className="tertiary-bg-faded rounded-md p-1 flex flex-col justify-center items-center text-center">
      <span className="text-xs font-medium">Airdrop</span>
     </Link>
@@ -27,15 +27,11 @@ export default function HeroCard() {
      <span className="text-xs font-medium">TON</span>
     </Link>
     <Link href="/profile" className="flex flex-col justify-center items-center text-center">
-    <div className="tertiary-bg-faded rounded-full p-4">
-      <TgIcon src="/star.svg" size={38} className="icon-color-active"/>
-    </div>
+     <TgIcon src="/star.svg" size={38} className="icon-color-active"/>
      <span className="text-xs font-medium icon-text-color-active">Stars</span>
     </Link>
     <Link href="/community" className="flex flex-col justify-center items-center text-center">
-    <div className="tertiary-bg-faded rounded-full p-4">
-      <TgIcon src="/community.svg" size={38} className="icon-color-active"/>
-    </div>
+     <TgIcon src="/community.svg" size={38} className="icon-color-active"/>
      <span className="text-xs font-medium icon-text-color-active">Community</span>
     </Link>
    </div>
