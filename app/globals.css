@@ -40,7 +40,7 @@ body {
 .gradient-bg {
   background: radial-gradient(
     circle at top left,
-    var(--tg-button-color) 0%,
+    var(--tg-button-color) 30%,
     #000000
   );
 }

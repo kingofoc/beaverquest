@@ -29,9 +29,9 @@ export default function HeroCard() {
     <Link href="/profile" className="tertiary-bg-faded rounded-md p-1 flex flex-col justify-center items-center text-center">
      <span className="text-xs font-medium">Stars</span>
     </Link>
-    <Link href="/community" className="tertiary-bg-faded rounded-md p-1 flex flex-col justify-center items-center text-center">
-     <TgIcon src="/community.svg" size={38} className="icon-color-active" />
-     <span className="text-xs font-medium">Community</span>
+    <Link href="/community" className="p-1 flex flex-col justify-center items-center text-center">
+     <TgIcon src="/community.svg" size={38} className="icon-color-active tertiary-bg-faded rounded-full p-2"/>
+     <span className="text-xs font-medium icon-text-color-active">Community</span>
     </Link>
    </div>
   </div>
