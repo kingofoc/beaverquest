@@ -11,8 +11,8 @@ export default function Footer() {
  const profileUrl = user?.profileURL;
 
  const footerItems = [
-  { href: "/publish", label: "Create", icon: "/create.svg", activeIcon: "/create-active.svg" },
-  { href: "/", label: "Tasks", icon: "/task.svg", activeIcon: "/task-active.svg" },
+  { href: "/publish", label: "Publish", icon: "/publish.svg", activeIcon: "/publish-active.svg" },
+  { href: "/", label: "Gigs", icon: "/gigs.svg", activeIcon: "/gigs-active.svg" },
   { href: "/ads", label: "Ads", icon: "/ads.svg", activeIcon: "/ads-active.svg" },
  ]
 
@@ -50,7 +50,7 @@ export default function Footer() {
           className="object-cover"> 
         </Image>
       ) : (
-        <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={28} className={isProfileActive ? "icon-color-active" : "icon-color"} />
+        <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={56} className={`object-cover ${isProfileActive ? "icon-color-active" : "icon-color"}`} />
       )}
     </Link>
    </div>

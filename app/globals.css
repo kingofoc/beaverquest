@@ -22,7 +22,7 @@ body {
 }
 
 .tertiary-bg {
-  background-color: var(--tg-link-color);
+  background-color: var(--tg-button-color);
 }
 
 .tertiary-bg-faded {
@@ -35,6 +35,10 @@ body {
 
 .primary-bg {
   background-color: var(--tg-bg-color);
+}
+
+.tertiary-text-color {
+  color: var(--tg-button-text-color);
 }
 
 /* .shadow {
