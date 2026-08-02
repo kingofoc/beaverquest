@@ -96,7 +96,7 @@ body {
 }
 
 .border-bottom {
-  border-bottom: 2px solid var(--tg-text-color);
+  border-bottom: 2px solid var(--tg-button-color);
 }
 
 /* project color palatte */
