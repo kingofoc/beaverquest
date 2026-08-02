@@ -27,10 +27,15 @@ export default function HeroCard() {
      <span className="text-xs font-medium">TON</span>
     </Link>
     <Link href="/profile" className="tertiary-bg-faded rounded-md p-1 flex flex-col justify-center items-center text-center">
-     <span className="text-xs font-medium">Stars</span>
+    <div className="tertiary-bg-faded rounded-full p-2">
+      <TgIcon src="/star.svg" size={38} className="icon-color-active"/>
+    </div>
+     <span className="text-xs font-medium icon-text-color-active">Stars</span>
     </Link>
     <Link href="/community" className="p-1 flex flex-col justify-center items-center text-center">
-     <TgIcon src="/community.svg" size={38} className="icon-color-active tertiary-bg-faded rounded-full p-2"/>
+    <div className="tertiary-bg-faded rounded-full p-2">
+      <TgIcon src="/community.svg" size={38} className="icon-color-active"/>
+    </div>
      <span className="text-xs font-medium icon-text-color-active">Community</span>
     </Link>
    </div>
