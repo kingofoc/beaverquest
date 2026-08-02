@@ -8,21 +8,21 @@ export default function HeroCard() {
  const balance = user?.balance;
  const level = user?.level;
  return (
-  <div className="w-full tertiary-bg px-4 rounded-b-md">
+  <div className="w-full tertiary-bg p-4 rounded-md">
    <div className="grid grid-cols-6 gap-4">
     <div className="col-span-5">
      <span className="text-2xl font-bold tertiary-text-color">${balance}</span>
     </div>
-    <div className="col-span-1 tertiary-bg-faded rounded-md">
+    <div className="col-span-1 secondary-bg rounded-md text-center">
      <span className="link-color text-sm font-medium">Lv{level}</span>
     </div>
    </div>
 
    <div className="grid grid-cols-4 gap-4">
-    <Link href="/airdrop" className="tertiary-bg-faded rounded-md">
+    <Link href="/airdrop" className="hint-color-bg rounded-md">
      <span className="text-xs font-medium">Airdrop</span>
     </Link>
-    <Link href="/profile" className="tertiary-bg-faded rounded-md">
+    <Link href="/profile" className="hint-color-bg rounded-md">
      <span className="text-xs font-medium">TON</span>
     </Link>
     <Link href="/profile" className="tertiary-bg-faded rounded-md">

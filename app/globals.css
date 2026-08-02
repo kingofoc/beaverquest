@@ -49,6 +49,14 @@ body {
   color: var(--tg-link-color);
 }
 
+.hint-color {
+  color: var(--tg-hint-color);
+}
+
+.hint-bg-color {
+  background-color: var(--tg-hint-color);
+}
+
 .icon-color {
   background-color: var(--tg-text-color);
 }
