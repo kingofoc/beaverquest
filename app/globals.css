@@ -95,6 +95,10 @@ body {
   border: 2px solid var(--tg-button-color);
 }
 
+.border-bottom {
+  border-bottom: 2px solid var(--tg-text-color);
+}
+
 /* project color palatte */
 /* telegram user likes green light mode */
 /* .color1 {
