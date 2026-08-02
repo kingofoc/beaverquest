@@ -9,8 +9,8 @@ export default function HeroCard() {
  const balance = user?.balance;
  const level = user?.level;
  return (
-  <div className="w-full">
-   <div className="grid grid-cols-6 gap-4 w-full tertiary-bg p-4 rounded-md">
+  <div className="w-full gradient-bg p-4 rounded-md">
+   <div className="grid grid-cols-6 gap-4">
     <div className="col-span-5">
      <span className="text-2xl font-bold tertiary-text-color">${balance}</span>
     </div>
@@ -19,7 +19,7 @@ export default function HeroCard() {
     </div>
    </div>
 
-   <div className="grid grid-cols-4 gap-4 w-full mt-4">
+   <div className="grid grid-cols-4 gap-4 mt-4">
     <Link href="/airdrop" className="tertiary-bg-faded rounded-md p-1 flex flex-col justify-center items-center text-center">
      <span className="text-xs font-medium">Airdrop</span>
     </Link>

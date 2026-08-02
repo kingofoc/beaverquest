@@ -37,6 +37,15 @@ body {
   background-color: var(--tg-bg-color);
 }
 
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    var(--tg-button-color),
+    #000000,
+    var(--tg-button-color)
+  );
+}
+
 .tertiary-text-color {
   color: var(--tg-button-text-color);
 }
