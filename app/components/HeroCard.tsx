@@ -19,12 +19,9 @@ export default function HeroCard() {
     </div>
    </div>
 
-   <div className="grid grid-cols-4 gap-4 mt-8 mb-4 p-2 tertiary-bg-faded rounded-full">
+   <div className="grid grid-cols-4 gap-4 mt-8 mb-4 py-1 px-4 tertiary-bg-faded rounded-full">
     <Link href="/airdrop" className="flex flex-col justify-center items-center text-center">
      <span className="text-xs font-medium">Airdrop</span>
-    </Link>
-    <Link href="/profile" className="flex flex-col justify-center items-center text-center">
-     <span className="text-xs font-medium">TON</span>
     </Link>
     <Link href="/profile" className="flex flex-col justify-center items-center text-center">
      <TgIcon src="/star.svg" size={38} className="icon-color-active"/>
