@@ -10,7 +10,7 @@ export default function HeroCard() {
  return (
   <div className="w-full gradient-bg p-4 rounded-full">
    <div className="grid grid-cols-6 gap-4 ">
-    <span className="col-span-5 text-2xl font-bold tertiary-text-color"><small className="text-sm font-thin">$</small> {balance}</span>
+    <span className="col-span-5 text-2xl font-bold tertiary-text-color"><small className="text-sm font-medium">$</small>{balance}</span>
 
     <Link href="/boost" className="col-span-1 relative">
      {[...Array(5)].map((_, i) => (
@@ -26,7 +26,7 @@ export default function HeroCard() {
        }}
       />
      ))}
-     <Image src="/boost.svg" width={28} height={28} alt="" className="relative z-10 align-center inline-flex"></Image>
+     <Image src="/boost.svg" width={24} height={24} alt="" className="relative z-10 align-center inline-flex"></Image>
     </Link>
    </div>
   </div>
