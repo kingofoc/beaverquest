@@ -16,7 +16,7 @@ export default function HeroCard() {
      {[...Array(5)].map((_, i) => (
       <Image
        key={i}
-       src="/boost.svg"
+       src="/boost-animate.svg"
        alt=""
        width={20}
        height={20}
