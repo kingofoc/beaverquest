@@ -18,15 +18,15 @@ export default function HeroCard() {
        key={i}
        src="/boost.svg"
        alt=""
-       width={28}
-       height={28}
+       width={20}
+       height={20}
        className="boost-ripple"
        style={{
         animationDelay: `${i * 0.4}s`,
        }}
       />
      ))}
-     <Image src="/boost.svg" width={28} height={28} alt="" className="relative z-10"></Image>
+     <Image src="/boost.svg" width={20} height={20} alt="" className="relative z-10"></Image>
     </Link>
    </div>
   </div>

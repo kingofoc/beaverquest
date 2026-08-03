@@ -3,7 +3,7 @@ import { useUser } from "@/context/UserContext";
 import { useEffect } from "react";
 
 export default function GetUser() {
- const { setUser, setLoading} = useUser();
+ const { setUser, setLoading } = useUser();
 
  useEffect(() => {
   async function fetchUser() {
@@ -15,9 +15,17 @@ export default function GetUser() {
      return;
     }
 
-    const userId = tgUser.id;
+    const cacheKey = `cachedUser-${tgUser.id}`;
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+     try {
+      setUser(JSON.parse(cached));
+     } catch {
+      localStorage.removeItem(cacheKey)
+     }
+    }
 
-    const res = await fetch(`/api/user-data?userId=${userId}`);
+    const res = await fetch(`/api/user-data?userId=${tgUser.id}`);
 
     if (!res.ok) {
      throw new Error("Failed to get user")
@@ -25,9 +33,13 @@ export default function GetUser() {
 
     const user = await res.json();
     setUser(user)
+    localStorage.setItem(
+     cacheKey,
+     JSON.stringify(user)
+    );
 
-   } catch(error) {
-    console.error(error)
+   } catch(err) {
+    console.error(err)
    } finally {
     setLoading(false);
    }
