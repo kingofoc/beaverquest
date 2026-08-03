@@ -20,7 +20,7 @@ export default function HeroCard() {
        alt=""
        width={20}
        height={20}
-       className="motion-safe:animate-ping opacity-75 z-1"
+       className="absolute align-center inline-flex motion-safe:animate-ping opacity-75 z-1"
        style={{
         animationDelay: `${i * 0.4}s`,
        }}
