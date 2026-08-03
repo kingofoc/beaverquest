@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tonconnect/ui-react": "^3.0.0",
+    "i18n-iso-countries": "^7.14.0",
     "mongoose": "^9.7.4",
     "next": "16.2.10",
     "react": "19.2.4",

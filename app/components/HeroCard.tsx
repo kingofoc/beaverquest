@@ -18,8 +18,8 @@ export default function HeroCard() {
        key={i}
        src="/boost-animate.svg"
        alt=""
-       width={28}
-       height={28}
+       width={24}
+       height={24}
        className="absolute align-center inline-flex motion-safe:animate-ping opacity-75 z-1"
        style={{
         animationDelay: `${i * 0.4}s`,

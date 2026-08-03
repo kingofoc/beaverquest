@@ -1,12 +1,16 @@
 import connectDb from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import { User } from "@/models/users";
+import countries from "i18n-iso-countries"
+import en from "i18n-iso-countries/langs/en.json"
+
+countries.registerLocale(en);
 
 export async function POST(req: NextRequest) {
  await connectDb();
 
  const { userId } = await req.json();
- const country = req.headers.get('x-vercel-ip-country');
+ const countryCode = req.headers.get('x-vercel-ip-country');
 
  if (!userId) {
   return NextResponse.json({ error: "userId is required" }, { status: 400 });
@@ -17,6 +21,8 @@ export async function POST(req: NextRequest) {
  if(!user) {
   return NextResponse.json({ error: "userId is required" }, { status: 404 });
  }
+
+ const country = countryCode ? countries.getName(countryCode, "en") : null;
 
  await User.updateOne(
   {userId},
