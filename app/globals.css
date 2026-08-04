@@ -49,6 +49,10 @@ body {
   color: var(--tg-button-text-color);
 }
 
+.bg-white {
+  background-color: var(--tg-button-text-color);
+}
+
 /* .shadow {
   box-shadow: 0 4px 12px var(--tertiary-bg);
 } */
