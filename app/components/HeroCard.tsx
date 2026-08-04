@@ -13,8 +13,8 @@ export default function HeroCard() {
    
    <div className="grid grid-cols-6 gap-4">
     <div className="col-span-5 flex flex-row justify-normal items-center">
-     <TgIcon src="/gigsgram.svg" size={20} className="bg-white"/>
-     <span className="text-2xl font-bold tertiary-text-color">{balance}</span>
+     <TgIcon src="/gigsgram.svg" size={20} className="custom-bg"/>
+     <span className="text-2xl font-bold tertiary-text-color indent-0.5">{balance}</span>
     </div>
 
     <Link href="/boost" className="col-span-1 relative">

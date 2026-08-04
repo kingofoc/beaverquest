@@ -49,7 +49,7 @@ body {
   color: var(--tg-button-text-color);
 }
 
-.bg-white {
+.custom-bg {
   background-color: var(--tg-button-text-color);
 }
 
