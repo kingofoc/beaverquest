@@ -12,8 +12,8 @@ export default function HeroCard() {
   <div className="w-full gradient-bg p-4 rounded-full">
    
    <div className="grid grid-cols-6 gap-4 ">
-    <div className="col-span-5 flex flex-row">
-     <TgIcon src="/gigsgram.svg" size={20} className="tertiary-text-color"/>
+    <div className="col-span-5 flex flex-row justify-center">
+     <TgIcon src="/gigsgram.svg" size={20} className="bg-gray-50"/>
      <span className="text-2xl font-bold tertiary-text-color">{balance}</span>
     </div>
 
