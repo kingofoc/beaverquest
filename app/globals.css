@@ -81,16 +81,6 @@ body {
   color: var(--tg-button-color);
 }
 
-.icon {
-  background-color: var(--text-color);
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  display: inline-block;
-  width: 28px;
-  height: 28px;
-}
-
 .border-active {
   border: 2px solid var(--tg-button-color);
 }
