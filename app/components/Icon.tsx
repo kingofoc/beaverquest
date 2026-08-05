@@ -10,7 +10,7 @@ type TgIconProps = {
 export default function TgIcon({ src, size = 28, className = "" }: TgIconProps) {
  return (
   <div
-   className={`icon-color ${className}`}
+   className={className}
    style={{
     width: size,
     height: size,
