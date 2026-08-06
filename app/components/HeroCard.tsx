@@ -10,7 +10,6 @@ export default function HeroCard() {
  const balance = user?.balance;
  return (
   <div className="w-full gradient-bg p-4 rounded-full">
-   
    <div className="grid grid-cols-6 gap-4">
     <div className="col-span-5 flex flex-row justify-normal items-center">
      <TgIcon src="/gigsgram.svg" size={20} className={"custom-bg"}/>
