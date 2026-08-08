@@ -1,19 +1,29 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-const CATEGORIES = ['Social', 'Telegram', 'Content', 'Referral', 'Survey', 'Other'];
+const CATEGORIES = ['Social', 'Telegram', 'Blog', 'Crypto', 'Clip', 'Other'];
+type CountryOption = { country: string; count: number };
 
 export default function PublishGig() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [countries, setCountries] = useState<CountryOption[]>([]);
+
+  useEffect(() => {
+    fetch('/api/countries')
+    .then((res) => res.json())
+    .then((data) => setCountries(data.countries ?? []))
+    .catch((err) => console.error('Error loading countries:', err))
+  }, []);
 
   const [form, setForm] = useState({
     category: '',
     title: '',
     description: '',
     guidelines: '',
+    countries: [] as string[],
     reward: '',
     max: '',
     url: '',
@@ -25,15 +35,24 @@ export default function PublishGig() {
   const maxNum = Number(form.max) || 0;
   const totalCost = rewardNum * maxNum;
 
+  function toggleCountry(country: string) {
+    setForm((prev) => ({
+      ...prev,
+      countries: prev.countries.includes(country)
+        ? prev.countries.filter((c) => c !== country)
+        : [...prev.countries, country],
+    }));
+  }
+
   function update<K extends keyof typeof form>(key: K, value: typeof form[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SubmitEvent) {
     e.preventDefault();
     setError(null);
 
-    if (!form.category || !form.title || !form.description || !form.guidelines || !rewardNum || !maxNum) {
+    if (!form.category && !form.title && !form.description && !form.guidelines && !rewardNum && !maxNum) {
       setError('Fill in every field before publishing.');
       return;
     }
@@ -138,6 +157,37 @@ export default function PublishGig() {
           />
         </Field>
 
+        <Field label="Countries" hint="Leave empty for everyone">
+          <div className="flex flex-wrap gap-2">
+            {countries.map(({ country, count }) => {
+              const selected = form.countries.includes(country);
+              return (
+                <button
+                  key={country}
+                  type="button"
+                  onClick={() => toggleCountry(country)}
+                  className="px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5"
+                  style={{
+                    backgroundColor: selected ? 'var(--tg-button-color)' : 'var(--tg-secondary-bg-color)',
+                    color: selected ? 'var(--tg-button-text-color)' : 'var(--tg-text-color)',
+                  }}
+                >
+                  {country}
+                  <span className="text-sm">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+          {form.countries.length > 0 && (
+            <p className="text-xs mt-1" style={{ color: 'var(--tg-hint-color)' }}>
+              {form.countries.length} selected · {countries
+                .filter((c) => form.countries.includes(c.country))
+                .reduce((sum, c) => sum + c.count, 0)
+                .toLocaleString()} potential hunters
+            </p>
+          )}
+        </Field>
+
         <Field label="Link" hint="Optional - channel, bot, or destination URL">
           <input
             type="url"
@@ -224,11 +274,11 @@ export default function PublishGig() {
           className="rounded-full py-3 font-bold text-center mt-1 disabled:opacity-50"
           style={{ backgroundColor: 'var(--tg-button-color)', color: 'var(--tg-button-text-color)' }}
         >
-          {loading ? 'Publishing...' : 'Publish task'}
+          {loading ? 'Publishing...' : 'Publish'}
         </button>
 
         <p className="text-xs text-center" style={{ color: 'var(--tg-hint-color)' }}>
-          Your task goes live after a quick review, usually within a few hours.
+          Your gig goes live after a quick review, usually within a few hours.
         </p>
       </form>
     </div>

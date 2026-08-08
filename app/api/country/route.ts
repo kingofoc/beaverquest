@@ -33,3 +33,40 @@ export async function POST(req: NextRequest) {
 
  return NextResponse.json({ success: true, country }, { status: 200 });
 }
+
+export async function GET() {
+ try {
+  await connectDb();
+
+  const countries = await User.aggregate([
+   {
+    $match: {
+     country: { $nin: [null, ''] },
+    },
+   },
+   {
+    $group: {
+     _id: '$country',
+     count: { $sum: 1 },
+    },
+   },
+   {
+    $project: {
+     _id: 0,
+     country: '$_id',
+     count: 1,
+    },
+   },
+   {
+    $sort: { count: -1 }, // biggest audience first
+   },
+  ]);
+
+  const sorted = countries.sort((a, b) => a.localeCompare(b));
+
+  return NextResponse.json({ countries: sorted }, { status: 200 });
+ } catch (err) {
+  console.error("Error fetching countries:", err);
+  return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+ }
+}
