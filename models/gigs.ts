@@ -3,6 +3,7 @@ import { model, Schema, models, Document } from 'mongoose';
 export interface IGigs extends Document {
  publisherId: number;
  category: string;
+ subCategory: string;
  title: string;
  description: string;
  guidelines: string;
@@ -35,6 +36,11 @@ const gigsSchema = new Schema<IGigs>({
  },
 
  category: {
+  type: String,
+  required: true
+ },
+
+ subCategory: {
   type: String,
   required: true
  },

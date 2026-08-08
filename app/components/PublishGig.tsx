@@ -1,8 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { CATEGORIES, REWARD, SUB_CATEGORIES, TOKEN_TO_USDT } from '@/lib/constants';
 
-const CATEGORIES = ['Social', 'Telegram', 'Blog', 'Crypto', 'Clip', 'Other'];
 type CountryOption = { country: string; count: number };
 
 export default function PublishGig() {
@@ -20,20 +20,20 @@ export default function PublishGig() {
 
   const [form, setForm] = useState({
     category: '',
+    subCategory: '',
     title: '',
     description: '',
     guidelines: '',
     countries: [] as string[],
-    reward: '',
     max: '',
     url: '',
     verificationType: 'manual' as 'manual' | 'telegram',
     verificationTarget: '',
   });
 
-  const rewardNum = Number(form.reward) || 0;
+  const reward = form.subCategory ? REWARD[form.subCategory as keyof typeof REWARD] : 0;
   const maxNum = Number(form.max) || 0;
-  const totalCost = rewardNum * maxNum;
+  const totalCost = reward * maxNum;
 
   function toggleCountry(country: string) {
     setForm((prev) => ({
@@ -52,7 +52,7 @@ export default function PublishGig() {
     e.preventDefault();
     setError(null);
 
-    if (!form.category || !form.title || !form.description || !form.guidelines || !form.countries || !rewardNum || !maxNum) {
+    if (!form.category || !form.subCategory || !form.title || !form.description || !form.guidelines || !form.countries || !maxNum) {
       setError('Fill in every field before publishing.');
       return;
     }
@@ -73,10 +73,12 @@ export default function PublishGig() {
         body: JSON.stringify({
           publisherId: userId,
           category: form.category,
+          subCategory: form.subCategory,
           title: form.title,
           description: form.description,
           guidelines: form.guidelines,
-          reward: rewardNum,
+          country: form.countries,
+          reward,
           max: maxNum,
           url: form.url || undefined,
           verificationType: form.verificationType,
@@ -121,6 +123,19 @@ export default function PublishGig() {
           >
             <option value="">Select a category</option>
             {CATEGORIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </Field>
+
+        <Field label="What should hunters do?">
+          <select
+            value={form.subCategory}
+            onChange={(e) => update('subCategory', e.target.value)}
+            className="input"
+          >
+            <option value="">Select an action</option>
+            {SUB_CATEGORIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
           </select>
@@ -199,25 +214,29 @@ export default function PublishGig() {
         </Field>
 
         <div className="grid grid-cols-2 gap-3">
-          <Field label="Reward" hint="per completion">
-            <input
-              type="number"
-              min="1"
-              value={form.reward}
-              onChange={(e) => update('reward', e.target.value)}
-              placeholder="10"
-              className="input"
-            />
-          </Field>
+          {form.subCategory && (
+            <div
+              className="rounded-2xl p-4 flex items-center justify-between"
+              style={{ backgroundColor: 'var(--tg-secondary-bg-color)' }}
+            >
+              <div>
+                <p className="text-sm" style={{ color: 'var(--tg-hint-color)' }}>Reward per completion</p>
+                <p className="text-lg font-bold">{reward} points</p>
+              </div>
+              <p className="text-sm" style={{ color: 'var(--tg-hint-color)' }}>
+                ≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}
+              </p>
+            </div>
+          )}
 
           <Field label="Slots" hint="max completions">
             <input
               type="number"
-              min="1"
+              min="500"
               value={form.max}
               onChange={(e) => update('max', e.target.value)}
-              placeholder="100"
-              className="input"
+              placeholder="500"
+              className=""
             />
           </Field>
         </div>
@@ -258,7 +277,7 @@ export default function PublishGig() {
             <p className="text-lg font-bold">{totalCost.toLocaleString()} tokens</p>
           </div>
           <p className="text-xs text-right" style={{ color: 'var(--tg-hint-color)' }}>
-            {rewardNum || 0} × {maxNum || 0} slots
+            {reward || 0} × {maxNum || 0} slots
           </p>
         </div>
 

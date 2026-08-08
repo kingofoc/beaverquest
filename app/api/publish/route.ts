@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Gigs } from "@/models/gigs";
 import { User } from "@/models/users";
 import connectDb from "@/lib/mongodb";
+import { REWARD } from "@/lib/constants";
 
 export async function POST(req: NextRequest) {
  try {
@@ -11,10 +12,10 @@ export async function POST(req: NextRequest) {
   const {
    publisherId,
    category,
+   subCategory,
    title,
    description,
    guidelines,
-   reward,
    country,
    url,
    iconUrl,
@@ -23,8 +24,13 @@ export async function POST(req: NextRequest) {
    verificationConfig,
   } = body
 
-  if (!publisherId || !category || !title || !description || !guidelines || !reward || !country || !url || !iconUrl || !max || !verificationType || !verificationConfig) {
+  if (!publisherId || !category || !title || !description || !guidelines || !country || !url || !iconUrl || !max || !verificationType || !verificationConfig) {
    return NextResponse.json({ error: "Missing field required" }, { status: 400 });
+  }
+
+  const reward = REWARD[subCategory as keyof typeof REWARD];
+  if (!reward) {
+  return NextResponse.json({ error: 'Invalid subCategory' }, { status: 400 });
   }
 
   if (typeof reward !== "number" || reward <= 0) {
@@ -72,6 +78,7 @@ export async function POST(req: NextRequest) {
    gigs = await Gigs.create({
     publisherId,
     category,
+    subCategory,
     title,
     description,
     guidelines,
