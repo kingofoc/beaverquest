@@ -12,7 +12,7 @@ export default function PublishGig() {
   const [countries, setCountries] = useState<CountryOption[]>([]);
 
   useEffect(() => {
-    fetch('/api/countries')
+    fetch('/api/country')
     .then((res) => res.json())
     .then((data) => setCountries(data.countries ?? []))
     .catch((err) => console.error('Error loading countries:', err))
@@ -52,7 +52,7 @@ export default function PublishGig() {
     e.preventDefault();
     setError(null);
 
-    if (!form.category && !form.title && !form.description && !form.guidelines && !rewardNum && !maxNum) {
+    if (!form.category || !form.title || !form.description || !form.guidelines || !form.countries || !rewardNum || !maxNum) {
       setError('Fill in every field before publishing.');
       return;
     }
