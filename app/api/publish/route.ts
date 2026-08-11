@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Gigs } from "@/models/gigs";
 import { User } from "@/models/users";
 import connectDb from "@/lib/mongodb";
-import { REWARD } from "@/lib/constants";
+import { SUB_CATEGORIES_BY_CATEGORY, Category } from "@/lib/constants";
 
 export async function POST(req: NextRequest) {
  try {
@@ -24,18 +24,23 @@ export async function POST(req: NextRequest) {
    verificationConfig,
   } = body
 
-  if (!publisherId || !category || !title || !description || !guidelines || !country || !url || !iconUrl || !max || !verificationType || !verificationConfig) {
+  if (!publisherId || !category || !subCategory || !title || !description || !guidelines || !country || !url || !iconUrl || !max || !verificationType || !verificationConfig) {
    return NextResponse.json({ error: "Missing field required" }, { status: 400 });
   }
 
-  const reward = REWARD[subCategory as keyof typeof REWARD];
-  if (!reward) {
-  return NextResponse.json({ error: 'Invalid subCategory' }, { status: 400 });
+  const validSubCategories = SUB_CATEGORIES_BY_CATEGORY[category as Category];
+
+  if (!validSubCategories) {
+   return NextResponse.json({ error: 'Invalid category' }, { status: 400 });
   }
 
-  if (typeof reward !== "number" || reward <= 0) {
-   return NextResponse.json({ error: "reward must be a positive number" }, { status: 400 });
+  const matched = validSubCategories.find((sc) => sc.label === subCategory);
+
+  if (!matched) {
+   return NextResponse.json({ error: 'Invalid subCategory for this category' }, { status: 400 });
   }
+
+  const reward = matched.reward;
 
   if (typeof max !== "number" || max <= 0) {
    return NextResponse.json({ error: "max must be a positive number" }, { status: 400 });

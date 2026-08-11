@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { CATEGORIES, REWARD, SUB_CATEGORIES, TOKEN_TO_USDT } from '@/lib/constants';
+import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from '@/lib/constants';
 
 type CountryOption = { country: string; count: number };
 
@@ -19,7 +19,7 @@ export default function PublishGig() {
   }, []);
 
   const [form, setForm] = useState({
-    category: '',
+    category: '' as Category | '',
     subCategory: '',
     title: '',
     description: '',
@@ -31,9 +31,17 @@ export default function PublishGig() {
     verificationTarget: '',
   });
 
-  const reward = form.subCategory ? REWARD[form.subCategory as keyof typeof REWARD] : 0;
+  const availableSubCategories = form.category ? SUB_CATEGORIES_BY_CATEGORY[form.category] : [];
+
+  const selectedSubCategory = availableSubCategories.find((sc) => sc.label === form.subCategory);
+  const reward = selectedSubCategory?.reward ?? 0;
   const maxNum = Number(form.max) || 0;
   const totalCost = reward * maxNum;
+
+  // Reset subCategory whenever category changes, since old selection may not apply
+  function handleCategoryChange(category: Category) {
+    setForm((prev) => ({ ...prev, category, subCategory: '' }));
+  }
 
   function toggleCountry(country: string) {
     setForm((prev) => ({
@@ -118,7 +126,7 @@ export default function PublishGig() {
         <Field label="Category">
           <select
             value={form.category}
-            onChange={(e) => update('category', e.target.value)}
+            onChange={(e) => handleCategoryChange(e.target.value as Category)}
             className="input"
           >
             <option value="">Select a category</option>
@@ -128,18 +136,26 @@ export default function PublishGig() {
           </select>
         </Field>
 
-        <Field label="What should hunters do?">
-          <select
-            value={form.subCategory}
-            onChange={(e) => update('subCategory', e.target.value)}
-            className="input"
-          >
-            <option value="">Select an action</option>
-            {SUB_CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
-        </Field>
+        {form.category && availableSubCategories.length > 0 && (
+          <Field label="What should hunters do?">
+            <select
+              value={form.subCategory}
+              onChange={(e) => update('subCategory', e.target.value)}
+              className="input"
+            >
+              <option value="">Select an action</option>
+              {availableSubCategories.map((sc) => (
+                <option key={sc.label} value={sc.label}>{sc.label}</option>
+              ))}
+            </select>
+          </Field>
+        )}
+
+        {form.category && availableSubCategories.length === 0 && (
+          <p className="text-sm" style={{ color: 'var(--tg-hint-color)' }}>
+            This category is not available yet.
+          </p>
+        )}
 
         <Field label="Title">
           <input
@@ -214,7 +230,7 @@ export default function PublishGig() {
         </Field>
 
         <div className="grid grid-cols-2 gap-3">
-          {form.subCategory && (
+          {selectedSubCategory && (
             <div
               className="rounded-2xl p-4 flex items-center justify-between"
               style={{ backgroundColor: 'var(--tg-secondary-bg-color)' }}
