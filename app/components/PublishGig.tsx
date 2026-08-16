@@ -115,26 +115,29 @@ export default function PublishGig() {
 
   return (
     <div className="min-h-screen pb-32">
-      <div className="tertiary-bg p-4 rounded-md">
-        <h1 className="text-xl font-bold tertiary-text-color">Customize Your Gig</h1>
+      <div className="mb-4">
+        <h1 className="text-xl font-bold">Customize Your Gig</h1>
         <p className="text-sm mt-1 hint-color">
           Set what you need done and how much it pays.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <Field label="Category">
-          <select
-            value={form.category}
-            onChange={(e) => handleCategoryChange(e.target.value as Category)}
-            className="input outline-0"
-          >
-            <option value="">Choose gig type</option>
-            {CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
-        </Field>
+        <div className="p-4 rounded-lg primary-bg">
+          <Field label="Category">
+            <select
+              value={form.category}
+              onChange={(e) => handleCategoryChange(e.target.value as Category)}
+              className="input outline-0"
+            >
+              <option value="">Choose gig type</option>
+              {CATEGORIES.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </Field>
+        </div>
+          
 
         {form.category && availableSubCategories.length > 0 && (
           <Field label="Choose gig action">
