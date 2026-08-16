@@ -22,8 +22,8 @@ export default function Footer() {
 
  return (
   <div className="fixed bottom-0 left-0 w-full px-8">
-    <div className="gradient-bg backdrop-blur-sm grid grid-cols-4 rounded-full mb-8 h-auto w-auto">
-      <div className="grid grid-cols-3 col-span-3 primary-bg rounded-full p-1.5">
+    <div className="primary-bg backdrop-blur-sm grid grid-cols-4 rounded-full mb-8 h-auto">
+      <div className="grid grid-cols-3 col-span-3 primary-bg rounded-full p-1.5 w-full">
         {footerItems.map(({ href, label, activeIcon, icon }) => {
         const isActive = pathname === href
         return (
@@ -41,7 +41,7 @@ export default function Footer() {
 
       <div className="col-span-1 flex justify-center items-center rounded-full w-full">
         <Link href={profileItems.href}
-        className={`relative w-14 h-14 rounded-full overflow-hidden transition-all duration-500 ${isProfileActive ? "border-active" : ""}`}>
+        className={`relative w-16 h-16 rounded-full overflow-hidden transition-all duration-500 ${isProfileActive ? "border-active" : ""}`}>
           {profileUrl ? (
             <Image
               src={profileUrl}
@@ -50,7 +50,7 @@ export default function Footer() {
               className="object-cover"> 
             </Image>
           ) : (
-            <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={56} className={`object-cover ${isProfileActive ? "icon-color-active" : "icon-color"}`} />
+            <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={58} className={`object-cover ${isProfileActive ? "icon-color-active" : "icon-color"}`} />
           )}
         </Link>
       </div>
