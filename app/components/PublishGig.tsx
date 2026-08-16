@@ -198,11 +198,7 @@ export default function PublishGig() {
                   key={country}
                   type="button"
                   onClick={() => toggleCountry(country)}
-                  className="px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5"
-                  style={{
-                    backgroundColor: selected ? 'tertiary-bg' : 'primary-bg',
-                    color: selected ? 'tertiary-text-color)' : 'text-color',
-                  }}
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5" ${selected ? 'tertiary-bg tertiary-text-color' : 'primary-bg text-color'}`}
                 >
                   {country}
                   <span className="text-sm">{count}</span>
@@ -220,29 +216,23 @@ export default function PublishGig() {
           )}
         </Field>
 
-        <Field label="Enter gig link" hint="Channel, bot, or destination URL">
+        <Field label="Enter Gig Link" hint="Channel, bot, or destination URL">
           <input
             type="url"
             value={form.url}
             onChange={(e) => update('url', e.target.value)}
-            placeholder="https://t.me/yourchannel"
-            className="input outline-0"
+            placeholder="https://x.com/gigsgram"
+            className="input outline-0 primary-bg rounded-lg px-2 py-4"
           />
         </Field>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           {selectedSubCategory && (
-            <div
-              className="rounded-2xl p-4 flex items-center justify-between"
-            >
-              <div>
-                <p className="text-sm hint-color">Reward per completion</p>
-                <p className="text-lg font-bold">{reward} points</p>
-              </div>
-              <p className="text-sm hint-color">
-                ≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}
-              </p>
+            <div className="primary-bg rounded-lg">
+              <p className="text-sm">Reward per completion</p>
+              <p className="text-lg font-medium">{reward} points <span className="ml-2 font-normal hint-color text-sm">≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}</span></p>
             </div>
+            
           )}
 
           <Field label="Number of clicks">
@@ -292,7 +282,7 @@ export default function PublishGig() {
             <p className="text-lg font-bold">{totalCost.toLocaleString()} tokens</p>
           </div>
           <p className="text-xs text-right hint-color">
-            {reward || 0} × {maxNum || 0} slots
+            {reward || 0} × {maxNum || 500} slots
           </p>
         </div>
 
