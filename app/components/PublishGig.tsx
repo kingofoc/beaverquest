@@ -122,12 +122,12 @@ export default function PublishGig() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 hint-color">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <Field label="Category">
           <select
             value={form.category}
             onChange={(e) => handleCategoryChange(e.target.value as Category)}
-            className="input outline-0 rounded-lg p-4 primary-bg text-color"
+            className="input outline-0 rounded-lg px-2 py-4 tertiary-bg-faded"
           >
             <option value="">Choose gig type</option>
             {CATEGORIES.map((c) => (
@@ -142,7 +142,7 @@ export default function PublishGig() {
             <select
               value={form.subCategory}
               onChange={(e) => update('subCategory', e.target.value)}
-              className="input outline-0 rounded-lg p-4 primary-bg text-color"
+              className="input outline-0 rounded-lg px-2 py-4 primary-bg"
             >
               <option value="">Select an action</option>
               {availableSubCategories.map((sc) => (
@@ -153,7 +153,7 @@ export default function PublishGig() {
         )}
 
         {form.category && availableSubCategories.length === 0 && (
-          <p className="text-sm">
+          <p className="text-sm hint-color">
             This gig action is not available yet.
           </p>
         )}
@@ -175,7 +175,7 @@ export default function PublishGig() {
             onChange={(e) => update('description', e.target.value)}
             placeholder="ex: GigsGram - a telegram mini app where you can browse gigs, publish gigs, watch ads and earn rewards"
             rows={4}
-            className="input resize-none indent-1 outline-0 p-4 primary-bg text-color"
+            className="input resize-none indent-1 outline-0 p-4 rounded-lg primary-bg text-color"
           />
         </Field>
 
