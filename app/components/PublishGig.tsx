@@ -200,8 +200,7 @@ export default function PublishGig() {
                   onClick={() => toggleCountry(country)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5" ${selected ? 'tertiary-bg tertiary-text-color' : 'primary-bg text-color'}`}
                 >
-                  {country}
-                  <span className="text-sm">{count}</span>
+                  <span className="text-sm">{country} - {count}</span>
                 </button>
               );
             })}
@@ -211,7 +210,7 @@ export default function PublishGig() {
               {form.countries.length} selected · {countries
                 .filter((c) => form.countries.includes(c.country))
                 .reduce((sum, c) => sum + c.count, 0)
-                .toLocaleString()} potential hunters
+                .toLocaleString()} potential clicks
             </p>
           )}
         </Field>
@@ -228,25 +227,21 @@ export default function PublishGig() {
 
         <div className="grid grid-cols-2 gap-2">
           {selectedSubCategory && (
-            <div className="primary-bg rounded-lg px-2 py-4">
-              <Field label="Reward Per Click">
-                <p className="text-lg font-medium">{reward} points <span className="ml-2 font-normal hint-color text-sm">≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}</span></p>
-              </Field>
-            </div>
+            <Field label="Reward Per Click">
+              <p className="primary-bg rounded-lg px-2 py-4 text-lg font-medium w-full">{reward} points <span className="ml-2 font-normal hint-color text-sm">≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}</span></p>
+            </Field>
           )}
 
-          <div className="primary-bg rounded-lg px-2 py-4">
-            <Field label="Number of clicks">
-              <input
-                type="number"
-                min="500"
-                value={form.max}
-                onChange={(e) => update('max', e.target.value)}
-                placeholder="500"
-                className="outline-0"
-              />
-            </Field>
-          </div>
+          <Field label="Number of clicks">
+            <input
+              type="number"
+              min="500"
+              value={form.max}
+              onChange={(e) => update('max', e.target.value)}
+              placeholder="500"
+              className="outline-0 primary-bg rounded-lg px-2 py-4"
+            />
+          </Field>
         </div>
 
         <Field label="Verification type">
