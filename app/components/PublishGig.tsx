@@ -228,23 +228,25 @@ export default function PublishGig() {
 
         <div className="grid grid-cols-2 gap-2">
           {selectedSubCategory && (
-            <div className="primary-bg rounded-lg">
-              <p className="text-sm">Reward per completion</p>
-              <p className="text-lg font-medium">{reward} points <span className="ml-2 font-normal hint-color text-sm">≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}</span></p>
+            <div className="primary-bg rounded-lg px-2 py-4">
+              <Field label="Reward Per Click">
+                <p className="text-lg font-medium">{reward} points <span className="ml-2 font-normal hint-color text-sm">≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}</span></p>
+              </Field>
             </div>
-            
           )}
 
-          <Field label="Number of clicks">
-            <input
-              type="number"
-              min="500"
-              value={form.max}
-              onChange={(e) => update('max', e.target.value)}
-              placeholder="500"
-              className="outline-0"
-            />
-          </Field>
+          <div className="primary-bg rounded-lg px-2 py-4">
+            <Field label="Number of clicks">
+              <input
+                type="number"
+                min="500"
+                value={form.max}
+                onChange={(e) => update('max', e.target.value)}
+                placeholder="500"
+                className="outline-0"
+              />
+            </Field>
+          </div>
         </div>
 
         <Field label="Verification type">
