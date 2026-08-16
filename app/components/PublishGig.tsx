@@ -116,22 +116,22 @@ export default function PublishGig() {
   return (
     <div className="min-h-screen pb-32">
       <div className="mb-4">
-        <h1 className="text-xl font-bold">Customize Your Gig</h1>
+        <h1 className="text-2xl font-bold">Customize Your Gig</h1>
         <p className="text-sm mt-1 hint-color">
           Set what you need done and how much it pays.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <Field label="Category">
+        <Field label="Choose Gig Type">
           <select
             value={form.category}
             onChange={(e) => handleCategoryChange(e.target.value as Category)}
-            className="input outline-0 rounded-lg px-2 py-4 tertiary-bg-faded"
+            className="input outline-0 rounded-lg px-2 py-4 primary-bg appearance-none"
           >
-            <option value="">Choose gig type</option>
+            <option value="">Select type</option>
             {CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
+              <option key={c} value={c} className="tertiary-bg textiary-text-color">{c}</option>
             ))}
           </select>
         </Field>
@@ -142,9 +142,9 @@ export default function PublishGig() {
             <select
               value={form.subCategory}
               onChange={(e) => update('subCategory', e.target.value)}
-              className="input outline-0 rounded-lg px-2 py-4 primary-bg"
+              className="input outline-0 rounded-lg px-2 py-4 primary-bg appearance-none"
             >
-              <option value="">Select an action</option>
+              <option value="">Select action</option>
               {availableSubCategories.map((sc) => (
                 <option key={sc.label} value={sc.label}>{sc.label}</option>
               ))}
@@ -158,24 +158,24 @@ export default function PublishGig() {
           </p>
         )}
 
-        <Field label="Name your gig">
+        <Field label="Name Your Gig">
           <input
             type="text"
             value={form.title}
             onChange={(e) => update('title', e.target.value)}
             placeholder="ex: Follow GigsGram on X"
             maxLength={40}
-            className="input outline-0 primary-bg text-color rounded-lg p-4"
+            className="input outline-0 primary-bg text-color rounded-lg px-2 py-4"
           />
         </Field>
 
-        <Field label="Describe your platform">
+        <Field label="Describe Your Platform">
           <textarea
             value={form.description}
             onChange={(e) => update('description', e.target.value)}
             placeholder="ex: GigsGram - a telegram mini app where you can browse gigs, publish gigs, watch ads and earn rewards"
             rows={4}
-            className="input resize-none indent-1 outline-0 p-4 rounded-lg primary-bg text-color"
+            className="input resize-none outline-0 px-2 py-4 rounded-lg primary-bg"
           />
         </Field>
 
@@ -185,7 +185,7 @@ export default function PublishGig() {
             onChange={(e) => update('guidelines', e.target.value)}
             placeholder="ex: Go to our X page, follow us on X, submit your X account link to confirm you completed the task"
             rows={4}
-            className="input resize-none indent-1 outline-0"
+            className="input resize-none outline-0 px-2 py-4 rounded-lg primary-bg"
           />
         </Field>
 
@@ -200,8 +200,8 @@ export default function PublishGig() {
                   onClick={() => toggleCountry(country)}
                   className="px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5"
                   style={{
-                    backgroundColor: selected ? 'var(--tg-button-color)' : 'var(--tg-secondary-bg-color)',
-                    color: selected ? 'var(--tg-button-text-color)' : 'var(--tg-text-color)',
+                    backgroundColor: selected ? 'tertiary-bg' : 'primary-bg',
+                    color: selected ? 'tertiary-text-color)' : 'text-color',
                   }}
                 >
                   {country}
