@@ -21,8 +21,8 @@ export default function Footer() {
  const isProfileActive = pathname === profileItems.href;
 
  return (
-  <div className="fixed bottom-0 left-0 w-full px-8">
-    <div className="textiary-bg-faded backdrop-blur-sm grid grid-cols-4 rounded-full mb-8 h-auto">
+  <div className="textiary-bg-faded backdrop-blur-sm fixed bottom-0 left-0 w-full px-8 h-auto">
+    <div className="grid grid-cols-4 mb-8">
       <div className="grid grid-cols-3 col-span-3 primary-bg rounded-full p-1.5 w-full">
         {footerItems.map(({ href, label, activeIcon, icon }) => {
         const isActive = pathname === href
