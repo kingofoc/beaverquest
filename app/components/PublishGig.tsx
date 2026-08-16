@@ -115,16 +115,16 @@ export default function PublishGig() {
 
   return (
     <div className="min-h-screen pb-32">
-      <div className="mb-4">
+      <div className="mb-6">
         <h1 className="text-2xl font-bold">Customize Your Gig</h1>
         <p className="text-sm mt-1 hint-color">
           Set what you need done and how much it pays.
         </p>
       </div>
       
-      <hr className="border-0 h-0.5 gradient-bg rounded-lg"/>
+      <hr className="border-0 h-0.5 gradient-bg rounded-lg divide-dashed"/>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-6">
         <Field label="Choose Gig Type">
           <select
             value={form.category}
