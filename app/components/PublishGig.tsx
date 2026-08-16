@@ -121,8 +121,10 @@ export default function PublishGig() {
           Set what you need done and how much it pays.
         </p>
       </div>
+      
+      <hr className="hint-bg-color mb-2"/>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <Field label="Choose Gig Type">
           <select
             value={form.category}
@@ -232,7 +234,7 @@ export default function PublishGig() {
             </Field>
           )}
 
-          <Field label="Number of clicks">
+          <Field label="Number of Clicks">
             <input
               type="number"
               min="500"
@@ -244,12 +246,12 @@ export default function PublishGig() {
           </Field>
         </div>
 
-        <Field label="Verification type">
+        <Field label="Verification Type">
           <div className="flex gap-2">
             <VerificationOption
               active={form.verificationType === 'manual'}
               onClick={() => update('verificationType', 'manual')}
-              label="I'll review proof"
+              label="I'll Review Proof"
             />
             <VerificationOption
               active={form.verificationType === 'telegram'}
@@ -260,28 +262,25 @@ export default function PublishGig() {
         </Field>
 
         {form.verificationType === 'telegram' && (
-          <Field label="Channel or bot username">
+          <Field label="Channel or Bot Username">
             <input
               type="text"
               value={form.verificationTarget}
               onChange={(e) => update('verificationTarget', e.target.value)}
               placeholder="@gigsgram"
-              className="input outline-0"
+              className="input outline-0 rounded-lg primary-bg px-2 py-4"
             />
           </Field>
         )}
 
-        <div
-          className="rounded-2xl p-4 flex items-center justify-between mt-2"
-        >
-          <div>
-            <p className="text-sm hint-volor">Total cost</p>
+        <Field label="Total Cost">
+          <div className="flex justify-between items-center px-2 py-4 rounded-lg primary-bg">
             <p className="text-lg font-bold">{totalCost.toLocaleString()} tokens</p>
-          </div>
-          <p className="text-xs text-right hint-color">
+            <p className="text-xs text-right hint-color">
             {reward || 0} × {maxNum || 500} slots
           </p>
-        </div>
+          </div>
+        </Field>
 
         {error && (
           <p className="text-sm text-center destructive-color">
