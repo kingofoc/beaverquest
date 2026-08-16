@@ -144,7 +144,7 @@ export default function PublishGig() {
             <select
               value={form.subCategory}
               onChange={(e) => update('subCategory', e.target.value)}
-              className="input outline-0"
+              className="input outline-0 rounded-lg p-2 primary-bg"
             >
               <option value="">Select an action</option>
               {availableSubCategories.map((sc) => (
