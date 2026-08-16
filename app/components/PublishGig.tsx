@@ -127,7 +127,7 @@ export default function PublishGig() {
           <select
             value={form.category}
             onChange={(e) => handleCategoryChange(e.target.value as Category)}
-            className="input"
+            className="input outline-0"
           >
             <option value="">Choose gig type</option>
             {CATEGORIES.map((c) => (
@@ -141,7 +141,7 @@ export default function PublishGig() {
             <select
               value={form.subCategory}
               onChange={(e) => update('subCategory', e.target.value)}
-              className="input"
+              className="input outline-0"
             >
               <option value="">Select an action</option>
               {availableSubCategories.map((sc) => (
@@ -164,7 +164,7 @@ export default function PublishGig() {
             onChange={(e) => update('title', e.target.value)}
             placeholder="ex: Follow GigsGram on X"
             maxLength={40}
-            className="input"
+            className="input outline-0"
           />
         </Field>
 
@@ -173,18 +173,18 @@ export default function PublishGig() {
             value={form.description}
             onChange={(e) => update('description', e.target.value)}
             placeholder="ex: GigsGram - a telegram mini app where you can browse gigs, publish gigs, watch ads and earn rewards"
-            rows={3}
-            className="input resize-none"
+            rows={4}
+            className="input resize-none indent-1 outline-0"
           />
         </Field>
 
-        <Field label="Gig gGuidelines" hint="ex: Go to our X page, follow us on X, don't unfollow to avoid losing your point">
+        <Field label="Gig Guidelines" hint="">
           <textarea
             value={form.guidelines}
             onChange={(e) => update('guidelines', e.target.value)}
-            placeholder="Submit a screenshot showing you joined"
-            rows={3}
-            className="input resize-none"
+            placeholder="ex: Go to our X page, follow us on X, submit your X account link to confirm you completed the task"
+            rows={4}
+            className="input resize-none indent-1 outline-0"
           />
         </Field>
 
@@ -210,7 +210,7 @@ export default function PublishGig() {
             })}
           </div>
           {form.countries.length > 0 && (
-            <p className="text-xs mt-1" style={{ color: 'var(--tg-hint-color)' }}>
+            <p className="text-xs mt-1 hint-color">
               {form.countries.length} selected · {countries
                 .filter((c) => form.countries.includes(c.country))
                 .reduce((sum, c) => sum + c.count, 0)
@@ -225,7 +225,7 @@ export default function PublishGig() {
             value={form.url}
             onChange={(e) => update('url', e.target.value)}
             placeholder="https://t.me/yourchannel"
-            className="input"
+            className="input outline-0"
           />
         </Field>
 
@@ -244,14 +244,14 @@ export default function PublishGig() {
             </div>
           )}
 
-          <Field label="Number of clicks" hint="10000">
+          <Field label="Number of clicks">
             <input
               type="number"
               min="500"
               value={form.max}
               onChange={(e) => update('max', e.target.value)}
               placeholder="500"
-              className=""
+              className="outline-0"
             />
           </Field>
         </div>
@@ -278,7 +278,7 @@ export default function PublishGig() {
               value={form.verificationTarget}
               onChange={(e) => update('verificationTarget', e.target.value)}
               placeholder="@gigsgram"
-              className="input"
+              className="input outline-0"
             />
           </Field>
         )}
