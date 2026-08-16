@@ -49,6 +49,17 @@ body {
   );
 }
 
+.footer-blur-layer {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
+  border-radius: inherit;
+  z-index: 0;
+}
+
 .tertiary-text-color {
   color: var(--tg-button-text-color);
 }
