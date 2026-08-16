@@ -61,6 +61,10 @@ body {
   box-shadow: 0 4px 12px var(--tertiary-bg);
 } */
 
+.text-color {
+  color: var(--text-color);
+}
+
 .link-color {
   color: var(--tg-link-color);
 }
