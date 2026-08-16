@@ -122,9 +122,9 @@ export default function PublishGig() {
         </p>
       </div>
       
-      <hr className="hint-bg-color mb-2"/>
+      <hr className="border-0 h-0.5 gradient-bg rounded-lg"/>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-4">
         <Field label="Choose Gig Type">
           <select
             value={form.category}
