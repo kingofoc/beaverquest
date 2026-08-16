@@ -114,10 +114,10 @@ export default function PublishGig() {
   }
 
   return (
-    <div className="min-h-screen pb-32" style={{ backgroundColor: 'var(--tg-bg-color)', color: 'var(--tg-text-color)' }}>
+    <div className="min-h-screen pb-32">
       <div className="px-4 pt-6 pb-4">
-        <h1 className="text-xl font-bold">Publish a task</h1>
-        <p className="text-sm mt-1" style={{ color: 'var(--tg-hint-color)' }}>
+        <h1 className="text-xl font-bold">Customize your gig</h1>
+        <p className="text-sm mt-1 hint-color">
           Set what you need done and how much it pays.
         </p>
       </div>
@@ -129,7 +129,7 @@ export default function PublishGig() {
             onChange={(e) => handleCategoryChange(e.target.value as Category)}
             className="input"
           >
-            <option value="">Select a category</option>
+            <option value="">Choose gig type</option>
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
@@ -137,7 +137,7 @@ export default function PublishGig() {
         </Field>
 
         {form.category && availableSubCategories.length > 0 && (
-          <Field label="What should hunters do?">
+          <Field label="Choose gig action">
             <select
               value={form.subCategory}
               onChange={(e) => update('subCategory', e.target.value)}
@@ -153,32 +153,32 @@ export default function PublishGig() {
 
         {form.category && availableSubCategories.length === 0 && (
           <p className="text-sm" style={{ color: 'var(--tg-hint-color)' }}>
-            This category is not available yet.
+            This gig action is not available yet.
           </p>
         )}
 
-        <Field label="Title">
+        <Field label="Name your gig">
           <input
             type="text"
             value={form.title}
             onChange={(e) => update('title', e.target.value)}
-            placeholder="Join our Telegram channel"
-            maxLength={80}
+            placeholder="ex: Follow GigsGram on X"
+            maxLength={40}
             className="input"
           />
         </Field>
 
-        <Field label="Description">
+        <Field label="Describe your platform">
           <textarea
             value={form.description}
             onChange={(e) => update('description', e.target.value)}
-            placeholder="What does the hunter need to do?"
+            placeholder="ex: GigsGram - a telegram mini app where you can browse gigs, publish gigs, watch ads and earn rewards"
             rows={3}
             className="input resize-none"
           />
         </Field>
 
-        <Field label="Guidelines" hint="What counts as valid proof">
+        <Field label="Gig gGuidelines" hint="ex: Go to our X page, follow us on X, don't unfollow to avoid losing your point">
           <textarea
             value={form.guidelines}
             onChange={(e) => update('guidelines', e.target.value)}
@@ -188,7 +188,7 @@ export default function PublishGig() {
           />
         </Field>
 
-        <Field label="Countries" hint="Leave empty for everyone">
+        <Field label="Target Countries" hint="Leave empty for everyone">
           <div className="flex flex-wrap gap-2">
             {countries.map(({ country, count }) => {
               const selected = form.countries.includes(country);
@@ -219,7 +219,7 @@ export default function PublishGig() {
           )}
         </Field>
 
-        <Field label="Link" hint="Optional - channel, bot, or destination URL">
+        <Field label="Enter gig link" hint="Channel, bot, or destination URL">
           <input
             type="url"
             value={form.url}
@@ -233,19 +233,18 @@ export default function PublishGig() {
           {selectedSubCategory && (
             <div
               className="rounded-2xl p-4 flex items-center justify-between"
-              style={{ backgroundColor: 'var(--tg-secondary-bg-color)' }}
             >
               <div>
-                <p className="text-sm" style={{ color: 'var(--tg-hint-color)' }}>Reward per completion</p>
+                <p className="text-sm hint-color">Reward per completion</p>
                 <p className="text-lg font-bold">{reward} points</p>
               </div>
-              <p className="text-sm" style={{ color: 'var(--tg-hint-color)' }}>
+              <p className="text-sm hint-color">
                 ≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}
               </p>
             </div>
           )}
 
-          <Field label="Slots" hint="max completions">
+          <Field label="Number of clicks" hint="10000">
             <input
               type="number"
               min="500"
@@ -257,7 +256,7 @@ export default function PublishGig() {
           </Field>
         </div>
 
-        <Field label="Verification">
+        <Field label="Verification type">
           <div className="flex gap-2">
             <VerificationOption
               active={form.verificationType === 'manual'}
@@ -278,7 +277,7 @@ export default function PublishGig() {
               type="text"
               value={form.verificationTarget}
               onChange={(e) => update('verificationTarget', e.target.value)}
-              placeholder="@yourchannel"
+              placeholder="@gigsgram"
               className="input"
             />
           </Field>
@@ -286,19 +285,18 @@ export default function PublishGig() {
 
         <div
           className="rounded-2xl p-4 flex items-center justify-between mt-2"
-          style={{ backgroundColor: 'var(--tg-secondary-bg-color)' }}
         >
           <div>
-            <p className="text-sm" style={{ color: 'var(--tg-hint-color)' }}>Total cost</p>
+            <p className="text-sm hint-volor">Total cost</p>
             <p className="text-lg font-bold">{totalCost.toLocaleString()} tokens</p>
           </div>
-          <p className="text-xs text-right" style={{ color: 'var(--tg-hint-color)' }}>
+          <p className="text-xs text-right hint-color">
             {reward || 0} × {maxNum || 0} slots
           </p>
         </div>
 
         {error && (
-          <p className="text-sm text-center" style={{ color: 'var(--tg-destructive-text-color, #ec3942)' }}>
+          <p className="text-sm text-center destructive-color">
             {error}
           </p>
         )}
@@ -312,7 +310,7 @@ export default function PublishGig() {
           {loading ? 'Publishing...' : 'Publish'}
         </button>
 
-        <p className="text-xs text-center" style={{ color: 'var(--tg-hint-color)' }}>
+        <p className="text-xs text-center hint-color">
           Your gig goes live after a quick review, usually within a few hours.
         </p>
       </form>
@@ -325,7 +323,7 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
     <label className="flex flex-col gap-1.5">
       <span className="text-sm font-medium">
         {label}
-        {hint && <span className="font-normal ml-1.5" style={{ color: 'var(--tg-hint-color)' }}>· {hint}</span>}
+        {hint && <span className="font-normal ml-1.5 hint-color">· {hint}</span>}
       </span>
       {children}
     </label>

@@ -37,6 +37,10 @@ body {
   background-color: var(--tg-bg-color);
 }
 
+.destructive-color {
+  color: var(--destruction);
+}
+
 .gradient-bg {
   background: radial-gradient(
     circle at top left,
