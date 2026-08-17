@@ -21,7 +21,7 @@ export default function Footer() {
  const isProfileActive = pathname === profileItems.href;
 
  return (
-  <div className="fixed bottom-0 left-0 w-full px-8 pt-2 backdrop-blur-lg tertiary-bg-faded mask-t-from-90%">
+  <div className="fixed bottom-0 left-0 w-full px-8 pt-2 backdrop-blur-lg tertiary-bg-faded mask-t-from-70%">
     <div className="grid grid-cols-4 mb-8">
       
       <div className="relative z-10 grid grid-cols-3 col-span-3 primary-bg rounded-full p-1.5 w-full">
