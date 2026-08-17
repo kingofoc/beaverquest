@@ -22,7 +22,7 @@ export default function Footer() {
 
  return (
   <div className="fixed bottom-0 inset-x-0 z-50">
-    <div className="absolute bottom-0 inset-x-0 z-0 h-32 secondary-bg-faded backdrop-blur-sm mask-t-from-80%"></div>
+    <div className="absolute bottom-0 inset-x-0 z-0 h-28 secondary-bg-faded backdrop-blur-sm mask-t-from-80%"></div>
     <div className="relative z-10 grid grid-cols-4 mb-8 px-8">
       <div className="grid grid-cols-3 col-span-3 primary-bg rounded-full p-1.5 w-full">
         {footerItems.map(({ href, label, activeIcon, icon }) => {
