@@ -33,6 +33,10 @@ body {
   background-color: var(--tg-secondary-bg-color);
 }
 
+.secondary-bg-faded {
+  background-color: rgba(var(--tg-secondary-bg-color));
+}
+
 .primary-bg {
   background-color: var(--tg-bg-color);
 }
