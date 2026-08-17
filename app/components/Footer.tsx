@@ -55,7 +55,7 @@ export default function Footer() {
           )}
         </Link>
       </div>
-      <div className="absolute bottom-0 z-0 h-32 backdrop-blur-sm mask-t-from-80% mask-radial-from-70% mask-radial-to-80%"></div>
+      <div className="absolute bottom-0 z-0 h-32 secondary-bg backdrop-blur-sm mask-t-from-80% mask-radial-from-70% mask-radial-to-80%"></div>
     </div>
   </div>
  )
