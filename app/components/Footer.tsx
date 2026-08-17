@@ -21,40 +21,41 @@ export default function Footer() {
  const isProfileActive = pathname === profileItems.href;
 
  return (
-  <div className="fixed bottom-0 left-0 w-full px-8">
-    <div className="relative grid grid-cols-4 mb-8">
-      <div className="absolute bottom-0 left-0 z-0 h-32 w-full secondary-bg-faded backdrop-blur-sm mask-t-from-80% mask-radial-from-70% mask-radial-to-80%"></div>
+  <div className="fixed bottom-0 left-0 w-full">
+    <div className="relative">
+      <div className="absolute bottom-0 left-0 z-0 h-32 w-full secondary-bg-faded backdrop-blur-sm mask-t-from-80%"></div>
+      <div className="relative z-10 grid grid-cols-4 mb-8 px-8">
+        <div className="grid grid-cols-3 col-span-3 primary-bg rounded-full p-1.5 w-full">
+          {footerItems.map(({ href, label, activeIcon, icon }) => {
+          const isActive = pathname === href
+          return (
+            <Link 
+            key={label} 
+            href={href} 
+            className={`flex flex-col justify-center items-center text-center p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full' : 'bg-transparent'} transition duration-500 ease-in-out`}>
 
-      <div className="relative z-10 grid grid-cols-3 col-span-3 primary-bg rounded-full p-1.5 w-full">
-        {footerItems.map(({ href, label, activeIcon, icon }) => {
-        const isActive = pathname === href
-        return (
-          <Link 
-          key={label} 
-          href={href} 
-          className={`flex flex-col justify-center items-center text-center p-1 ${isActive ? 'tertiary-bg-faded scale-105 rounded-full' : 'bg-transparent'} transition duration-500 ease-in-out`}>
+              <TgIcon src={isActive ? activeIcon : icon} size={28} className={isActive ? "icon-color-active" : "icon-color"} />
+              <span className={`text-xs ${isActive ? 'font-bold icon-text-color-active' : 'icon-text-color font-medium'}`}>{label}</span>
+            </Link>
+          )
+          })}
+        </div>
 
-            <TgIcon src={isActive ? activeIcon : icon} size={28} className={isActive ? "icon-color-active" : "icon-color"} />
-            <span className={`text-xs ${isActive ? 'font-bold icon-text-color-active' : 'icon-text-color font-medium'}`}>{label}</span>
+        <div className="col-span-1 flex justify-end items-center rounded-full w-full">
+          <Link href={profileItems.href}
+          className={`relative w-14 h-14 rounded-full overflow-hidden transition-all duration-500 ${isProfileActive ? "border-active" : ""}`}>
+            {profileUrl ? (
+              <Image
+                src={profileUrl}
+                alt={"profile"}
+                fill
+                className="object-cover"> 
+              </Image>
+            ) : (
+              <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={56} className={`object-cover ${isProfileActive ? "icon-color-active" : "icon-color"}`} />
+            )}
           </Link>
-        )
-        })}
-      </div>
-
-      <div className="relative z-10 col-span-1 flex justify-end items-center rounded-full w-full">
-        <Link href={profileItems.href}
-        className={`relative w-14 h-14 rounded-full overflow-hidden transition-all duration-500 ${isProfileActive ? "border-active" : ""}`}>
-          {profileUrl ? (
-            <Image
-              src={profileUrl}
-              alt={"profile"}
-              fill
-              className="object-cover"> 
-            </Image>
-          ) : (
-            <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={56} className={`object-cover ${isProfileActive ? "icon-color-active" : "icon-color"}`} />
-          )}
-        </Link>
+        </div>
       </div>
     </div>
   </div>
