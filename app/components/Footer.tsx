@@ -2,29 +2,22 @@
 import TgIcon from "./Icon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useUser } from "@/context/UserContext";
-import Image from "next/image";
 
 export default function Footer() {
  const pathname = usePathname();
- const { user } = useUser();
- const profileUrl = user?.profileURL;
 
  const footerItems = [
   { href: "/publish", label: "Publish", icon: "/publish.svg", activeIcon: "/publish-active.svg" },
   { href: "/", label: "Gigs", icon: "/gigs.svg", activeIcon: "/gigs-active.svg" },
   { href: "/ads", label: "Ads", icon: "/ads.svg", activeIcon: "/ads-active.svg" },
+  { href: "/community", label: "Community", icon: "/community.svg", activeIcon: "/community-active.svg" }
  ]
-
- const profileItems = { href: "/profile", icon: "/profile.svg", activeIcon: "/profile-active.svg" }
-
- const isProfileActive = pathname === profileItems.href;
 
  return (
   <div className="fixed bottom-0 inset-x-0 z-50">
     <div className="absolute bottom-0 inset-x-0 z-0 h-26 secondary-bg-faded backdrop-blur-sm mask-t-from-65%"></div>
     <div className="relative z-10 grid grid-cols-4 mb-4 px-8">
-      <div className="grid grid-cols-3 col-span-3 primary-bg rounded-full p-1.5 w-full">
+      <div className="primary-bg rounded-full p-1.5 w-full">
         {footerItems.map(({ href, label, activeIcon, icon }) => {
         const isActive = pathname === href
         return (
@@ -38,22 +31,6 @@ export default function Footer() {
           </Link>
         )
         })}
-      </div>
-
-      <div className="col-span-1 flex justify-end items-center rounded-full w-full">
-        <Link href={profileItems.href}
-        className={`relative w-14 h-14 rounded-full overflow-hidden transition-all duration-500 ${isProfileActive ? "border-active" : ""}`}>
-          {profileUrl ? (
-            <Image
-              src={profileUrl}
-              alt={"profile"}
-              fill
-              className="object-cover"> 
-            </Image>
-          ) : (
-            <TgIcon src={isProfileActive ?  profileItems.activeIcon : profileItems.icon} size={56} className={`object-cover ${isProfileActive ? "icon-color-active" : "icon-color"}`} />
-          )}
-        </Link>
       </div>
     </div>
   </div>

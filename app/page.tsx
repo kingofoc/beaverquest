@@ -1,5 +1,5 @@
 import Footer from "./components/Footer";
-import HeroCard from "./components/HeroCard";
+import Header from "./components/Header";
 import ProfilePics from "./components/ProfilePics";
 import UserCountry from "./components/UserCountry";
 
@@ -8,10 +8,7 @@ export default function Home() {
     <div>
       <UserCountry />
       <ProfilePics />
-      
-      <div>
-        <HeroCard />
-      </div>
+      <Header />
 
       <Footer />
     </div>
