@@ -35,8 +35,8 @@ export default function Header() {
      <span className="text-sm">{firsttName}</span>
     </Link>
 
-    <div className="grid col-span-2 justify-items-end items-center gap-1">
-     <TgIcon src="/gigsgram.svg" size={18} className={"custom-bg"} />
+    <div className="col-span-2 flex flex-row justify-end items-center gap-1">
+     <TgIcon src="/gigsgram.svg" size={18} className={"icon-color-active"} />
      <span className="text-sm font-bold link-color">{balance}</span>
     </div>
    </div>

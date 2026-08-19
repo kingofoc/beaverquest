@@ -68,10 +68,6 @@ body {
   color: var(--tg-button-text-color);
 }
 
-.custom-bg {
-  background-color: var(--tg-button-text-color);
-}
-
 /* .shadow {
   box-shadow: 0 4px 12px var(--tertiary-bg);
 } */
