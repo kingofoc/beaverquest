@@ -35,7 +35,7 @@ export default function Header() {
      <span className="text-sm">{firsttName}</span>
     </Link>
 
-    <div className="col-span-2 flex flex-row justify-end items-center gap-1">
+    <div className="col-span-2 flex flex-row justify-end items-center">
      <TgIcon src="/gigsgram.svg" size={18} className={"icon-color-active"} />
      <span className="text-sm font-bold link-color">{balance}</span>
     </div>
