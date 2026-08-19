@@ -35,8 +35,8 @@ export default function Header() {
      <span className="text-sm">{firsttName}</span>
     </Link>
 
-    <div className="col-span-2">
-     <span className="text-sm font-medium link-color">{balance}</span>
+    <div className="col-span-2 items-end">
+     <span className="text-sm font-bold link-color">{balance}</span>
     </div>
    </div>
   </div>
