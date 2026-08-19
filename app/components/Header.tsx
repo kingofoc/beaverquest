@@ -19,7 +19,7 @@ export default function Header() {
   <div className="fixed top-0 inset-x-0 z-50 ">
    <div className="absolute top-0 inset-x-0 z-0 h-26 secondary-bg-faded backdrop-blur-sm mask-b-from-65%"></div>
    <div className="relative z-10 grid grid-cols-6 mt-4 px-8">
-    <Link href={profileItems.href} className="grid col-span-3 grid-cols-2 gap-1">
+    <Link href={profileItems.href} className="flex items-center col-span-3 gap-1">
      <div className={`relative w-7 h-7 rounded-full overflow-hidden transition-all duration-500 ${isProfileActive ? "border-active" : ""}`}>
       {profileUrl ? (
        <Image

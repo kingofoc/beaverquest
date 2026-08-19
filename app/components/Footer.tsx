@@ -17,7 +17,7 @@ export default function Footer() {
   <div className="fixed bottom-0 inset-x-0 z-50">
     <div className="absolute bottom-0 inset-x-0 z-0 h-26 secondary-bg-faded backdrop-blur-sm mask-t-from-65%"></div>
     <div className="relative z-10 grid grid-cols-4 mb-4 px-8">
-      <div className="primary-bg rounded-full p-1.5 w-full col-span-4">
+      <div className="primary-bg rounded-full p-1.5 w-full grid grid-cols-4 gap-4 col-span-4">
         {footerItems.map(({ href, label, activeIcon, icon }) => {
         const isActive = pathname === href
         return (
