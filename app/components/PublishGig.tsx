@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from '@/lib/constants';
+import { useUser } from '@/context/UserContext';
 
 type CountryOption = { country: string; count: number };
 
@@ -10,8 +11,9 @@ export default function PublishGig() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [countries, setCountries] = useState<CountryOption[]>([]);
+  const { user } = useUser()
 
-  useEffect(() => {
+  useEffect(() => {   
     fetch('/api/country')
     .then((res) => res.json())
     .then((data) => setCountries(data.countries ?? []))
@@ -73,13 +75,11 @@ export default function PublishGig() {
     setLoading(true);
 
     try {
-      const userId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
-
       const res = await fetch('/api/gigs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          publisherId: userId,
+          publisherId: user?.userId,
           category: form.category,
           subCategory: form.subCategory,
           title: form.title,
