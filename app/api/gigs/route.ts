@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
    verificationConfig,
   } = body
 
-  if (!publisherId || !category || !subCategory || !title || !description || !guidelines || !country || !url || !iconUrl || !max || !verificationType || !verificationConfig) {
+  if (!publisherId || !category || !subCategory || !title || !description || !guidelines || !country || !url || !max || !verificationType || !verificationConfig) {
    return NextResponse.json({ error: "Missing field required" }, { status: 400 });
   }
 
