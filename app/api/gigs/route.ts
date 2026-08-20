@@ -28,6 +28,19 @@ export async function POST(req: NextRequest) {
    return NextResponse.json({ error: "Missing field required" }, { status: 400 });
   }
 
+  console.log("recieved data", publisherId, category,
+   subCategory,
+   title,
+   description,
+   guidelines,
+   country,
+   url,
+   iconUrl,
+   max,
+   verificationType,
+   verificationConfig
+  )
+
   const validSubCategories = SUB_CATEGORIES_BY_CATEGORY[category as Category];
 
   if (!validSubCategories) {
