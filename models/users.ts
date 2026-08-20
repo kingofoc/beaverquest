@@ -2,6 +2,7 @@ import { model, Schema, models, Document } from 'mongoose';
 
 export interface IUser extends Document {
   userId: number;
+  userType?: string;
   userName?: string;
   firstName?: string;
   chatId?: number;
@@ -15,7 +16,6 @@ export interface IUser extends Document {
   ton?: number;
   airdrop?: number;
   tonWallet?: string;
-  level?: number;
   community?: string;
   referredBy?: number;
   referrals?: number;
@@ -55,6 +55,12 @@ const userSchema = new Schema<IUser>({
   type: Number,
   required: true,
   unique: true
+ },
+
+ userType: {
+  type: Number,
+  required: true,
+  default: "regular"
  },
 
  userName: {
@@ -111,10 +117,6 @@ const userSchema = new Schema<IUser>({
   type: String,
   unique: true,
   sparse: true
- },
-
- level: {
-  type: Number
  },
 
  community: {

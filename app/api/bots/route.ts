@@ -72,9 +72,11 @@ export async function POST(req: NextRequest) {
   if (!user) {
    const referralId = await generateUniqueRefId();
    const referralLink = `${BOT_LINK}?start=${referralId}`;
+   const userType = "regular";
 
    user = await User.create ({
     userId,
+    userType,
     userName,
     firstName,
     chatId,
@@ -88,8 +90,7 @@ export async function POST(req: NextRequest) {
     telegramStars: 0,
     ton: 0,
     tonWallet: "",
-    level: 1,
-    community: "Beaver Quest",
+    community: "@gigsgram_community",
     referredBy: null,
     referrals: 0,
     referredUsers: [],
