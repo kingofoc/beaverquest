@@ -2,6 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/models/users';
+import { PendingCommunityVerification } from '@/models/pendingCommunityVerification';
 import connectDb from '@/lib/mongodb';
 import { generateUniqueRefId, rewardReferrer } from '@/lib/rewardReferrer';
 
@@ -21,6 +22,8 @@ export async function POST(req: NextRequest) {
  const chatId = body?.message?.chat?.id;
  const language = body?.message?.from?.language_code;
  const isBot = body?.message?.from?.is_bot;
+ const forwardOrigin = body?.message?.forward_origin;
+ const forwardFromChat = body?.message?.forward_from_chat;
 
  // bot welcome message
  if (messageText?.startsWith("/start") && chatId) {
@@ -121,6 +124,37 @@ export async function POST(req: NextRequest) {
    console.log("User created:", user.userId);
 
    await rewardReferrer(user, referralCode);
+  }
+ }
+
+ if ((forwardOrigin?.type === "channel" || forwardFromChat?.type === "channel") && chatId) {
+  const channelChat = forwardOrigin?.chat ?? forwardFromChat;
+  const channelId = channelChat?.id;
+  const channelTitle = channelChat?.title;
+  const channelUsername = channelChat?.username;
+
+  if (channelId) {
+   await connectDb();
+   await PendingCommunityVerification.findOneAndUpdate(
+    { ownerId: userId },
+    {
+     ownerId: userId,
+     channelId: channelId.toString(),
+     channelTitle,
+     channelUsername: channelUsername ?? null,
+     createdAt: new Date(),
+    },
+    { upsert: true, new: true}
+   );
+
+   await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+     chat_id: chatId,
+     text: `Got it — "${channelTitle}" detected. Head back to the app to finish setting up your community.`
+    }),
+   });
   }
  }
 

@@ -69,6 +69,7 @@ interface TelegramWebApp {
   BackButton: TelegramWebAppBackButton;
   // CloseButton: TelegramWebAppCloseButton;
   MainButton: TelegramWebAppMainButton;
+  openTelegramLink(url: string): void;
   openInvoice(invoiceLink: string): void;
   onEvent(eventType: string, callback: () => void): void;
   onEvent(eventType: 'invoiceClosed', listener: (event: InvoiceClosedEvent) => Promise<void>): void;
