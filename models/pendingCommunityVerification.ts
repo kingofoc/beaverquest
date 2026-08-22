@@ -2,7 +2,7 @@ import { model, Schema, models, Document } from 'mongoose';
 
 export interface IPendingCommunityVerification extends Document {
  ownerId: number;
- channelId: string;
+ channelId: number;
  channelTitle: string;
  channelUsername?: string | null;
  createdAt: Date;
@@ -10,7 +10,7 @@ export interface IPendingCommunityVerification extends Document {
 
 const schema = new Schema<IPendingCommunityVerification>({
  ownerId: { type: Number, required: true, unique: true },
- channelId: { type: String, required: true },
+ channelId: { type: Number, required: true },
  channelTitle: { type: String, required: true },
  channelUsername: { type: String, default: null },
 }, { timestamps: true })

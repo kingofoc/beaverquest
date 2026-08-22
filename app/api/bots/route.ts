@@ -139,7 +139,7 @@ export async function POST(req: NextRequest) {
     { ownerId: userId },
     {
      ownerId: userId,
-     channelId: channelId.toString(),
+     channelId,
      channelTitle,
      channelUsername: channelUsername ?? null,
      createdAt: new Date(),
