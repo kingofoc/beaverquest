@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
 
   // Step 2: Confirm the requesting user is actually an admin of this channel
   const adminCheckRes = await fetch(
-   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMember?chat_id=@${channelId}&user_id=${ownerId}`
+   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMember?chat_id=${channelId}&user_id=${ownerId}`
   );
   const adminCheckData = await adminCheckRes.json();
 
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
   const botId = botInfoData.result?.id;
 
   const botCheckRes = await fetch(
-   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMember?chat_id=@${channelId}&user_id=${botId}`
+   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMember?chat_id=${channelId}&user_id=${botId}`
   );
   const botCheckData = await botCheckRes.json();
 
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
 
   // Step 3: Get channel member count for display
   const memberCountRes = await fetch(
-   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMemberCount?chat_id=@${channelId}`
+   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMemberCount?chat_id=${channelId}`
   );
   const memberCountData = await memberCountRes.json();
   const memberCount = memberCountData.ok ? memberCountData.result : 0;
