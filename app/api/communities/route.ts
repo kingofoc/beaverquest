@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   await connectDb();
 
   const body = await req.json();
-  const { ownerId, name, description, iconUrl } = body;
+  const { ownerId, communityGeoLocation, name, description, iconUrl } = body;
 
   if (!ownerId || !name) {
    return NextResponse.json(
@@ -91,6 +91,7 @@ export async function POST(req: NextRequest) {
    channelId,
    channelUsername,
    name,
+   communityGeoLocation,
    description,
    iconUrl,
    memberCount,

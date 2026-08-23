@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Gigs } from "@/models/gigs";
 import { User } from "@/models/users";
 import connectDb from "@/lib/mongodb";
-import { SUB_CATEGORIES_BY_CATEGORY, Category } from "@/lib/constants";
+import { SUB_CATEGORIES_BY_CATEGORY, Category, COMMUNITY_TARGETING_FEE } from "@/lib/constants";
 
 export async function POST(req: NextRequest) {
  try {
@@ -56,6 +56,9 @@ export async function POST(req: NextRequest) {
 
   const reward = matched.reward;
 
+  const communityIds: string[] = body.communityIds ?? [];
+  const communityFees = communityIds.length * COMMUNITY_TARGETING_FEE;
+
   if (typeof max !== "number" || max <= 0) {
    return NextResponse.json({ error: "max must be a positive number" }, { status: 400 });
   }
@@ -75,13 +78,13 @@ export async function POST(req: NextRequest) {
    );
   }
 
-  const totalCost = reward * max;
+  const totalCost = (reward * max) + communityFees;
 
   // Atomically deduct from publisher balance ONLY if they have enough.
   // This prevents race conditions from concurrent gig creation requests.
   const updatedPublisher = await User.findOneAndUpdate(
    { userId: publisherId, balance: { $gte: totalCost } },
-   { $inc: { pQuestToken: -totalCost } },
+   { $inc: { balance: -totalCost } },
    { new: true }
   );
 

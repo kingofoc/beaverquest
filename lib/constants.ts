@@ -2,6 +2,7 @@ export const TELEGRAM_API = 'https://api.telegram.org';
 export const BOT_TOKEN = process.env.BOT_TOKEN as string;
 
 export const TOKEN_TO_USDT = 0.01 as const;
+export const COMMUNITY_TARGETING_FEE = 10;
 export const CATEGORIES = ['Social', 'Telegram', 'Video', 'Blog'] as const; // to add 'Crypto', 'Clip' in furture features
 export type Category = typeof CATEGORIES[number];
 

@@ -10,7 +10,7 @@ export default function AddCommunity() {
   const { user } = useUser();
 
   const [step, setStep] = useState<'info' | 'forward' | 'verifying'>('info');
-  const [form, setForm] = useState({ name: '', description: '', iconUrl: '' });
+  const [form, setForm] = useState({ name: '', channelType: '', description: '', iconUrl: '' });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -45,6 +45,7 @@ export default function AddCommunity() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ownerId: user?.userId,
+          channelType: form.channelType,
           name: form.name,
           description: form.description || undefined,
           iconUrl: form.iconUrl || undefined,
@@ -93,6 +94,17 @@ export default function AddCommunity() {
             />
           </Field>
 
+          <Field label="Community Type">
+            <input
+              type="text"
+              value={form.channelType}
+              onChange={(e) => update('channelType', e.target.value)}
+              placeholder="ex: Crypto"
+              maxLength={15}
+              className="input outline-0 primary-bg rounded-lg px-2 py-4"
+            />
+          </Field>
+
           <Field label="Description" hint="Optional">
             <textarea
               value={form.description}
@@ -118,9 +130,9 @@ export default function AddCommunity() {
       {step === 'forward' && (
         <div className="flex flex-col gap-6 mt-6">
           <div className="primary-bg rounded-2xl p-5 flex flex-col gap-4">
-            <StepRow number={1} text="Open a message in your channel" />
-            <StepRow number={2} text={`Add @${BOT_USERNAME} as an admin, with permission to send messages and see members`} />
-            <StepRow number={3} text="Forward any message from your channel to the bot" />
+            <span>Complete this step below to verify your channel.</span>
+            <StepRow number={1} text={`Add @${BOT_USERNAME} as an admin, with permission to send messages and see members`} />
+            <StepRow number={2} text="Then forward any message from your channel to the bot" />
           </div>
 
           <button

@@ -5,6 +5,7 @@ import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from 
 import { useUser } from '@/context/UserContext';
 
 type CountryOption = { country: string; count: number };
+type CommunityOption = { community: string; count: number; country: string }
 
 export default function PublishGig() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function PublishGig() {
     description: '',
     guidelines: '',
     countries: [] as string[],
+    community: [] as string[],
     max: '',
     url: '',
     verificationType: 'manual' as 'manual' | 'telegram',

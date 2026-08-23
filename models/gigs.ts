@@ -9,6 +9,7 @@ export interface IGigs extends Document {
  guidelines: string;
  reward: number;
  country: string[];
+ communityIds: string[];
  url: string;
  iconUrl: string;
  max: number;
@@ -67,6 +68,11 @@ const gigsSchema = new Schema<IGigs>({
 
  country: {
   type: [String],
+ },
+
+ communityIds: {
+  type: [String],
+  default: []
  },
 
  url: {
