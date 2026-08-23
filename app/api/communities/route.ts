@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { ownerId, name, description, channelType, iconUrl } = body;
 
-  if (!ownerId || !name || channelType) {
+  if (!ownerId || !name || !channelType) {
    return NextResponse.json(
     { error: "Missing field required: ownerId, channelUsername, name" },
     { status: 400 }
