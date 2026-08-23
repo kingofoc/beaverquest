@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/context/UserContext';
+import { ChannelType } from '@/lib/constants';
 
 const BOT_USERNAME = 'beaverquestbot'; // replace with your actual bot username
 
@@ -10,7 +11,12 @@ export default function AddCommunity() {
   const { user } = useUser();
 
   const [step, setStep] = useState<'info' | 'forward' | 'verifying'>('info');
-  const [form, setForm] = useState({ name: '', channelType: '', description: '', iconUrl: '' });
+  const [form, setForm] = useState({ 
+    name: '', 
+    channelType: '' as ChannelType | '', 
+    description: '', 
+    iconUrl: '' 
+  });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -95,14 +101,13 @@ export default function AddCommunity() {
           </Field>
 
           <Field label="Community Type">
-            <input
-              type="text"
+            <select
               value={form.channelType}
               onChange={(e) => update('channelType', e.target.value)}
-              placeholder="ex: Crypto"
-              maxLength={15}
-              className="input outline-0 primary-bg rounded-lg px-2 py-4"
-            />
+              className="input outline-0 primary-bg rounded-lg px-2 py-4 appearance-none"
+            >
+              <option value="">Channel Type</option>
+            </select>
           </Field>
 
           <Field label="Description" hint="Optional">

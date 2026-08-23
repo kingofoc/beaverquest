@@ -32,3 +32,94 @@ export const SUB_CATEGORIES_BY_CATEGORY: Record<Category, SubCategoryConfig[]> =
   { label: 'Watch above 60 mins video', reward: 150 },
  ],
 };
+
+export const CHANNEL_TYPE = {
+ CRYPTO: "Crypto",
+ FINANCE: "Finance",
+ INVESTING: "Investing",
+ TRADING: "Trading",
+ FOREX: "Forex",
+ STOCKS: "Stocks",
+ BUSINESS: "Business",
+ ENTREPRENEURSHIP: "Entrepreneurship",
+
+ TECHNOLOGY: "Technology",
+ AI: "Artificial Intelligence",
+ SOFTWARE: "Software Development",
+ PROGRAMMING: "Programming",
+ WEB3: "Web3",
+ BLOCKCHAIN: "Blockchain",
+ DEFI: "DeFi",
+ NFT: "NFT",
+
+ GAMING: "Gaming",
+ ESPORTS: "Esports",
+ MOBILE_GAMES: "Mobile Games",
+ PLAY_TO_EARN: "Play-to-Earn",
+
+ NEWS: "News",
+ WORLD_NEWS: "World News",
+ LOCAL_NEWS: "Local News",
+ POLITICS: "Politics",
+ SPORTS: "Sports",
+ FOOTBALL: "Football",
+ BASKETBALL: "Basketball",
+
+ EDUCATION: "Education",
+ ONLINE_COURSES: "Online Courses",
+ STUDY: "Study",
+ SCHOLARSHIPS: "Scholarships",
+ CAREER: "Career",
+ JOBS: "Jobs",
+ FREELANCING: "Freelancing",
+
+ ENTERTAINMENT: "Entertainment",
+ MOVIES: "Movies",
+ TV_SHOWS: "TV Shows",
+ MUSIC: "Music",
+ CELEBRITIES: "Celebrities",
+ MEMES: "Memes",
+ COMEDY: "Comedy",
+
+ LIFESTYLE: "Lifestyle",
+ FASHION: "Fashion",
+ BEAUTY: "Beauty",
+ HEALTH: "Health",
+ FITNESS: "Fitness",
+ FOOD: "Food",
+ TRAVEL: "Travel",
+
+ RELATIONSHIPS: "Relationships",
+ DATING: "Dating",
+ PARENTING: "Parenting",
+
+ RELIGION: "Religion",
+ SPIRITUALITY: "Spirituality",
+
+ SHOPPING: "Shopping",
+ DEALS: "Deals & Discounts",
+ ECOMMERCE: "E-commerce",
+
+ AUTOMOTIVE: "Automotive",
+ REAL_ESTATE: "Real Estate",
+
+ PHOTOGRAPHY: "Photography",
+ ART: "Art",
+ DESIGN: "Design",
+ BOOKS: "Books",
+ WRITING: "Writing",
+
+ SCIENCE: "Science",
+ SPACE: "Space",
+ HISTORY: "History",
+
+ LOCAL_COMMUNITY: "Local Community",
+ EVENTS: "Events",
+ CHARITY: "Charity",
+ NONPROFIT: "Nonprofit",
+
+ ADULT: "18+",
+ OTHER: "Other",
+} as const;
+
+export type ChannelType = typeof CHANNEL_TYPE[keyof typeof CHANNEL_TYPE];
