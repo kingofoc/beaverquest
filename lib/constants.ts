@@ -100,4 +100,6 @@ export const CHANNEL_TYPE = [
  "Nonprofit",
  "Adult 18+",
  "Other",
- ] as const;
+] as const;
+
+export type ChannelType = typeof CHANNEL_TYPE
