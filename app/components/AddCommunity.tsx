@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/context/UserContext';
-import { ChannelType } from '@/lib/constants';
+import { CHANNEL_TYPE} from '@/lib/constants';
 
 const BOT_USERNAME = 'beaverquestbot'; // replace with your actual bot username
 
@@ -13,7 +13,7 @@ export default function AddCommunity() {
   const [step, setStep] = useState<'info' | 'forward' | 'verifying'>('info');
   const [form, setForm] = useState({ 
     name: '', 
-    channelType: '' as ChannelType | '', 
+    channelType: '', 
     description: '', 
     iconUrl: '' 
   });
@@ -107,6 +107,9 @@ export default function AddCommunity() {
               className="input outline-0 primary-bg rounded-lg px-2 py-4 appearance-none"
             >
               <option value="">Channel Type</option>
+              {CHANNEL_TYPE.map((c) => (
+                <option key={c} value={c}></option>
+              ))}
             </select>
           </Field>
 
