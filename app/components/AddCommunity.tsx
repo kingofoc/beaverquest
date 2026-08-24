@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/context/UserContext';
-import { CHANNEL_TYPE, ChannelType} from '@/lib/constants';
+import { CHANNEL_TYPE} from '@/lib/constants';
 
 const BOT_USERNAME = 'beaverquestbot'; // replace with your actual bot username
 
@@ -13,7 +13,7 @@ export default function AddCommunity() {
   const [step, setStep] = useState<'info' | 'forward' | 'verifying'>('info');
   const [form, setForm] = useState({ 
     name: '', 
-    channelType: '' as ChannelType | '', 
+    channelType: '', 
     description: '', 
     iconUrl: '' 
   });
@@ -89,7 +89,7 @@ export default function AddCommunity() {
 
       {step === 'info' && (
         <form onSubmit={handleContinue} className="flex flex-col gap-6 mt-6">
-          <Field label="Community Name">
+          <Field label="Channel Name">
             <input
               type="text"
               value={form.name}
@@ -100,15 +100,15 @@ export default function AddCommunity() {
             />
           </Field>
 
-          <Field label="Community Type">
+          <Field label="Channel Type">
             <select
               value={form.channelType}
               onChange={(e) => update('channelType', e.target.value)}
               className="input outline-0 primary-bg rounded-lg px-2 py-4 appearance-none"
             >
               <option value="">Channel Type</option>
-              {CHANNEL_TYPE.map((c) => (
-                <option key={c} value={c}></option>
+              {CHANNEL_TYPE.map((type) => (
+                <option key={type} value={type}>{type}</option>
               ))}
             </select>
           </Field>

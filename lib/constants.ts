@@ -102,4 +102,4 @@ export const CHANNEL_TYPE = [
  "Other",
 ] as const;
 
-export type ChannelType = typeof CHANNEL_TYPE
+// export type ChannelType = typeof CHANNEL_TYPE
