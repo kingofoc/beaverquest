@@ -33,7 +33,8 @@ const communitySchema = new Schema<ICommunity> ({
 
  channelUsername: {
   type: String,
-  required: true
+  required: true,
+  unique: true
  },
 
  channelType: {
