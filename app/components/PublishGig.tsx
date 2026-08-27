@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from '@/lib/constants';
 import { useUser } from '@/context/UserContext';
 import CountryMultiSelect from './CountryMultiSelect';
+import CommunityMultiSelect from './CommunityMultiSelect';
 
 export default function PublishGig() {
   const router = useRouter();
@@ -201,7 +202,7 @@ export default function PublishGig() {
         </Field>
 
         <Field label="Target Communities" hint="Leave empty for everyone">
-          <CountryMultiSelect
+          <CommunityMultiSelect
             selected={form.communities}
             onToggle={toggleCommunities}
           />
