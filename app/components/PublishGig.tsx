@@ -1,24 +1,15 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { useRouter } from 'next/navigation';
 import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from '@/lib/constants';
 import { useUser } from '@/context/UserContext';
 import CountryMultiSelect from './CountryMultiSelect';
-type CoummunityOption = { communityName: string; communityType: string; memberCount: number }
 
 export default function PublishGig() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [communities, setCommunities] = useState<CoummunityOption[]>([])
   const { user } = useUser()
-
-  useEffect(() => {
-    fetch('/api/communities')
-    .then((res) => res.json())
-    .then((data) => setCommunities(data.allCommunities ?? []))
-    .catch((err) => console.error("Error loading communities:", err))
-  }, [])
 
   const [form, setForm] = useState({
     category: '' as Category | '',
@@ -210,30 +201,10 @@ export default function PublishGig() {
         </Field>
 
         <Field label="Target Communities" hint="Leave empty for everyone">
-          <div className="flex flex-wrap gap-2">
-            {communities.map(({ communityName , communityType, memberCount }) => {
-              const selected = form.communities.includes(communityName);
-              return (
-                <button
-                  key={communityName}
-                  type="button"
-                  onClick={() => toggleCommunities(communityName)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5" ${selected ? 'tertiary-bg tertiary-text-color' : 'primary-bg text-color'}`}
-                >
-                  <span className="text-sm">{communityName} - {communityType} - {memberCount}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {form.communities.length > 0 && (
-            <p className="text-xs mt-1 hint-color">
-              {form.communities.length} selected · {communities
-                .filter((c) => form.communities.includes(c.communityName))
-                .reduce((sum, c) => sum + c.memberCount, 0)
-                .toLocaleString()} potential clicks
-            </p>
-          )}
+          <CountryMultiSelect
+            selected={form.communities}
+            onToggle={toggleCommunities}
+          />
         </Field>
 
         <Field label="Enter Gig Link" hint="Channel, bot, or destination URL">
