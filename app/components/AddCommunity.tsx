@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@/context/UserContext';
 import { COMMUNITY_TYPE} from '@/lib/constants';
 
-const BOT_USERNAME = 'beaverquestbot'; // replace with your actual bot username
+const BOT_USERNAME = 'beaverquestbot';
 
 export default function AddCommunity() {
   const router = useRouter();

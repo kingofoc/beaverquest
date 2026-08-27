@@ -119,7 +119,7 @@ export async function GET(req: NextRequest) {
 
   const allCommunities = await Community.find({})
    .sort({ memberCount: -1 })
-   .select('channelId communityName communityType memberCount')
+   .select('communityId communityName communityType memberCount')
 
   const topCommunities = allCommunities.slice(0, 100);
 

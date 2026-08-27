@@ -239,6 +239,7 @@ export default function PublishGig() {
 
         <Field label="Target Communities" hint="Leave empty for everyone">
           <div className="flex flex-wrap gap-2">
+            <select value="">
             {communities.map(({ communityName , communityType, memberCount }) => {
               const selected = form.communities.includes(communityName);
               return (
@@ -252,6 +253,7 @@ export default function PublishGig() {
                 </button>
               );
             })}
+            </select>
           </div>
 
           {form.communities.length > 0 && (
