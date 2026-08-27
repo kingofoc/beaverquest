@@ -52,7 +52,7 @@ export default function CommunityMultiSelect(
         onClick={() => setOpen((prev) => !prev)}
         className="input outline-0 rounded-lg px-3 py-4 primary-bg w-full text-left"
       >
-        {selected.length > 0 ? `${selected.length} countries selected` : 'Everyone (no restriction)'}
+        {selected.length > 0 ? `${selected.length} communities selected` : 'Everyone (no restriction)'}
       </button>
 
       {open && (
@@ -63,7 +63,7 @@ export default function CommunityMultiSelect(
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search country..."
+              placeholder="Search community type..."
               className="w-full px-3 py-2 rounded-lg outline-0 primary-bg text-sm"
             />
             {maxCount > 0 && (
@@ -98,9 +98,11 @@ export default function CommunityMultiSelect(
                     isSelected ? 'tertiary-bg-faded' : ''
                   }`}
                 >
-                  <span>{communityName}</span>
-                  <span>{communityType}</span>
-                  <span className="hint-color text-xs">{memberCount.toLocaleString()}</span>
+                  <div className="flex flex-col gap-0.5">
+                   <span>{communityName}</span>
+                   <span className="text-xs hint-color">{communityType}</span>
+                  </div>
+                  <span className="text-sm">{memberCount.toLocaleString()} <small className="hint-color">subscribers</small></span>
                 </button>
               );
             })}
