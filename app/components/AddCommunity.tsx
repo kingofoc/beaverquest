@@ -51,8 +51,8 @@ export default function AddCommunity() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ownerId: user?.userId,
-          channelType: form.communityType,
-          channelName: form.communityName,
+          communityName: form.communityName,
+          communityType: form.communityType,
           description: form.description || undefined,
           iconUrl: form.iconUrl || undefined,
         }),

@@ -9,9 +9,9 @@ export async function POST(req: NextRequest) {
   await connectDb();
 
   const body = await req.json();
-  const { ownerId, channelName, description, channelType, iconUrl } = body;
+  const { ownerId, communityName, description, communityType, iconUrl } = body;
 
-  if (!ownerId || !channelName || !channelType) {
+  if (!ownerId || !communityName || !communityType) {
    return NextResponse.json(
     { error: "Missing field required: ownerId, channelUsername, name" },
     { status: 400 }
@@ -28,11 +28,11 @@ export async function POST(req: NextRequest) {
    );
   }
 
-  const { channelId, channelUsername } = pending
+  const { communityId, communityUsername } = pending
 
   // Step 2: Confirm the requesting user is actually an admin of this channel
   const adminCheckRes = await fetch(
-   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMember?chat_id=${channelId}&user_id=${ownerId}`
+   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMember?chat_id=${communityId}&user_id=${ownerId}`
   );
   const adminCheckData = await adminCheckRes.json();
 
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
   const botId = botInfoData.result?.id;
 
   const botCheckRes = await fetch(
-   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMember?chat_id=${channelId}&user_id=${botId}`
+   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMember?chat_id=${communityId}&user_id=${botId}`
   );
   const botCheckData = await botCheckRes.json();
 
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
 
   // Step 3: Get channel member count for display
   const memberCountRes = await fetch(
-   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMemberCount?chat_id=${channelId}`
+   `${TELEGRAM_API}/bot${BOT_TOKEN}/getChatMemberCount?chat_id=${communityId}`
   );
   const memberCountData = await memberCountRes.json();
   const memberCount = memberCountData.ok ? memberCountData.result : 0;
@@ -88,11 +88,11 @@ export async function POST(req: NextRequest) {
   // Step 4: Create the community, already verified since checks passed
   const community = await Community.create({
    ownerId,
-   channelId,
-   channelUsername,
-   channelName,
+   communityId,
+   communityUsername,
+   communityName,
    description,
-   channelType,
+   communityType,
    iconUrl,
    memberCount,
    botVerified: true,
