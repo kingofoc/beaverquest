@@ -5,7 +5,7 @@ import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from 
 import { useUser } from '@/context/UserContext';
 
 type CountryOption = { country: string; count: number };
-type CoummunityOption = { community: string; communityType: string; memberCount: number }
+type CoummunityOption = { channelName: string; channelType: string; memberCount: number }
 
 export default function PublishGig() {
   const router = useRouter();
@@ -239,16 +239,16 @@ export default function PublishGig() {
 
         <Field label="Target Communities" hint="Leave empty for everyone">
           <div className="flex flex-wrap gap-2">
-            {communities.map(({ community , communityType, memberCount }) => {
-              const selected = form.communities.includes(community);
+            {communities.map(({ channelName , channelType, memberCount }) => {
+              const selected = form.communities.includes(channelName);
               return (
                 <button
-                  key={community}
+                  key={channelName}
                   type="button"
-                  onClick={() => toggleCommunities(community)}
+                  onClick={() => toggleCommunities(channelName)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5" ${selected ? 'tertiary-bg tertiary-text-color' : 'primary-bg text-color'}`}
                 >
-                  <span className="text-sm">{community} - {communityType} - {memberCount}</span>
+                  <span className="text-sm">{channelName} - {channelType} - {memberCount}</span>
                 </button>
               );
             })}
