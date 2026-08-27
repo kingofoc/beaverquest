@@ -12,7 +12,7 @@ export default function AddCommunity() {
 
   const [step, setStep] = useState<'info' | 'forward' | 'verifying'>('info');
   const [form, setForm] = useState({ 
-    name: '', 
+    channelName: '', 
     channelType: '', 
     description: '', 
     iconUrl: '' 
@@ -28,7 +28,7 @@ export default function AddCommunity() {
     e.preventDefault();
     setError(null);
 
-    if (!form.name.trim()) {
+    if (!form.channelName.trim()) {
       setError('Give your community a name.');
       return;
     }
@@ -52,7 +52,7 @@ export default function AddCommunity() {
         body: JSON.stringify({
           ownerId: user?.userId,
           channelType: form.channelType,
-          name: form.name,
+          channelName: form.channelName,
           description: form.description || undefined,
           iconUrl: form.iconUrl || undefined,
         }),
@@ -92,8 +92,8 @@ export default function AddCommunity() {
           <Field label="Channel Name">
             <input
               type="text"
-              value={form.name}
-              onChange={(e) => update('name', e.target.value)}
+              value={form.channelName}
+              onChange={(e) => update('channelName', e.target.value)}
               placeholder="ex: GigsGram Announcements"
               maxLength={40}
               className="input outline-0 primary-bg rounded-lg px-2 py-4"

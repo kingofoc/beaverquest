@@ -3,6 +3,7 @@ import { model, Schema, models, Document } from 'mongoose';
 export interface ICommunity extends Document {
  ownerId: number;
  channelId: number;
+ channelName: string;
  channelUsername: string;
  channelType: string;
  name: string;
@@ -29,6 +30,11 @@ const communitySchema = new Schema<ICommunity> ({
   type: Number,
   required: true,
   unique: true
+ },
+
+ channelName: {
+  type: String,
+  required: true
  },
 
  channelUsername: {

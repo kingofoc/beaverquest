@@ -9,9 +9,9 @@ export async function POST(req: NextRequest) {
   await connectDb();
 
   const body = await req.json();
-  const { ownerId, name, description, channelType, iconUrl } = body;
+  const { ownerId, channelName, description, channelType, iconUrl } = body;
 
-  if (!ownerId || !name || !channelType) {
+  if (!ownerId || !channelName || !channelType) {
    return NextResponse.json(
     { error: "Missing field required: ownerId, channelUsername, name" },
     { status: 400 }
@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
    ownerId,
    channelId,
    channelUsername,
-   name,
+   channelName,
    description,
    channelType,
    iconUrl,
