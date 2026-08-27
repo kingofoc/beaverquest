@@ -92,7 +92,7 @@ export default function CountryMultiSelect({
           <div className="max-h-56 overflow-y-auto">
             {loading && <p className="px-3 py-3 text-sm hint-color">Loading...</p>}
             {!loading && filtered.length === 0 && (
-              <p className="px-3 py-3 text-sm hint-color">No countries match</p>
+              <p className="px-3 py-3 text-sm hint-color">No countries match your search</p>
             )}
             {filtered.map(({ country, count }) => {
               const isSelected = selected.includes(country);
@@ -106,7 +106,7 @@ export default function CountryMultiSelect({
                   }`}
                 >
                   <span>{country}</span>
-                  <span className="hint-color text-xs">{count.toLocaleString()}</span>
+                  <span className="text-sm">{count.toLocaleString()} <small className="text-xs hint-color">users</small></span>
                 </button>
               );
             })}

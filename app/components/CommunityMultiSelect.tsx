@@ -63,7 +63,7 @@ export default function CommunityMultiSelect(
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search community type..."
+              placeholder="Search communities..."
               className="w-full px-3 py-2 rounded-lg outline-0 primary-bg text-sm"
             />
             {maxCount > 0 && (
@@ -85,7 +85,7 @@ export default function CommunityMultiSelect(
           <div className="max-h-56 overflow-y-auto">
             {loading && <p className="px-3 py-3 text-sm hint-color">Loading...</p>}
             {!loading && filtered.length === 0 && (
-              <p className="px-3 py-3 text-sm hint-color">No countries match</p>
+              <p className="px-3 py-3 text-sm hint-color">No communities match your search</p>
             )}
             {filtered.map(({ communityName, communityType, memberCount }) => {
               const isSelected = selected.includes(communityName);
