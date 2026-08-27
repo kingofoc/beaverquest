@@ -3,24 +3,15 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from '@/lib/constants';
 import { useUser } from '@/context/UserContext';
-
-type CountryOption = { country: string; count: number };
+import CountryMultiSelect from './CountryMultiSelect';
 type CoummunityOption = { communityName: string; communityType: string; memberCount: number }
 
 export default function PublishGig() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [countries, setCountries] = useState<CountryOption[]>([]);
   const [communities, setCommunities] = useState<CoummunityOption[]>([])
   const { user } = useUser()
-
-  useEffect(() => {   
-    fetch('/api/country')
-    .then((res) => res.json())
-    .then((data) => setCountries(data.countries ?? []))
-    .catch((err) => console.error('Error loading countries:', err))
-  }, []);
 
   useEffect(() => {
     fetch('/api/communities')
@@ -212,34 +203,14 @@ export default function PublishGig() {
         </Field>
 
         <Field label="Target Countries" hint="Leave empty for everyone">
-          <div className="flex flex-wrap gap-2">
-            {countries.map(({ country, count }) => {
-              const selected = form.countries.includes(country);
-              return (
-                <button
-                  key={country}
-                  type="button"
-                  onClick={() => toggleCountry(country)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5" ${selected ? 'tertiary-bg tertiary-text-color' : 'primary-bg text-color'}`}
-                >
-                  <span className="text-sm">{country} - {count}</span>
-                </button>
-              );
-            })}
-          </div>
-          {form.countries.length > 0 && (
-            <p className="text-xs mt-1 hint-color">
-              {form.countries.length} selected · {countries
-                .filter((c) => form.countries.includes(c.country))
-                .reduce((sum, c) => sum + c.count, 0)
-                .toLocaleString()} potential clicks
-            </p>
-          )}
+          <CountryMultiSelect 
+            selected={form.countries}
+            onToggle={toggleCountry}
+          />
         </Field>
 
         <Field label="Target Communities" hint="Leave empty for everyone">
           <div className="flex flex-wrap gap-2">
-            <select value="">
             {communities.map(({ communityName , communityType, memberCount }) => {
               const selected = form.communities.includes(communityName);
               return (
@@ -253,7 +224,6 @@ export default function PublishGig() {
                 </button>
               );
             })}
-            </select>
           </div>
 
           {form.communities.length > 0 && (
