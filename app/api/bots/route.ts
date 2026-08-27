@@ -129,19 +129,19 @@ export async function POST(req: NextRequest) {
 
  if ((forwardOrigin?.type === "channel" || forwardFromChat?.type === "channel") && chatId) {
   const channelChat = forwardOrigin?.chat ?? forwardFromChat;
-  const channelId = channelChat?.id;
-  const channelTitle = channelChat?.title;
-  const channelUsername = channelChat?.username;
+  const communityId = channelChat?.id;
+  const communityTitle = channelChat?.title;
+  const communityUsername = channelChat?.username;
 
-  if (channelId) {
+  if (communityId) {
    await connectDb();
    await PendingCommunityVerification.findOneAndUpdate(
     { ownerId: userId },
     {
      ownerId: userId,
-     channelId,
-     channelTitle,
-     channelUsername: channelUsername ?? null,
+     communityId,
+     communityTitle,
+     communityUsername: communityUsername ?? null,
      createdAt: new Date(),
     },
     { upsert: true, new: true}
@@ -152,7 +152,7 @@ export async function POST(req: NextRequest) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
      chat_id: chatId,
-     text: `Got it — "${channelTitle}" detected. Head back to the app to finish setting up your community.`
+     text: `Got it — "${communityTitle}" detected. Head back to the app to finish setting up your community.`
     }),
    });
   }
