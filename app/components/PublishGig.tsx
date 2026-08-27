@@ -5,12 +5,14 @@ import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from 
 import { useUser } from '@/context/UserContext';
 
 type CountryOption = { country: string; count: number };
+type CoummunityOption = { community: string; communityType: string; memberCount: number }
 
 export default function PublishGig() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [countries, setCountries] = useState<CountryOption[]>([]);
+  const [communities, setCommunities] = useState<CoummunityOption[]>([])
   const { user } = useUser()
 
   useEffect(() => {   
@@ -20,6 +22,13 @@ export default function PublishGig() {
     .catch((err) => console.error('Error loading countries:', err))
   }, []);
 
+  useEffect(() => {
+    fetch('/api/communities')
+    .then((res) => res.json())
+    .then((data) => setCommunities(data.allCommunities ?? []))
+    .catch((err) => console.error("Error loading communities:", err))
+  }, [])
+
   const [form, setForm] = useState({
     category: '' as Category | '',
     subCategory: '',
@@ -27,6 +36,7 @@ export default function PublishGig() {
     description: '',
     guidelines: '',
     countries: [] as string[],
+    communities: [] as string[],
     max: '',
     url: '',
     verificationType: 'manual' as 'manual' | 'telegram',
@@ -52,6 +62,15 @@ export default function PublishGig() {
         ? prev.countries.filter((c) => c !== country)
         : [...prev.countries, country],
     }));
+  }
+
+  function toggleCommunities(communities: string) {
+    setForm((prev) => ({
+      ...prev,
+      communities: prev.communities.includes(communities)
+      ? prev.communities.filter((c) => c !== communities)
+      : [...prev.communities, communities],
+    }))
   }
 
   function update<K extends keyof typeof form>(key: K, value: typeof form[K]) {
@@ -86,6 +105,7 @@ export default function PublishGig() {
           description: form.description,
           guidelines: form.guidelines,
           country: form.countries,
+          communities: form.communities,
           reward,
           max: maxNum,
           url: form.url || undefined,
@@ -215,6 +235,24 @@ export default function PublishGig() {
                 .toLocaleString()} potential clicks
             </p>
           )}
+        </Field>
+
+        <Field label="Target Communities" hint="Leave empty for everyone">
+          <div className="flex flex-wrap gap-2">
+            {communities.map(({ community , communityType, memberCount }) => {
+              const selected = form.communities.includes(community);
+              return (
+                <button
+                  key={community}
+                  type="button"
+                  onClick={() => toggleCommunities(community)}
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5" ${selected ? 'tertiary-bg tertiary-text-color' : 'primary-bg text-color'}`}
+                >
+                  <span className="text-sm">{community} - {communityType} - {memberCount}</span>
+                </button>
+              );
+            })}
+          </div>
         </Field>
 
         <Field label="Enter Gig Link" hint="Channel, bot, or destination URL">

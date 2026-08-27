@@ -109,3 +109,30 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ error: "Internal server error" }, { status: 500 })
  }
 }
+
+export async function GET(req: NextRequest) {
+ try {
+  connectDb();
+
+  const { searchParams } = new URL(req.url);
+  const channelId = Number(searchParams.get('channelId'));
+
+  const allCommunities = await Community.find({})
+   .sort({ memberCount: -1 })
+   .select('channelId channelName channelType memberCount')
+
+  const topCommunities = allCommunities.slice(0, 100);
+
+  let channelPosition = null;
+  if (channelId) {
+   const index = allCommunities.findIndex(channel => channel.channelId === channelId);
+   if (index !== -1) {
+    channelPosition = index + 1
+   }
+  }
+
+  return NextResponse.json({ allCommunities, topCommunities, channelPosition })
+ } catch (err) {
+  console.error("Error fetching communities:", err)
+ }
+}
