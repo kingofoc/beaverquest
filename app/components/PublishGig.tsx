@@ -5,7 +5,7 @@ import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from 
 import { useUser } from '@/context/UserContext';
 
 type CountryOption = { country: string; count: number };
-type CoummunityOption = { channelName: string; channelType: string; memberCount: number }
+type CoummunityOption = { communityName: string; communityType: string; memberCount: number }
 
 export default function PublishGig() {
   const router = useRouter();
@@ -81,7 +81,7 @@ export default function PublishGig() {
     e.preventDefault();
     setError(null);
 
-    if (!form.category || !form.subCategory || !form.title || !form.description || !form.guidelines || !form.countries || !maxNum) {
+    if (!form.category || !form.subCategory || !form.title || !form.description || !form.guidelines || !form.countries ||  !form.communities || !maxNum) {
       setError('Fill in every field before publishing.');
       return;
     }
@@ -239,20 +239,29 @@ export default function PublishGig() {
 
         <Field label="Target Communities" hint="Leave empty for everyone">
           <div className="flex flex-wrap gap-2">
-            {communities.map(({ channelName , channelType, memberCount }) => {
-              const selected = form.communities.includes(channelName);
+            {communities.map(({ communityName , communityType, memberCount }) => {
+              const selected = form.communities.includes(communityName);
               return (
                 <button
-                  key={channelName}
+                  key={communityName}
                   type="button"
-                  onClick={() => toggleCommunities(channelName)}
+                  onClick={() => toggleCommunities(communityName)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1.5" ${selected ? 'tertiary-bg tertiary-text-color' : 'primary-bg text-color'}`}
                 >
-                  <span className="text-sm">{channelName} - {channelType} - {memberCount}</span>
+                  <span className="text-sm">{communityName} - {communityType} - {memberCount}</span>
                 </button>
               );
             })}
           </div>
+
+          {form.communities.length > 0 && (
+            <p className="text-xs mt-1 hint-color">
+              {form.communities.length} selected · {communities
+                .filter((c) => form.communities.includes(c.communityName))
+                .reduce((sum, c) => sum + c.memberCount, 0)
+                .toLocaleString()} potential clicks
+            </p>
+          )}
         </Field>
 
         <Field label="Enter Gig Link" hint="Channel, bot, or destination URL">

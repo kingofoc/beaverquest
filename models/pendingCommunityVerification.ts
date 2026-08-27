@@ -2,17 +2,17 @@ import { model, Schema, models, Document } from 'mongoose';
 
 export interface IPendingCommunityVerification extends Document {
  ownerId: number;
- channelId: number;
- channelName: string;
- channelUsername?: string | null;
+ communityId: number;
+ communityName: string;
+ communityUsername?: string | null;
  createdAt: Date;
 }
 
 const schema = new Schema<IPendingCommunityVerification>({
  ownerId: { type: Number, required: true, unique: true },
- channelId: { type: Number, required: true },
- channelName: { type: String, required: true },
- channelUsername: { type: String, default: null },
+ communityId: { type: Number, required: true },
+ communityName: { type: String, required: true },
+ communityUsername: { type: String, default: null },
 }, { timestamps: true })
 
 schema.index({ createdAt: 1 }, { expireAfterSeconds: 1000 });

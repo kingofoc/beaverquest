@@ -2,10 +2,10 @@ import { model, Schema, models, Document } from 'mongoose';
 
 export interface ICommunity extends Document {
  ownerId: number;
- channelId: number;
- channelName: string;
- channelUsername: string;
- channelType: string;
+ communityId: number;
+ communityName: string;
+ communityUsername: string;
+ communityType: string;
  name: string;
  description?: string;
  iconUrl?: string;
@@ -26,24 +26,24 @@ const communitySchema = new Schema<ICommunity> ({
  required: true
 },
 
- channelId: {
+ communityId: {
   type: Number,
   required: true,
   unique: true
  },
 
- channelName: {
+ communityName: {
   type: String,
   required: true
  },
 
- channelUsername: {
+ communityUsername: {
   type: String,
   required: true,
   unique: true
  },
 
- channelType: {
+ communityType: {
   type: String,
   required: true
  },

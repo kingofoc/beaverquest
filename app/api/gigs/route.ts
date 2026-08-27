@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
    description,
    guidelines,
    country,
+   communities,
    url,
    iconUrl,
    max,
@@ -30,6 +31,7 @@ export async function POST(req: NextRequest) {
    description,
    guidelines,
    country,
+   communities,
    url,
    iconUrl,
    max,
@@ -38,7 +40,7 @@ export async function POST(req: NextRequest) {
   )
 
 
-  if (!publisherId || !category || !subCategory || !title || !description || !guidelines || !country || !url || !max || !verificationType) {
+  if (!publisherId || !category || !subCategory || !title || !description || !guidelines || !country || !communities|| !url || !max || !verificationType) {
    return NextResponse.json({ error: "Missing field required" }, { status: 400 });
   }
 
@@ -106,6 +108,7 @@ export async function POST(req: NextRequest) {
     guidelines,
     reward,
     country: country ?? [],
+    communities: communities ?? [],
     url,
     iconUrl,
     max,

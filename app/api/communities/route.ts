@@ -115,7 +115,7 @@ export async function GET(req: NextRequest) {
   connectDb();
 
   const { searchParams } = new URL(req.url);
-  const channelId = Number(searchParams.get('channelId'));
+  const communityId = Number(searchParams.get('communityId'));
 
   const allCommunities = await Community.find({})
    .sort({ memberCount: -1 })
@@ -123,15 +123,15 @@ export async function GET(req: NextRequest) {
 
   const topCommunities = allCommunities.slice(0, 100);
 
-  let channelPosition = null;
-  if (channelId) {
-   const index = allCommunities.findIndex(channel => channel.channelId === channelId);
+  let communityPosition = null;
+  if (communityId) {
+   const index = allCommunities.findIndex(community => community.communityId === communityId);
    if (index !== -1) {
-    channelPosition = index + 1
+    communityPosition = index + 1
    }
   }
 
-  return NextResponse.json({ allCommunities, topCommunities, channelPosition })
+  return NextResponse.json({ allCommunities, topCommunities, communityPosition })
  } catch (err) {
   console.error("Error fetching communities:", err)
  }

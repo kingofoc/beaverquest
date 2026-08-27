@@ -16,7 +16,7 @@ export interface IUser extends Document {
   ton?: number;
   airdrop?: number;
   tonWallet?: string;
-  community?: string;
+  community?: string[];
   referredBy?: number;
   referrals?: number;
   referredUsers: number[];
@@ -120,7 +120,7 @@ const userSchema = new Schema<IUser>({
  },
 
  community: {
-  type: String
+  type: [String]
  },
 
  referredBy: {

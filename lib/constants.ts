@@ -33,7 +33,7 @@ export const SUB_CATEGORIES_BY_CATEGORY: Record<Category, SubCategoryConfig[]> =
  ],
 };
 
-export const CHANNEL_TYPE = [
+export const COMMUNITY_TYPE = [
  "Crypto",
  "Finance",
  "Investing",

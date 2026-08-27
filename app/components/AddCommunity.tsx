@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/context/UserContext';
-import { CHANNEL_TYPE} from '@/lib/constants';
+import { COMMUNITY_TYPE} from '@/lib/constants';
 
 const BOT_USERNAME = 'beaverquestbot'; // replace with your actual bot username
 
@@ -12,8 +12,8 @@ export default function AddCommunity() {
 
   const [step, setStep] = useState<'info' | 'forward' | 'verifying'>('info');
   const [form, setForm] = useState({ 
-    channelName: '', 
-    channelType: '', 
+    communityName: '', 
+    communityType: '', 
     description: '', 
     iconUrl: '' 
   });
@@ -28,7 +28,7 @@ export default function AddCommunity() {
     e.preventDefault();
     setError(null);
 
-    if (!form.channelName.trim()) {
+    if (!form.communityName.trim()) {
       setError('Give your community a name.');
       return;
     }
@@ -51,8 +51,8 @@ export default function AddCommunity() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ownerId: user?.userId,
-          channelType: form.channelType,
-          channelName: form.channelName,
+          channelType: form.communityType,
+          channelName: form.communityName,
           description: form.description || undefined,
           iconUrl: form.iconUrl || undefined,
         }),
@@ -92,8 +92,8 @@ export default function AddCommunity() {
           <Field label="Channel Name">
             <input
               type="text"
-              value={form.channelName}
-              onChange={(e) => update('channelName', e.target.value)}
+              value={form.communityName}
+              onChange={(e) => update('communityName', e.target.value)}
               placeholder="ex: GigsGram Announcements"
               maxLength={40}
               className="input outline-0 primary-bg rounded-lg px-2 py-4"
@@ -102,12 +102,12 @@ export default function AddCommunity() {
 
           <Field label="Channel Type">
             <select
-              value={form.channelType}
-              onChange={(e) => update('channelType', e.target.value)}
+              value={form.communityType}
+              onChange={(e) => update('communityType', e.target.value)}
               className="input outline-0 primary-bg rounded-lg px-2 py-4 appearance-none"
             >
               <option value="">Channel Type</option>
-              {CHANNEL_TYPE.map((type) => (
+              {COMMUNITY_TYPE.map((type) => (
                 <option key={type} value={type}>{type}</option>
               ))}
             </select>
