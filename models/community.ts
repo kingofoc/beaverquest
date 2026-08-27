@@ -6,7 +6,6 @@ export interface ICommunity extends Document {
  communityName: string;
  communityUsername: string;
  communityType: string;
- name: string;
  description?: string;
  iconUrl?: string;
  memberCount: number;
@@ -44,11 +43,6 @@ const communitySchema = new Schema<ICommunity> ({
  },
 
  communityType: {
-  type: String,
-  required: true
- },
-
- name: {
   type: String,
   required: true
  },

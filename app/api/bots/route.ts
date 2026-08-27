@@ -130,7 +130,7 @@ export async function POST(req: NextRequest) {
  if ((forwardOrigin?.type === "channel" || forwardFromChat?.type === "channel") && chatId) {
   const channelChat = forwardOrigin?.chat ?? forwardFromChat;
   const communityId = channelChat?.id;
-  const communityTitle = channelChat?.title;
+  const communityName = channelChat?.title;
   const communityUsername = channelChat?.username;
 
   if (communityId) {
@@ -140,7 +140,7 @@ export async function POST(req: NextRequest) {
     {
      ownerId: userId,
      communityId,
-     communityTitle,
+     communityName,
      communityUsername: communityUsername ?? null,
      createdAt: new Date(),
     },
@@ -152,7 +152,7 @@ export async function POST(req: NextRequest) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
      chat_id: chatId,
-     text: `Got it — "${communityTitle}" detected. Head back to the app to finish setting up your community.`
+     text: `Got it — "${communityName}" detected. Head back to the app to finish setting up your community.`
     }),
    });
   }
