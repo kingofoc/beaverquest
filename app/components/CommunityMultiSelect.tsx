@@ -16,7 +16,7 @@ export default function CommunityMultiSelect(
  useEffect(() => {
   fetch('/api/communities')
    .then((res) => res.json())
-   .then((data) => setCommunities(data.allCommunites ?? []))
+   .then((data) => setCommunities(data.allCommunities ?? []))
    .catch((err) => console.error("Error loading communities:", err))
    .finally(() => setLoading(false));
  }, [])
