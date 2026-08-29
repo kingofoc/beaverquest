@@ -7,12 +7,12 @@ const REF_ID_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 // generate referral ID
 function generateRefId(length: number = 8): string {
 
- let refId = "";
- for (let i = 0; i < length; i++) {
-  const randomIndex = Math.floor(Math.random() * REF_ID_CHARS.length)
-  refId += REF_ID_CHARS [randomIndex]
- }
- return refId;
+  let refId = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * REF_ID_CHARS.length)
+    refId += REF_ID_CHARS [randomIndex]
+  }
+  return refId;
 };
 
 export async function generateUniqueRefId(): Promise<string> {

@@ -103,4 +103,32 @@ export const COMMUNITY_TYPE = [
  "Other",
 ] as const;
 
+export type FormState = {
+  category: Category | '';
+  subCategory: string;
+  title: string;
+  description: string;
+  guidelines: string;
+  countries: string[];
+  communities: string[];
+  max: string;
+  url: string;
+  verificationType: 'manual' | 'telegram';
+  verificationTarget: string;
+};
+
+export const EMPTY_FORM: FormState = {
+  category: '',
+  subCategory: '',
+  title: '',
+  description: '',
+  guidelines: '',
+  countries: [],
+  communities: [],
+  max: '',
+  url: '',
+  verificationType: 'manual',
+  verificationTarget: '',
+};
+
 // export type ChannelType = typeof CHANNEL_TYPE

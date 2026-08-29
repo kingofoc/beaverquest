@@ -1,40 +1,12 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category } from '@/lib/constants';
+import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category, FormState, EMPTY_FORM } from '@/lib/constants';
 import { useUser } from '@/context/UserContext';
 import CountryMultiSelect from './CountryMultiSelect';
 import CommunityMultiSelect from './CommunityMultiSelect';
 
 type Step = 1 | 2 | 3;
-
-type FormState = {
-  category: Category | '';
-  subCategory: string;
-  title: string;
-  description: string;
-  guidelines: string;
-  countries: string[];
-  communities: string[];
-  max: string;
-  url: string;
-  verificationType: 'manual' | 'telegram';
-  verificationTarget: string;
-};
-
-const EMPTY_FORM: FormState = {
-  category: '',
-  subCategory: '',
-  title: '',
-  description: '',
-  guidelines: '',
-  countries: [],
-  communities: [],
-  max: '',
-  url: '',
-  verificationType: 'manual',
-  verificationTarget: '',
-};
 
 export default function PublishGig() {
   const router = useRouter();
@@ -277,8 +249,6 @@ export default function PublishGig() {
       )}
 
       <StepIndicator current={step} />
-
-      <hr className="border-0 h-0.5 gradient-bg rounded-lg mt-4" />
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-6">
         {step === 1 && (
