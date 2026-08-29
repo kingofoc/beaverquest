@@ -43,7 +43,7 @@ export default function PublishGig() {
   const [step, setStep] = useState<Step>(1);
   const [loading, setLoading] = useState(false);
   const [draftLoading, setDraftLoading] = useState(true);
-  const [draftPrompt, setDraftPrompt] = useState<{ formData: FormState; step: Step } | null>
+  const [draftPrompt, setDraftPrompt] = useState<{ formData: FormState; step: Step } | null>(null)
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
 
@@ -171,13 +171,16 @@ export default function PublishGig() {
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data?.draft) {
-          setForm({ ...EMPTY_FORM, ...data.draft.formData });
-          setStep(data.draft.step ?? 1);
+          // Don't auto-apply - show a prompt and let the user decide
+          setDraftPrompt({
+            formData: { ...EMPTY_FORM, ...data.draft.formData },
+            step: (data.draft.step ?? 1) as Step,
+          });
         }
       })
       .catch((err) => console.error('Error loading draft:', err))
       .finally(() => setDraftLoading(false));
-  }, [user?.userId]);
+  }, [user?.userId, setDraftPrompt]);
 
   function continueDraft() {
     if (!draftPrompt) return;
