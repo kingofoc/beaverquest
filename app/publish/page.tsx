@@ -12,7 +12,7 @@ export default function Publish() {
    <div className="mt-4">
     <Link href="/publish/socialGig" className="w-full rounded-lg primary-bg">
      <div className="p-4 flex flex-row gap-4 items-center">
-      <TgIcon src="/click.svg" size={28} className="icon-color"></TgIcon>
+      <TgIcon src="/click.svg" size={28} className="icon-color-active"></TgIcon>
       <div className="flex flex-col">
        <span className="text-lg">Standard Click Gig</span>
        <span className="text-sm hint-color">Pay per clicks or gig completion. Perfect for traffic and engagement.</span>
