@@ -2,9 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/context/UserContext';
-import { COMMUNITY_TYPE} from '@/lib/constants';
-
-const BOT_USERNAME = 'beaverquestbot';
+import { COMMUNITY_TYPE, BOT_USERNAME} from '@/lib/constants';
 
 export default function AddCommunity() {
   const router = useRouter();
