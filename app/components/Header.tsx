@@ -16,7 +16,7 @@ export default function Header() {
  // const isProfileActive = pathname === profileItems.href;
 
  return (
-  <div className="fixed top-0 inset-x-0 z-50">
+  <div className="relative w-full z-50">
    <div className="absolute top-0 inset-x-0 z-0 h-18 secondary-bg-faded backdrop-blur-sm mask-b-from-65%"></div>
    <div className="relative z-10 grid grid-cols-6 p-4">
     <Link href={profileItems.href} className="flex items-center col-span-4 gap-2">
