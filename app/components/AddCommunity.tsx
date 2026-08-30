@@ -79,11 +79,9 @@ export default function AddCommunity() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Add Your Community</h1>
         <p className="text-sm mt-1 hint-color">
-          Turn your channel into a community and earn from every gig your members complete.
+          Turn your channel into a community and earn from gigs targeted to your members.
         </p>
       </div>
-
-      <hr className="border-0 h-0.5 gradient-bg rounded-lg" />
 
       {step === 'info' && (
         <form onSubmit={handleContinue} className="flex flex-col gap-6 mt-6">
@@ -125,8 +123,7 @@ export default function AddCommunity() {
 
           <button
             type="submit"
-            className="rounded-full py-3 font-bold text-center mt-1"
-            style={{ backgroundColor: 'var(--tg-button-color)', color: 'var(--tg-button-text-color)' }}
+            className="rounded-full py-3 font-bold text-center mt-1 button-color button-text-color"
           >
             Continue
           </button>

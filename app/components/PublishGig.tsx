@@ -255,7 +255,7 @@ export default function PublishGig() {
               <select
                 value={form.category}
                 onChange={(e) => handleCategoryChange(e.target.value as Category)}
-                className="input outline-0 rounded-2xl px-2 py-4 primary-bg appearance-none"
+                className="input outline-0 rounded-lg px-2 py-4 primary-bg appearance-none"
               >
                 <option value="">Select type</option>
                 {CATEGORIES.map((c) => (
@@ -269,7 +269,7 @@ export default function PublishGig() {
                 <select
                   value={form.subCategory}
                   onChange={(e) => update('subCategory', e.target.value)}
-                  className="input outline-0 rounded-2xl px-2 py-4 primary-bg appearance-none"
+                  className="input outline-0 rounded-lg px-2 py-4 primary-bg appearance-none"
                 >
                   <option value="">Select action</option>
                   {availableSubCategories.map((sc) => (
@@ -290,7 +290,7 @@ export default function PublishGig() {
                 onChange={(e) => update('title', e.target.value)}
                 placeholder="ex: Follow GigsGram on X"
                 maxLength={40}
-                className="input outline-0 primary-bg rounded-2xl px-2 py-4 placeholder:text-sm"
+                className="input outline-0 primary-bg rounded-lg px-2 py-4 placeholder:text-sm"
               />
             </Field>
 
@@ -300,7 +300,7 @@ export default function PublishGig() {
                 onChange={(e) => update('description', e.target.value)}
                 placeholder="ex: GigsGram - a telegram mini app where you can browse gigs, publish gigs, watch ads and earn rewards"
                 rows={4}
-                className="input resize-none outline-0 px-2 py-2 rounded-2xl primary-bg placeholder:text-sm"
+                className="input resize-none outline-0 px-2 py-2 rounded-lg primary-bg placeholder:text-sm"
               />
             </Field>
 
@@ -478,7 +478,7 @@ function StepIndicator({ current }: { current: Step }) {
 
   return (
     <div>
-      <span className="mb-2 text-sm hint-color">
+      <span className="mb-4 text-sm hint-color">
         Step {current} of {totalSteps}
       </span>
       <div className="flex items-center gap-2">

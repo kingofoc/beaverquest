@@ -10,7 +10,7 @@ export default function Footer() {
   { href: "/publish", label: "Publish", icon: "/publish.svg", activeIcon: "/publish-active.svg" },
   { href: "/", label: "Gigs", icon: "/gigs.svg", activeIcon: "/gigs-active.svg" },
   { href: "/ads", label: "Ads", icon: "/ads.svg", activeIcon: "/ads-active.svg" },
-  { href: "/community", label: "Group", icon: "/community.svg", activeIcon: "/community-active.svg" }
+  { href: "/community", label: "More", icon: "/more.svg", activeIcon: "/more-active.svg" }
  ]
 
  return (

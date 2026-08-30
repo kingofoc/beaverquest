@@ -9,7 +9,7 @@ export default function Publish() {
     <h1 className="mb-2 font-bold text-2xl">Choose Campaign Type</h1>
     <p className="text-sm hint-color">Select the number of impression or clicks you need, create your gig, pay with GIGSGRAM Token</p>
    </div>
-   <div className="mt-4">
+   <div className="mt-4 flex flex-col gap-4">
     <Link href="/publish/socialGig" className="w-full">
      <div className="p-4 flex flex-row gap-4 items-center w-full rounded-2xl primary-bg">
       <TgIcon src="/click.svg" size={28} className="icon-color-active"></TgIcon>
@@ -24,8 +24,8 @@ export default function Publish() {
      <div className="p-4 flex flex-row gap-4 items-center w-full rounded-2xl primary-bg">
       <TgIcon src="/gigsgram.svg" size={28} className="icon-color-active"></TgIcon>
       <div className="flex flex-col">
-       <span className="text-lg">Crypto Focused Gig</span>
-       <span className="text-sm hint-color">Grow your token holders. Reward users for buying and holding your cryptocurrency token.</span>
+       <span className="text-lg">Crypto Gig</span>
+       <span className="text-sm hint-color">Grow token holders. Reward users for buying and holding crypto token.</span>
       </div>
      </div>
     </Link>
