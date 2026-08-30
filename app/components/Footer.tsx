@@ -49,7 +49,7 @@ export default function Footer() {
     {moreOpen && (
       <div 
         ref={panelRef}
-        className="relative z-20 primary-bg rounded-2xl p-2 shadow-lg opacity-100 translate-y-0 transition-all duration-200">
+        className="w-1/2 relative z-20 primary-bg rounded-2xl p-2 mx-8 shadow-lg opacity-100 translate-y-0 transition-all duration-200">
           {MORE_ITEMS.map(({ href, label, icon }) => {
             const isActive = pathname === href
             return (
@@ -57,7 +57,7 @@ export default function Footer() {
                 key={label}
                 href={href}
                 onClick={() => setMoreOpen(false)}
-                className={`flex flex-row items-center gap-2 rounded-full transition-colors hover:tertiary-bg-faded ${isActive ? "tertiary-bg-faded rounded-full" : "bg-transparent"}`}>
+                className={`flex flex-row items-center gap-2 rounded-full transition-colors hover:tertiary-bg-faded p-4 ${isActive ? "tertiary-bg-faded rounded-full" : "bg-transparent"}`}>
                   <TgIcon src={icon} size={28} className={`${isActive ? "icon-color-active" : "icon-color"}`}></TgIcon>
                   <span className={`text-xs text-center ${isActive ? "icon-text-color-active font-bold" : "icon-text-color font-medium"}`}>{label}</span>
               </Link>
