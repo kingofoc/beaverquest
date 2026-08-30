@@ -206,12 +206,6 @@ export default function PublishGig() {
 
   return (
     <div className="min-h-screen pb-32">
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold">Setup Your Gig</h1>
-        <p className="text-sm mt-1 hint-color">
-          Define the gig you want users to complete, provide clear instructions, and set the reward completing it.
-        </p>
-      </div>
 
       {draftPrompt && (
         <div className="primary-bg rounded-2xl p-4 mb-6 flex flex-col gap-3">
@@ -219,10 +213,10 @@ export default function PublishGig() {
             <div
               className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center secondary-bg"
             >
-              <TgIcon src="/note.svg" size={28} className="icon-color-active"></TgIcon>
+              <TgIcon src="/note.svg" size={24} className="icon-color-active"></TgIcon>
             </div>
             <div>
-              <p className="text-sm font-bold">You have an unfinished gig</p>
+              <p className="text-sm font-bold">You have an unfinished gig setup</p>
               <p className="text-xs hint-color mt-0.5">
                 Pick up where you left off, or start a new one.
               </p>
@@ -252,6 +246,12 @@ export default function PublishGig() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-6">
         {step === 1 && (
           <>
+            <div className="mb-4">
+              <h1 className="text-2xl font-bold">Setup Your Gig</h1>
+              <p className="text-sm mt-1 hint-color">
+                Define your gig type and action and provide clear guidelines.
+              </p>
+            </div>
             <Field label="Choose Gig Type">
               <select
                 value={form.category}
@@ -291,7 +291,7 @@ export default function PublishGig() {
                 onChange={(e) => update('title', e.target.value)}
                 placeholder="ex: Follow GigsGram on X"
                 maxLength={40}
-                className="input outline-0 primary-bg rounded-2xl px-2 py-2 placeholder:text-sm"
+                className="input outline-0 primary-bg rounded-2xl px-2 py-4 placeholder:text-sm"
               />
             </Field>
 
@@ -311,7 +311,7 @@ export default function PublishGig() {
                 onChange={(e) => update('guidelines', e.target.value)}
                 placeholder="ex: Go to our X page, follow us on X, submit your X account link to confirm you completed the task"
                 rows={4}
-                className="input resize-none outline-0 px-2 py-4 rounded-2xl primary-bg placeholder:text-sm"
+                className="input resize-none outline-0 px-2 py-2 rounded-lg primary-bg placeholder:text-sm"
               />
             </Field>
 
@@ -321,7 +321,7 @@ export default function PublishGig() {
                 value={form.url}
                 onChange={(e) => update('url', e.target.value)}
                 placeholder="https://x.com/gigsgram"
-                className="input outline-0 primary-bg rounded-2xl px-2 py-4 placeholder:text-sm"
+                className="input outline-0 primary-bg rounded-lg px-2 py-4 placeholder:text-sm"
               />
             </Field>
           </>
@@ -329,6 +329,13 @@ export default function PublishGig() {
 
         {step === 2 && (
           <>
+            <div className="mb-4">
+              <h1 className="text-2xl font-bold">Set Target Audience</h1>
+              <p className="text-sm mt-1 hint-color">
+                Target specific audience you want to reach or make it available to everyone.
+              </p>
+            </div>
+
             <Field label="Target Countries" hint="Leave empty for everyone">
               <CountryMultiSelect 
                 selected={form.countries} 
@@ -347,6 +354,13 @@ export default function PublishGig() {
 
         {step === 3 && (
           <>
+            <div className="mb-4">
+              <h1 className="text-2xl font-bold">Set Gig Reward</h1>
+              <p className="text-sm mt-1 hint-color">
+                Set the reward users will earn after successfully completing the gig.
+              </p>
+            </div>
+
             <div className="grid grid-cols-2 gap-2">
               {selectedSubCategory && (
                 <Field label="Reward Per Click">

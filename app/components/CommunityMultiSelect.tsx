@@ -56,7 +56,7 @@ export default function CommunityMultiSelect(
       </button>
 
       {open && (
-        <div className="absolute z-20 top-full left-0 w-full mt-2 rounded-2xl primary-bg shadow-lg overflow-hidden">
+        <div className="absolute z-20 top-full left-0 w-full mt-2 rounded-lg primary-bg shadow-lg overflow-hidden">
           <div className="p-3 flex flex-col gap-2 secondary-bg">
             <input
               autoFocus

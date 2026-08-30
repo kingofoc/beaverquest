@@ -10,8 +10,8 @@ export default function Publish() {
     <p className="text-sm hint-color">Select the number of impression or clicks you need, create your gig, pay with GIGSGRAM Token</p>
    </div>
    <div className="mt-4">
-    <Link href="/publish/socialGig" className="w-full rounded-2xl primary-bg">
-     <div className="p-4 flex flex-row gap-4 items-center w-full">
+    <Link href="/publish/socialGig" className="w-full">
+     <div className="p-4 flex flex-row gap-4 items-center w-full rounded-2xl primary-bg">
       <TgIcon src="/click.svg" size={28} className="icon-color-active"></TgIcon>
       <div className="flex flex-col">
        <span className="text-lg">Standard Click Gig</span>
