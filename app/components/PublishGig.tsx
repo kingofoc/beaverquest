@@ -243,7 +243,7 @@ export default function PublishGig() {
 
       <StepIndicator current={step} />
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-6">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-4">
         {step === 1 && (
           <>
             <div className="mb-2">
@@ -482,16 +482,14 @@ function StepIndicator({ current }: { current: Step }) {
       <span className="mb-1 text-sm">
         Step {current} of {totalSteps}
       </span>
-      return (
-        <div className="flex items-center gap-2">
-          {[1, 2, 3].map((s) => (
-            <div
-              key={s}
-              className={`flex-1 h-1.5 rounded-full transition-all ${s <= current ? "button-color" : "button-text-color"}`}
-            />
-          ))}
-        </div>
-      );
+      <div className="flex items-center gap-2">
+        {[1, 2, 3].map((s) => (
+          <div
+            key={s}
+            className={`flex-1 h-1.5 rounded-full transition-all ${s <= current ? "button-color" : "button-text-color"}`}
+          />
+        ))}
+      </div>
     </div>
   )
 }
