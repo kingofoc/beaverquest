@@ -206,6 +206,7 @@ export default function PublishGig() {
 
   return (
     <div className="min-h-screen pb-32">
+      <StepIndicator current={step} />
 
       {draftPrompt && (
         <div className="primary-bg rounded-2xl p-4 mb-6 flex flex-col gap-3">
@@ -240,8 +241,6 @@ export default function PublishGig() {
           </div>
         </div>
       )}
-
-      <StepIndicator current={step} />
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-4">
         {step === 1 && (
@@ -479,7 +478,7 @@ function StepIndicator({ current }: { current: Step }) {
 
   return (
     <div>
-      <span className="mb-1 text-sm">
+      <span className="mb-2 text-sm hint-color">
         Step {current} of {totalSteps}
       </span>
       <div className="flex items-center gap-2">

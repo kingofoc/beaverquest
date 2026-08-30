@@ -15,7 +15,17 @@ export default function Publish() {
       <TgIcon src="/click.svg" size={28} className="icon-color-active"></TgIcon>
       <div className="flex flex-col">
        <span className="text-lg">Standard Click Gig</span>
-       <span className="text-sm hint-color">Pay per clicks or gig completion. Perfect for traffic and engagement.</span>
+       <span className="text-sm hint-color">Pay per clicks or gig completion. Ideal for driving traffic and engagement.</span>
+      </div>
+     </div>
+    </Link>
+
+    <Link href="/publish/cryptoGig" className="w-full">
+     <div className="p-4 flex flex-row gap-4 items-center w-full rounded-2xl primary-bg">
+      <TgIcon src="/gigsgram.svg" size={28} className="icon-color-active"></TgIcon>
+      <div className="flex flex-col">
+       <span className="text-lg">Crypto Focused Gig</span>
+       <span className="text-sm hint-color">Grow your token holders. Reward users for buying and holding your cryptocurrency token.</span>
       </div>
      </div>
     </Link>
