@@ -246,7 +246,7 @@ export default function PublishGig() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-6">
         {step === 1 && (
           <>
-            <div className="mb-4">
+            <div className="mb-2">
               <h1 className="text-2xl font-bold">Setup Your Gig</h1>
               <p className="text-sm mt-1 hint-color">
                 Define your gig type and action and provide clear guidelines.
@@ -329,7 +329,7 @@ export default function PublishGig() {
 
         {step === 2 && (
           <>
-            <div className="mb-4">
+            <div className="mb-2">
               <h1 className="text-2xl font-bold">Set Target Audience</h1>
               <p className="text-sm mt-1 hint-color">
                 Target specific audience you want to reach or make it available to everyone.
@@ -354,7 +354,7 @@ export default function PublishGig() {
 
         {step === 3 && (
           <>
-            <div className="mb-4">
+            <div className="mb-2">
               <h1 className="text-2xl font-bold">Set Gig Reward</h1>
               <p className="text-sm mt-1 hint-color">
                 Set the reward users will earn after successfully completing the gig.
@@ -475,16 +475,25 @@ async function deleteDraft(publisherId: number | undefined) {
 }
 
 function StepIndicator({ current }: { current: Step }) {
+  const totalSteps = 3;
+
   return (
-    <div className="flex items-center gap-2">
-      {[1, 2, 3].map((s) => (
-        <div
-          key={s}
-          className={`flex-1 h-1.5 rounded-full transition-all ${s <= current ? "button-color" : "button-text-color"}`}
-        />
-      ))}
+    <div>
+      <span className="mb-1 text-sm">
+        Step {current} of {totalSteps}
+      </span>
+      return (
+        <div className="flex items-center gap-2">
+          {[1, 2, 3].map((s) => (
+            <div
+              key={s}
+              className={`flex-1 h-1.5 rounded-full transition-all ${s <= current ? "button-color" : "button-text-color"}`}
+            />
+          ))}
+        </div>
+      );
     </div>
-  );
+  )
 }
 
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
