@@ -5,6 +5,7 @@ import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category, FormSt
 import { useUser } from '@/context/UserContext';
 import CountryMultiSelect from './CountryMultiSelect';
 import CommunityMultiSelect from './CommunityMultiSelect';
+import TgIcon from './Icon';
 
 type Step = 1 | 2 | 3;
 
@@ -206,9 +207,9 @@ export default function PublishGig() {
   return (
     <div className="min-h-screen pb-32">
       <div className="mb-4">
-        <h1 className="text-2xl font-bold">Customize Your Gig</h1>
+        <h1 className="text-2xl font-bold">Setup Your Gig</h1>
         <p className="text-sm mt-1 hint-color">
-          Set what you need done and how much it pays.
+          Define the gig you want users to complete, provide clear instructions, and set the reward completing it.
         </p>
       </div>
 
@@ -216,10 +217,9 @@ export default function PublishGig() {
         <div className="primary-bg rounded-2xl p-4 mb-6 flex flex-col gap-3">
           <div className="flex items-start gap-3">
             <div
-              className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: 'var(--tg-secondary-bg-color)' }}
+              className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center secondary-bg"
             >
-              📝
+              <TgIcon src="/note.svg" size={28} className="icon-color-active"></TgIcon>
             </div>
             <div>
               <p className="text-sm font-bold">You have an unfinished gig</p>
@@ -239,8 +239,7 @@ export default function PublishGig() {
             <button
               type="button"
               onClick={continueDraft}
-              className="flex-1 rounded-full py-2.5 text-sm font-bold"
-              style={{ backgroundColor: 'var(--tg-button-color)', color: 'var(--tg-button-text-color)' }}
+              className="flex-1 rounded-full py-2.5 text-sm font-bold button-color button-text-color"
             >
               Continue Draft
             </button>
@@ -257,7 +256,7 @@ export default function PublishGig() {
               <select
                 value={form.category}
                 onChange={(e) => handleCategoryChange(e.target.value as Category)}
-                className="input outline-0 rounded-lg px-2 py-4 primary-bg appearance-none"
+                className="input outline-0 rounded-2xl px-2 py-4 primary-bg appearance-none"
               >
                 <option value="">Select type</option>
                 {CATEGORIES.map((c) => (
@@ -271,7 +270,7 @@ export default function PublishGig() {
                 <select
                   value={form.subCategory}
                   onChange={(e) => update('subCategory', e.target.value)}
-                  className="input outline-0 rounded-lg px-2 py-4 primary-bg appearance-none"
+                  className="input outline-0 rounded-2xl px-2 py-4 primary-bg appearance-none"
                 >
                   <option value="">Select action</option>
                   {availableSubCategories.map((sc) => (
@@ -292,7 +291,7 @@ export default function PublishGig() {
                 onChange={(e) => update('title', e.target.value)}
                 placeholder="ex: Follow GigsGram on X"
                 maxLength={40}
-                className="input outline-0 primary-bg rounded-lg px-2 py-4"
+                className="input outline-0 primary-bg rounded-2xl px-2 py-2 placeholder:text-sm"
               />
             </Field>
 
@@ -302,7 +301,7 @@ export default function PublishGig() {
                 onChange={(e) => update('description', e.target.value)}
                 placeholder="ex: GigsGram - a telegram mini app where you can browse gigs, publish gigs, watch ads and earn rewards"
                 rows={4}
-                className="input resize-none outline-0 px-2 py-4 rounded-lg primary-bg"
+                className="input resize-none outline-0 px-2 py-2 rounded-2xl primary-bg placeholder:text-sm"
               />
             </Field>
 
@@ -312,7 +311,7 @@ export default function PublishGig() {
                 onChange={(e) => update('guidelines', e.target.value)}
                 placeholder="ex: Go to our X page, follow us on X, submit your X account link to confirm you completed the task"
                 rows={4}
-                className="input resize-none outline-0 px-2 py-4 rounded-lg primary-bg"
+                className="input resize-none outline-0 px-2 py-4 rounded-2xl primary-bg placeholder:text-sm"
               />
             </Field>
 
@@ -322,7 +321,7 @@ export default function PublishGig() {
                 value={form.url}
                 onChange={(e) => update('url', e.target.value)}
                 placeholder="https://x.com/gigsgram"
-                className="input outline-0 primary-bg rounded-lg px-2 py-4"
+                className="input outline-0 primary-bg rounded-2xl px-2 py-4 placeholder:text-sm"
               />
             </Field>
           </>
@@ -351,7 +350,7 @@ export default function PublishGig() {
             <div className="grid grid-cols-2 gap-2">
               {selectedSubCategory && (
                 <Field label="Reward Per Click">
-                  <p className="primary-bg rounded-lg px-2 py-4 text-lg font-medium w-full">
+                  <p className="primary-bg rounded-2xl px-2 py-4 text-lg font-medium w-full">
                     {reward} points
                     <span className="ml-2 font-normal hint-color text-sm">
                       ≈ ${(reward * TOKEN_TO_USDT).toFixed(2)}
@@ -367,7 +366,7 @@ export default function PublishGig() {
                   value={form.max}
                   onChange={(e) => update('max', e.target.value)}
                   placeholder="500"
-                  className="outline-0 primary-bg rounded-lg px-2 py-4"
+                  className="outline-0 primary-bg rounded-2xl px-2 py-4 placeholder:text-sm"
                 />
               </Field>
             </div>
@@ -394,13 +393,13 @@ export default function PublishGig() {
                   value={form.verificationTarget}
                   onChange={(e) => update('verificationTarget', e.target.value)}
                   placeholder="@gigsgram"
-                  className="input outline-0 rounded-lg primary-bg px-2 py-4"
+                  className="input outline-0 rounded-2xl primary-bg px-2 py-4 placeholder:text-sm"
                 />
               </Field>
             )}
 
             <Field label="Total Cost">
-              <div className="flex justify-between items-center px-2 py-4 rounded-lg primary-bg">
+              <div className="flex justify-between items-center px-2 py-4 rounded-2xl primary-bg">
                 <p className="text-lg font-bold">{totalCost.toLocaleString()} tokens</p>
                 <p className="text-xs text-right hint-color">
                   {reward || 0} × {maxNum || 500} slots
@@ -427,8 +426,7 @@ export default function PublishGig() {
             <button
               type="button"
               onClick={goNext}
-              className="flex-1 rounded-full py-3 font-bold text-center"
-              style={{ backgroundColor: 'var(--tg-button-color)', color: 'var(--tg-button-text-color)' }}
+              className="flex-1 rounded-full py-3 font-bold text-center button-color button-text-color"
             >
               Continue
             </button>
@@ -436,8 +434,7 @@ export default function PublishGig() {
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 rounded-full py-3 font-bold text-center disabled:opacity-50"
-              style={{ backgroundColor: 'var(--tg-button-color)', color: 'var(--tg-button-text-color)' }}
+              className="flex-1 rounded-full py-3 font-bold text-center disabled:opacity-50 button-color button-text-color"
             >
               {loading ? 'Publishing...' : 'Publish'}
             </button>
@@ -469,10 +466,7 @@ function StepIndicator({ current }: { current: Step }) {
       {[1, 2, 3].map((s) => (
         <div
           key={s}
-          className="flex-1 h-1.5 rounded-full transition-all"
-          style={{
-            backgroundColor: s <= current ? 'var(--tg-button-color)' : 'var(--tg-secondary-bg-color)',
-          }}
+          className={`flex-1 h-1.5 rounded-full transition-all ${s <= current ? "button-color" : "button-text-color"}`}
         />
       ))}
     </div>
@@ -496,11 +490,7 @@ function VerificationOption({ active, onClick, label }: { active: boolean; onCli
     <button
       type="button"
       onClick={onClick}
-      className="flex-1 rounded-xl py-2.5 text-sm font-medium text-center transition-all"
-      style={{
-        backgroundColor: active ? 'var(--tg-button-color)' : 'var(--tg-secondary-bg-color)',
-        color: active ? 'var(--tg-button-text-color)' : 'var(--tg-text-color)',
-      }}
+      className={`flex-1 rounded-xl py-2.5 text-sm font-medium text-center transition-all ${active ? "button-color button-text-color" : "secondary-bg text-color"}`}
     >
       {label}
     </button>

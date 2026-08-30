@@ -46,6 +46,14 @@ body {
   color: var(--destruction);
 }
 
+.button-color {
+  background-color: var(--tg-button-color);
+}
+
+.button-text-color {
+  color: var(--tg-button-text-color);
+}
+
 .gradient-bg {
   background: radial-gradient(
     circle at top left,

@@ -56,7 +56,7 @@ export default function CommunityMultiSelect(
       </button>
 
       {open && (
-        <div className="absolute z-20 top-full left-0 w-full mt-2 rounded-lg primary-bg shadow-lg overflow-hidden">
+        <div className="absolute z-20 top-full left-0 w-full mt-2 rounded-2xl primary-bg shadow-lg overflow-hidden">
           <div className="p-3 flex flex-col gap-2 secondary-bg">
             <input
               autoFocus
@@ -64,7 +64,7 @@ export default function CommunityMultiSelect(
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search communities..."
-              className="w-full px-3 py-2 rounded-lg outline-0 primary-bg text-sm"
+              className="w-full px-3 py-2 rounded-2xl outline-0 primary-bg text-sm"
             />
             {maxCount > 0 && (
               <div className="flex items-center gap-2">
