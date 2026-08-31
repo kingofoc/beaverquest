@@ -1,10 +1,14 @@
 'use client';
+import { useUser } from "@/context/UserContext";
 import TgIcon from "./Icon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Footer() {
  const pathname = usePathname();
+ const { user } = useUser();
+ const profileUrl = user?.profileURL;
 
  const footerItems = [
   { href: "/publish", label: "Publish", icon: "/publish.svg", activeIcon: "/publish-active.svg" },
@@ -12,6 +16,9 @@ export default function Footer() {
   { href: "/ads", label: "Ads", icon: "/ads.svg", activeIcon: "/ads-active.svg" },
   { href: "/community", label: "Community", icon: "/community.svg", activeIcon: "/community-active.svg" }
  ];
+
+ const profileItems = { href: "/profile", label: "Profile", icon: "/profile.svg", activeIcon: "/profile-active.svg" };
+ const isProfileActive = pathname === profileItems.href;
 
  return (
   <div className="fixed bottom-0 inset-x-0 z-50 primary-bg backdrop-blur-sm p-1.5">
@@ -23,13 +30,29 @@ export default function Footer() {
           <Link 
           key={label} 
           href={href} 
-          className="flex flex-col justify-center items-center text-center p-1 transition duration-500 ease-in-out">
+          className="flex flex-col justify-center items-center text-center transition duration-500 ease-in-out">
 
             <TgIcon src={isActive ? activeIcon : icon} size={28} className={isActive ? "icon-color-active" : "icon-color"} />
             <span className={`text-xs ${isActive ? 'font-bold icon-text-color-active' : 'icon-text-color font-medium'}`}>{label}</span>
           </Link>
         )
         })}
+
+        <Link href={profileItems.href} className="flex flex-col justify-center items-center text-center transition duration-500 ease-in-out">
+          <div className={`relative w-7 h-7 rounded-full overflow-hidden transition-all duration-500 ${isProfileActive ? "border-active" : ""}`}>
+            {profileUrl ? (
+            <Image
+              src={profileUrl}
+              alt={"profile"}
+              fill
+              className="object-cover"> 
+            </Image>
+            ) : (
+            <TgIcon src={profileItems.activeIcon} size={28} className={`object-cover icon-color-active ${isProfileActive ? "icon-color-active" : "icon-color"}`} />
+            )}
+          </div>
+          <span className={`text-xs ${isProfileActive ? "icon-text-color-active font-bold" : "icon-text-color font-medium"}`}>{profileItems.label}</span>
+        </Link>
       </div>
     </div>
   </div>
