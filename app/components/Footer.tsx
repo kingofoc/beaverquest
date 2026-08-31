@@ -9,21 +9,21 @@ export default function Footer() {
  const pathname = usePathname();
  const { user } = useUser();
  const profileUrl = user?.profileURL;
+ 
+ const profileItems = { href: "/profile", label: "Profile", icon: "/profile.svg", activeIcon: "/profile-active.svg" };
+ const isProfileActive = pathname === profileItems.href;
 
  const footerItems = [
   { href: "/publish", label: "Publish", icon: "/publish.svg", activeIcon: "/publish-active.svg" },
   { href: "/", label: "Gigs", icon: "/gigs.svg", activeIcon: "/gigs-active.svg" },
   { href: "/ads", label: "Ads", icon: "/ads.svg", activeIcon: "/ads-active.svg" },
-  { href: "/community", label: "Community", icon: "/community.svg", activeIcon: "/community-active.svg" }
- ];
-
- const profileItems = { href: "/profile", label: "Profile", icon: "/profile.svg", activeIcon: "/profile-active.svg" };
- const isProfileActive = pathname === profileItems.href;
+  { href: "/community", label: "Community", icon: "/community.svg", activeIcon: "/community-active.svg" },
+ ]; 
 
  return (
   <div className="fixed bottom-0 inset-x-0 z-50 backdrop-blur-sm p-1.5">
     <div className="absolute bottom-0 inset-x-0 z-0 h-26 secondary-bg-faded backdrop-blur-sm mask-t-from-65%"></div>
-    
+
     <div className="relative z-10 grid grid-cols-5 mb-2">
       <div className="w-full grid grid-cols-5 gap-2 col-span-5">
         {footerItems.map(({ href, label, activeIcon, icon }) => {

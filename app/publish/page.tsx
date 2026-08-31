@@ -15,7 +15,7 @@ export default function Publish() {
       <TgIcon src="/click.svg" size={28} className="icon-color-active"></TgIcon>
       <div className="flex flex-col">
        <span className="text-lg">Standard Click Gig</span>
-       <span className="text-sm hint-color">Pay per clicks or gig completion. Ideal for driving traffic and engagement.</span>
+       <span className="text-sm hint-color">Pay per click or gig completion. Ideal for driving social traffic and engagement.</span>
       </div>
      </div>
     </Link>

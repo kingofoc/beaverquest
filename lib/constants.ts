@@ -14,9 +14,10 @@ export type SubCategoryConfig = {
 
 export const SUB_CATEGORIES_BY_CATEGORY: Record<Category, SubCategoryConfig[]> = {
  Social: [
-  { label: 'Like/upvote/react/comment', reward: 3 },
-  { label: 'Share a post/video/comment', reward: 10 },
-  { label: 'Subscribe/follow/join', reward: 5 },
+  { label: "Like / upvote / react", reward: 3 },
+  { label: "Comment", reward: 5 },
+  { label: "Share a post / video / comment", reward: 10 },
+  { label: "Subscribe / follow / join", reward: 5 },
  ],
  Telegram: [
   { label: 'Join channel', reward: 5 },
@@ -113,8 +114,6 @@ export type FormState = {
   communities: string[];
   max: string;
   url: string;
-  verificationType: 'manual' | 'telegram';
-  verificationTarget: string;
 };
 
 export const EMPTY_FORM: FormState = {
@@ -127,8 +126,6 @@ export const EMPTY_FORM: FormState = {
   communities: [],
   max: '',
   url: '',
-  verificationType: 'manual',
-  verificationTarget: '',
 };
 
 // export type ChannelType = typeof CHANNEL_TYPE

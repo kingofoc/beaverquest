@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { CATEGORIES, SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, Category, FormState, EMPTY_FORM } from '@/lib/constants';
+import { SUB_CATEGORIES_BY_CATEGORY, TOKEN_TO_USDT, FormState, EMPTY_FORM } from '@/lib/constants';
 import { useUser } from '@/context/UserContext';
 import CountryMultiSelect from './CountryMultiSelect';
 import CommunityMultiSelect from './CommunityMultiSelect';
@@ -18,17 +18,14 @@ export default function PublishGig() {
   const [draftLoading, setDraftLoading] = useState(true);
   const [draftPrompt, setDraftPrompt] = useState<{ formData: FormState; step: Step } | null>(null)
   const [error, setError] = useState<string | null>(null);
-  const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [form, setForm] = useState<FormState>({...EMPTY_FORM, category: 'Social'});
 
-  const availableSubCategories = form.category ? SUB_CATEGORIES_BY_CATEGORY[form.category] : [];
-  const selectedSubCategory = availableSubCategories.find((sc) => sc.label === form.subCategory);
+  const SOCIAL_SUBCATEGORIES = SUB_CATEGORIES_BY_CATEGORY['Social'];
+
+  const selectedSubCategory = SOCIAL_SUBCATEGORIES.find((sc) => sc.label === form.subCategory);
   const reward = selectedSubCategory?.reward ?? 0;
   const maxNum = Number(form.max) || 0;
   const totalCost = reward * maxNum;
-
-  function handleCategoryChange(category: Category) {
-    setForm((prev) => ({ ...prev, category, subCategory: '' }));
-  }
 
   function toggleCountry(country: string) {
     setForm((prev) => ({
@@ -88,11 +85,6 @@ export default function PublishGig() {
       return;
     }
 
-    if (form.verificationType === 'telegram' && !form.verificationTarget) {
-      setError('Add the channel or bot username your task checks.');
-      return;
-    }
-
     setLoading(true);
 
     try {
@@ -111,11 +103,7 @@ export default function PublishGig() {
           reward,
           max: maxNum,
           url: form.url || undefined,
-          verificationType: form.verificationType,
-          verificationConfig:
-            form.verificationType === 'telegram'
-              ? { action: 'join_channel', target: form.verificationTarget }
-              : undefined,
+          verificationType: "manual",
         }),
       });
 
@@ -251,37 +239,19 @@ export default function PublishGig() {
                 Define your gig type and action and provide clear guidelines.
               </p>
             </div>
-            <Field label="Choose Gig Type">
+
+            <Field label="Choose Gig Action">
               <select
-                value={form.category}
-                onChange={(e) => handleCategoryChange(e.target.value as Category)}
+                value={form.subCategory}
+                onChange={(e) => update('subCategory', e.target.value)}
                 className="input outline-0 rounded-lg px-2 py-4 primary-bg appearance-none"
               >
-                <option value="">Select type</option>
-                {CATEGORIES.map((c) => (
-                  <option key={c} value={c}>{c}</option>
+                <option value="">Select action</option>
+                {SOCIAL_SUBCATEGORIES.map((sc) => (
+                  <option key={sc.label} value={sc.label}>{sc.label}</option>
                 ))}
               </select>
             </Field>
-
-            {form.category && availableSubCategories.length > 0 && (
-              <Field label="Choose Gig Action">
-                <select
-                  value={form.subCategory}
-                  onChange={(e) => update('subCategory', e.target.value)}
-                  className="input outline-0 rounded-lg px-2 py-4 primary-bg appearance-none"
-                >
-                  <option value="">Select action</option>
-                  {availableSubCategories.map((sc) => (
-                    <option key={sc.label} value={sc.label}>{sc.label}</option>
-                  ))}
-                </select>
-              </Field>
-            )}
-
-            {form.category && availableSubCategories.length === 0 && (
-              <p className="text-sm hint-color">This gig action is not available yet.</p>
-            )}
 
             <Field label="Name Your Gig">
               <input
@@ -384,33 +354,6 @@ export default function PublishGig() {
               </Field>
             </div>
 
-            <Field label="Verification Type">
-              <div className="flex gap-2">
-                <VerificationOption
-                  active={form.verificationType === 'manual'}
-                  onClick={() => update('verificationType', 'manual')}
-                  label="I'll Review Proof"
-                />
-                <VerificationOption
-                  active={form.verificationType === 'telegram'}
-                  onClick={() => update('verificationType', 'telegram')}
-                  label="Auto-verify Telegram"
-                />
-              </div>
-            </Field>
-
-            {form.verificationType === 'telegram' && (
-              <Field label="Channel or Bot Username">
-                <input
-                  type="text"
-                  value={form.verificationTarget}
-                  onChange={(e) => update('verificationTarget', e.target.value)}
-                  placeholder="@gigsgram"
-                  className="input outline-0 rounded-2xl primary-bg px-2 py-4 placeholder:text-sm"
-                />
-              </Field>
-            )}
-
             <Field label="Total Cost">
               <div className="flex justify-between items-center px-2 py-4 rounded-2xl primary-bg">
                 <p className="text-lg font-bold">{totalCost.toLocaleString()} tokens</p>
@@ -502,17 +445,5 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
       </span>
       {children}
     </label>
-  );
-}
-
-function VerificationOption({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`flex-1 rounded-xl py-2.5 text-sm font-medium text-center transition-all ${active ? "button-color button-text-color" : "secondary-bg text-color"}`}
-    >
-      {label}
-    </button>
   );
 }

@@ -1,5 +1,4 @@
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 import ProfilePics from "./components/ProfilePics";
 import UserCountry from "./components/UserCountry";
 
@@ -8,7 +7,6 @@ export default function Home() {
     <div>
       <UserCountry />
       <ProfilePics />
-      <Header />
 
       <Footer />
     </div>
